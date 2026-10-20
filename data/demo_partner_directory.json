@@ -1,0 +1,38 @@
+[
+  {
+    "userId": "u-001",
+    "displayName": "Max Mustermann",
+    "region": "Landkreis Hameln-Pyrmont",
+    "position": "Immobilienmakler (Demo)",
+    "visibleToPartners": true,
+    "profileDescription": "Synthetisches Benutzerprofil für die Testumgebung.",
+    "isDemo": true
+  },
+  {
+    "userId": "u-002",
+    "displayName": "Lara Beispiel",
+    "region": "Landkreis Hildesheim",
+    "position": "Regionalleitung (Demo)",
+    "visibleToPartners": true,
+    "profileDescription": "Synthetisches Benutzerprofil für die Testumgebung.",
+    "isDemo": true
+  },
+  {
+    "userId": "u-003",
+    "displayName": "Alex Demo",
+    "region": "Stadt und Landkreis Kassel",
+    "position": "Immobilienmakler (Demo)",
+    "visibleToPartners": true,
+    "profileDescription": "Synthetisches Benutzerprofil für die Testumgebung.",
+    "isDemo": true
+  },
+  {
+    "userId": "u-004",
+    "displayName": "Robin Beispiel",
+    "region": "Stadt und Landkreis Passau",
+    "position": "Immobilienmakler (Demo)",
+    "visibleToPartners": true,
+    "profileDescription": "Synthetisches Benutzerprofil für die Testumgebung.",
+    "isDemo": true
+  }
+]

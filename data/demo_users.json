@@ -1,0 +1,47 @@
+[
+  {
+    "id": "u-001",
+    "name": "Max Mustermann",
+    "email": "max.mustermann@example.test",
+    "role": "MAKLER",
+    "region": "Landkreis Hameln-Pyrmont",
+    "company": "CHASE Immobilien",
+    "isDemo": true
+  },
+  {
+    "id": "u-002",
+    "name": "Lara Beispiel",
+    "email": "lara.beispiel@example.test",
+    "role": "REGIONALLEITUNG",
+    "region": "Landkreis Hildesheim",
+    "company": "CHASE Immobilien",
+    "isDemo": true
+  },
+  {
+    "id": "u-003",
+    "name": "Alex Demo",
+    "email": "alex.demo@example.test",
+    "role": "MAKLER",
+    "region": "Stadt und Landkreis Kassel",
+    "company": "CHASE Immobilien",
+    "isDemo": true
+  },
+  {
+    "id": "u-004",
+    "name": "Robin Beispiel",
+    "email": "robin.beispiel@example.test",
+    "role": "MAKLER",
+    "region": "Stadt und Landkreis Passau",
+    "company": "CHASE Immobilien",
+    "isDemo": true
+  },
+  {
+    "id": "u-admin",
+    "name": "CHASE Administration (Demo)",
+    "email": "admin@example.test",
+    "role": "ADMIN",
+    "region": "Alle Regionen (nur Demo)",
+    "company": "CHASE Immobilien",
+    "isDemo": true
+  }
+]

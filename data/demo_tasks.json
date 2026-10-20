@@ -1,0 +1,57 @@
+[
+  {
+    "id": "task-01",
+    "title": "Energieausweisdaten prüfen (Demo)",
+    "ownerUserId": "u-001",
+    "propertyId": "obj-1001",
+    "leadId": null,
+    "priority": "Hoch",
+    "status": "Offen",
+    "dueDate": "2026-10-22",
+    "isDemo": true
+  },
+  {
+    "id": "task-02",
+    "title": "Exposétext überarbeiten (Demo)",
+    "ownerUserId": "u-001",
+    "propertyId": "obj-1001",
+    "leadId": null,
+    "priority": "Mittel",
+    "status": "In Arbeit",
+    "dueDate": "2026-10-24",
+    "isDemo": true
+  },
+  {
+    "id": "task-03",
+    "title": "Eigentümer-Erstgespräch vorbereiten (Demo)",
+    "ownerUserId": "u-002",
+    "propertyId": null,
+    "leadId": "lead-02",
+    "priority": "Hoch",
+    "status": "Offen",
+    "dueDate": "2026-10-23",
+    "isDemo": true
+  },
+  {
+    "id": "task-04",
+    "title": "Social-Post planen (Demo)",
+    "ownerUserId": "u-003",
+    "propertyId": "obj-1002",
+    "leadId": null,
+    "priority": "Niedrig",
+    "status": "Erledigt",
+    "dueDate": "2026-10-15",
+    "isDemo": true
+  },
+  {
+    "id": "task-05",
+    "title": "Grundriss prüfen (Demo)",
+    "ownerUserId": "u-004",
+    "propertyId": null,
+    "leadId": null,
+    "priority": "Mittel",
+    "status": "Offen",
+    "dueDate": "2026-10-27",
+    "isDemo": true
+  }
+]

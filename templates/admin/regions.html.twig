@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block title %}Regionen verwalten · CHASE{% endblock %}
+{% block body %}
+<div class="page-heading"><div><span class="badge">Administration</span><h1>Unsere Regionen</h1><p class="muted">Regionen strukturieren Profile. Teamzugriffe werden getrennt und ausdrücklich freigegeben.</p></div></div>
+{% include 'admin/_nav.html.twig' %}
+<div class="grid grid-3">{% for region in regions %}<article class="card"><span class="badge">Demo-Region</span><h2>{{ region.title }}</h2><a href="/admin/users">Partner zuweisen →</a></article>{% else %}<div class="card empty-state">Noch keine Regionen angelegt.</div>{% endfor %}</div>
+<section class="card"><h2>Region ergänzen</h2>{% include 'admin/_errors.html.twig' %}<form method="post"><input type="hidden" name="_token" value="{{ csrf_token('portal') }}"><div class="field"><label for="name">Name der Region</label><input id="name" name="name" required minlength="2" maxlength="120" placeholder="Zum Beispiel: Demo-Region Nord"></div><button class="btn btn-primary" type="submit">Demo-Region anlegen</button></form></section>
+{% endblock %}

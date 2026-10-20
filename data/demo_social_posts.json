@@ -1,0 +1,41 @@
+[
+  {
+    "id": "post-01",
+    "ownerUserId": "u-001",
+    "propertyId": "obj-1001",
+    "channel": "Instagram",
+    "format": "Feed 4:5",
+    "title": "Fiktive Wohnung – Objekteinblick",
+    "caption": "3 Zimmer, 83 m² Wohnfläche und ein Balkon in Hameln (Demodaten). Details auf Anfrage.",
+    "status": "Entwurf",
+    "plannedAt": "2026-10-24T18:00:00+02:00",
+    "isPublished": false,
+    "isDemo": true
+  },
+  {
+    "id": "post-02",
+    "ownerUserId": "u-002",
+    "propertyId": null,
+    "channel": "LinkedIn",
+    "format": "Textpost",
+    "title": "Eigentümerberatung in der Region",
+    "caption": "Welche Unterlagen sollten Eigentümer vor dem Verkauf vorbereiten? Wir geben einen Überblick – Demo-Post, nicht veröffentlicht.",
+    "status": "Geplant intern",
+    "plannedAt": "2026-10-27T09:00:00+01:00",
+    "isPublished": false,
+    "isDemo": true
+  },
+  {
+    "id": "post-03",
+    "ownerUserId": "u-003",
+    "propertyId": "obj-1002",
+    "channel": "Facebook",
+    "format": "Feed",
+    "title": "Objekteinblick (Demo)",
+    "caption": "Unser fiktives Beispielobjekt zeigt, wie Daten sicher in einen Post übernommen werden.",
+    "status": "Entwurf",
+    "plannedAt": null,
+    "isPublished": false,
+    "isDemo": true
+  }
+]

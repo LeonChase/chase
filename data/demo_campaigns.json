@@ -1,0 +1,38 @@
+[
+  {
+    "id": "campaign-01",
+    "title": "Bewertungsanfrage regional",
+    "category": "Eigentümergewinnung",
+    "description": "Formularvorschau für unverbindliche Eigentümeranfrage; im PoC nicht öffentlich.",
+    "cta": "Immobilienwert kennenlernen",
+    "status": "Vorlage",
+    "isDemo": true
+  },
+  {
+    "id": "campaign-02",
+    "title": "Neue Immobilie im Angebot",
+    "category": "Objektmarketing",
+    "description": "Kampagnengerüst für Social Media bei einem neuen Objekt.",
+    "cta": "Exposé anfordern",
+    "status": "Vorlage",
+    "isDemo": true
+  },
+  {
+    "id": "campaign-03",
+    "title": "Ratgeber: Erbimmobilie",
+    "category": "Content Marketing",
+    "description": "Informationskampagne mit redaktioneller und fachlicher Freigabe.",
+    "cta": "Ratgeber lesen",
+    "status": "Vorlage",
+    "isDemo": true
+  },
+  {
+    "id": "campaign-04",
+    "title": "Regionale Maklerbewertung",
+    "category": "Vertrauensaufbau",
+    "description": "Kampagne für Feedback und Bewertungen ohne fingierte Rezensionen.",
+    "cta": "Erfahrung teilen",
+    "status": "Vorlage",
+    "isDemo": true
+  }
+]

@@ -1,0 +1,11 @@
+twig:
+  file_name_pattern: '*.twig'
+  date:
+    timezone: Europe/Berlin
+  default_path: '%kernel.project_dir%/templates'
+  globals:
+    portal: '@App\Service\PortalContext'
+  form_themes: ['form_div_layout.html.twig']
+when@test:
+  twig:
+    strict_variables: true

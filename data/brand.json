@@ -1,0 +1,80 @@
+{
+  "brand": "CHASE Immobilien",
+  "portalName": "CHASE Partnerportal",
+  "language": "de-DE",
+  "website": "https://chase-immobilien.de",
+  "accentColor": "#FF6A00",
+  "secondaryColor": "#151923",
+  "fontPreference": "Inter, system-ui, sans-serif",
+  "tagline": "Gemeinsam mehr erreichen.",
+  "demoNotice": "Demoversion mit synthetischen Beispieldaten",
+  "welcomeTitle": "Willkommen im CHASE Partnerportal",
+  "welcomeSubtitle": "Alle Tools, Dokumente und Informationen für Ihre erfolgreiche Immobilienvermarktung.",
+  "support": {
+    "title": "Ansprechpartner",
+    "label": "CHASE Zentrale",
+    "detail": "Kontakt folgt – Demo ohne echten Nachrichtenversand"
+  },
+  "modules": [
+    {
+      "slug": "dokumente",
+      "title": "Dokumente",
+      "icon": "file-text",
+      "description": "Verträge, Vorlagen und wichtige Unterlagen – zentral an einem Ort.",
+      "cta": "Dokumente ansehen"
+    },
+    {
+      "slug": "immobilienbewertung",
+      "title": "Immobilienbewertung",
+      "icon": "house",
+      "description": "Objektdaten erfassen und Bewertungen strukturiert vorbereiten.",
+      "cta": "Bewertung starten",
+      "highlight": true
+    },
+    {
+      "slug": "ki-tools",
+      "title": "KI-Tools",
+      "icon": "brain-circuit",
+      "description": "Exposés, Lagebeschreibungen, Marketingtexte und Prüfhilfen.",
+      "cta": "KI-Tools öffnen"
+    },
+    {
+      "slug": "academy",
+      "title": "Wissen / Academy",
+      "icon": "graduation-cap",
+      "description": "Schulungen, Artikel und Grundlagen für Makler.",
+      "cta": "Academy entdecken"
+    },
+    {
+      "slug": "werbekatalog",
+      "title": "Werbekatalog",
+      "icon": "megaphone",
+      "description": "Werbemittel für die professionelle regionale Vermarktung.",
+      "cta": "Werbemittel ansehen"
+    },
+    {
+      "slug": "visualisierung",
+      "title": "Visualisierung",
+      "icon": "images",
+      "description": "Bildoptimierung, virtuelles Home Staging und Grundrisse.",
+      "cta": "Visualisierung öffnen"
+    }
+  ],
+  "appSections": [
+    "Dashboard",
+    "Meine Immobilien",
+    "KI-Studio",
+    "Marketing & Social Media",
+    "Akquise & Leads",
+    "Immobilienbewertung",
+    "Dokumente",
+    "Wissen / Academy",
+    "Werbekatalog",
+    "News & Netzwerk",
+    "Aufgaben & Checklisten",
+    "Administration"
+  ],
+  "designVersion": "2.0",
+  "demoMode": true,
+  "externalApisEnabledByDefault": false
+}

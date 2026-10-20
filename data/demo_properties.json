@@ -1,0 +1,108 @@
+[
+  {
+    "id": "obj-1001",
+    "title": "Helle 3-Zimmer-Wohnung mit Balkon",
+    "ownerUserId": "u-001",
+    "propertyType": "Eigentumswohnung",
+    "city": "Hameln",
+    "district": "Klein Berkel",
+    "region": "Hameln-Pyrmont",
+    "areaSqm": 83,
+    "rooms": 3,
+    "plotSqm": null,
+    "yearBuilt": 1996,
+    "condition": "gepflegt",
+    "features": [
+      "Balkon",
+      "Tageslichtbad",
+      "PKW-Stellplatz"
+    ],
+    "sellingPoints": [
+      "gute Raumaufteilung",
+      "helle Wohnräume"
+    ],
+    "energyData": null,
+    "priceEur": null,
+    "isDemo": true,
+    "legalStatus": "Vollständig fiktive Testimmobilie"
+  },
+  {
+    "id": "obj-1002",
+    "title": "Freistehendes Einfamilienhaus mit Garten",
+    "ownerUserId": "u-003",
+    "propertyType": "Einfamilienhaus",
+    "city": "Kassel",
+    "district": "Nordshausen",
+    "region": "Kassel",
+    "areaSqm": 142,
+    "rooms": 5,
+    "plotSqm": 560,
+    "yearBuilt": 1989,
+    "condition": "teilweise modernisiert",
+    "features": [
+      "Garten",
+      "Terrasse",
+      "Garage"
+    ],
+    "sellingPoints": [
+      "familienfreundlicher Grundriss",
+      "Außenfläche"
+    ],
+    "energyData": null,
+    "priceEur": null,
+    "isDemo": true,
+    "legalStatus": "Vollständig fiktive Testimmobilie"
+  },
+  {
+    "id": "obj-1003",
+    "title": "Kompakte 2-Zimmer-Wohnung mit Aufzug",
+    "ownerUserId": "u-004",
+    "propertyType": "Etagenwohnung",
+    "city": "Passau",
+    "district": "Innenstadt (Demo)",
+    "region": "Passau",
+    "areaSqm": 69,
+    "rooms": 2,
+    "plotSqm": null,
+    "yearBuilt": 2012,
+    "condition": "gepflegt",
+    "features": [
+      "Aufzug",
+      "Einbauküche",
+      "Loggia"
+    ],
+    "sellingPoints": [
+      "praktischer Grundriss"
+    ],
+    "energyData": null,
+    "priceEur": null,
+    "isDemo": true,
+    "legalStatus": "Vollständig fiktive Testimmobilie"
+  },
+  {
+    "id": "obj-1004",
+    "title": "Gepflegte Doppelhaushälfte für Familien",
+    "ownerUserId": "u-002",
+    "propertyType": "Doppelhaushälfte",
+    "city": "Hildesheim",
+    "district": "Stadtgebiet (Demo)",
+    "region": "Landkreis Hildesheim",
+    "areaSqm": 118,
+    "rooms": 4,
+    "plotSqm": 340,
+    "yearBuilt": 2001,
+    "condition": "gepflegt",
+    "features": [
+      "Terrasse",
+      "Carport",
+      "Gäste-WC"
+    ],
+    "sellingPoints": [
+      "zwei Vollgeschosse"
+    ],
+    "energyData": null,
+    "priceEur": null,
+    "isDemo": true,
+    "legalStatus": "Vollständig fiktive Testimmobilie"
+  }
+]

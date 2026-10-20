@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}Admin-Center · CHASE{% endblock %}
+{% block body %}
+<div class="page-heading"><div><span class="badge">Portalverwaltung</span><h1>Admin-Center</h1><p class="muted">Ein klarer Überblick. Sichere Freigaben. Starke Zusammenarbeit.</p></div><a class="btn btn-primary" href="/admin/users">Benutzer verwalten</a></div>
+{% include 'admin/_nav.html.twig' %}
+<div class="grid grid-3">
+    <a class="card" href="/admin/users"><p class="muted">Aktive Demo-Konten</p><h2>{{ activeUsers }} <small class="muted">/ {{ users|length }}</small></h2><span>Benutzer & Rollen →</span></a>
+    <a class="card" href="/admin/regions"><p class="muted">Lokale Regionen</p><h2>{{ regionCount }}</h2><span>Regionen verwalten →</span></a>
+    <a class="card" href="/admin/news"><p class="muted">Interne Nachrichten</p><h2>{{ newsCount }}</h2><span>News bearbeiten →</span></a>
+</div>
+<div class="grid grid-2">
+    <section class="card"><span class="badge">Fiktive Einheiten</span><h2>Demo-Budget im Blick</h2><p><strong>{{ budgetTotal|number_format(0, ',', '.') }} Demo-Credits</strong> sind den lokalen Konten insgesamt als Budget zugeteilt.</p><p class="muted">Dies ist ein Testbudget, kein Geldbetrag. Es werden keine Zahlungen und keine externen KI-Aufrufe ausgelöst. Budgets passen Sie im jeweiligen Benutzerkonto an.</p><a class="btn btn-secondary" href="/admin/users">Demo-Budgets verwalten</a></section>
+    <section class="card"><span class="badge">Zugriff bewusst steuern</span><h2>Teamdaten bleiben geschützt</h2><p>Eine gemeinsame Region erteilt keinen Zugriff auf fremde Objekte oder Leads. Eine Regionalleitung erhält Teamdaten nur durch Ihre ausdrückliche Freigabe.</p><p class="muted">Die Rolle Administration erhält ebenfalls keinen pauschalen Zugriff auf Kundendaten.</p><a class="btn btn-secondary" href="/admin/access">Teamfreigaben prüfen</a></section>
+</div>
+<div class="grid grid-3">
+    <a class="card" href="/admin/content/documents"><h3>Inhalte pflegen</h3><p class="muted">Lokale Dokumente, Academy und Werbemittel.</p><span>Inhalte öffnen →</span></a>
+    <a class="card" href="/admin/integrations"><h3>API-Status</h3><p class="muted">Transparente Grenzen: lokal, Demo oder nicht verbunden.</p><span>Integrationen prüfen →</span></a>
+    <a class="card" href="/admin/audit"><h3>Änderungen nachvollziehen</h3><p class="muted">{{ auditCount }} lokale Audit-Ereignisse. Keine Passwörter im Protokoll.</p><span>Auditlog öffnen →</span></a>
+</div>
+{% endblock %}

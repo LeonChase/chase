@@ -1,0 +1,20 @@
+framework:
+  default_locale: de
+  secret: '%env(APP_SECRET)%'
+  csrf_protection: true
+  handle_all_throwables: true
+  session:
+    cookie_secure: auto
+    cookie_httponly: true
+    cookie_samesite: lax
+    save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+  php_errors:
+    log: true
+  http_method_override: false
+  router:
+    utf8: true
+when@test:
+  framework:
+    test: true
+    session:
+      storage_factory_id: session.storage.factory.mock_file

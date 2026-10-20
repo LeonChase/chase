@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block title %}Benutzer bearbeiten · CHASE{% endblock %}
+{% block body %}
+<div class="page-heading"><div><span class="badge">Benutzerverwaltung</span><h1>{{ account.name }}</h1><p class="muted">Berechtigungen und Demo-Budget gezielt anpassen.</p></div><a class="btn btn-secondary" href="/admin/users">Zur Benutzerliste</a></div>
+{% include 'admin/_nav.html.twig' %}
+<section class="card">{% include 'admin/_errors.html.twig' %}<form method="post"><input type="hidden" name="_token" value="{{ csrf_token('portal') }}"><input type="hidden" name="action" value="save">{% include 'admin/_user_fields.html.twig' %}<button class="btn btn-primary" type="submit">Änderungen speichern</button></form></section>
+<section class="card"><h2>Lokales Demo-Passwort zurücksetzen</h2><p class="muted">Das bisherige Passwort wird ungültig. Das neue zufällige Passwort wird nur einmal auf der nächsten Seite angezeigt; es erfolgt kein Versand.</p><form method="post"><input type="hidden" name="_token" value="{{ csrf_token('portal') }}"><input type="hidden" name="action" value="reset_password"><button class="btn btn-secondary" type="submit">Neues Demo-Passwort erzeugen</button></form></section>
+{% endblock %}

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "act-01",
+    "actorUserId": "u-001",
+    "entityType": "Property",
+    "entityId": "obj-1001",
+    "verb": "Demoobjekt angelegt",
+    "time": "2026-10-16T13:20:00+02:00",
+    "isDemo": true
+  },
+  {
+    "id": "act-02",
+    "actorUserId": "u-001",
+    "entityType": "Task",
+    "entityId": "task-01",
+    "verb": "Aufgabe erstellt",
+    "time": "2026-10-17T10:40:00+02:00",
+    "isDemo": true
+  },
+  {
+    "id": "act-03",
+    "actorUserId": "u-002",
+    "entityType": "Lead",
+    "entityId": "lead-02",
+    "verb": "Lead als qualifiziert markiert",
+    "time": "2026-10-18T11:00:00+02:00",
+    "isDemo": true
+  }
+]

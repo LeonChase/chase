@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+CHASE_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+if [[ -x "$CHASE_ROOT/.tools/bin/php" ]]; then
+  exec "$CHASE_ROOT/.tools/bin/php" "$@"
+fi
+exec php "$@"

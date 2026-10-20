@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+{% block title %}Auditlog · CHASE{% endblock %}
+{% block body %}
+<div class="page-heading"><div><span class="badge">Lokales Änderungsprotokoll</span><h1>Nachvollziehbar handeln</h1><p class="muted">Die letzten 200 Ereignisse dieses Portals. Protokolliert werden Aktion, Zeitpunkt und interne Kennung – keine Passwörter oder Kundentexte.</p></div></div>
+{% include 'admin/_nav.html.twig' %}
+<section class="card"><div class="table-wrap"><table><thead><tr><th>Zeitpunkt</th><th>Aktion</th><th>Handelndes Konto (ID)</th><th>Datensatz (ID)</th></tr></thead><tbody>{% for event in events %}<tr><td>{{ event.createdAt|date('d.m.Y H:i', 'Europe/Berlin') }}</td><td>{{ event.title }}</td><td><small>{{ event.ownerId|default('System') }}</small></td><td><small>{{ event.data.entityId|default('–') }}</small></td></tr>{% else %}<tr><td colspan="4">Noch keine protokollierten Änderungen.</td></tr>{% endfor %}</tbody></table></div></section>
+{% endblock %}

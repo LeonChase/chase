@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% import 'content/_parts.html.twig' as parts %}
+{% block title %}{{ document.title }} · CHASE{% endblock %}
+{% block body %}
+<a class="back-link" href="{{ path('app_documents') }}">← Zum Dokumentencenter</a>
+<div class="page-heading"><div>{{ parts.category(document.data.category|default('Dokument'), true) }}<h1>{{ document.title }}</h1><p>{{ document.data.description|default('Unverbindliches Demo-Arbeitsmuster.') }}</p></div></div>
+<div class="alert">Unverbindliches Demo-Muster · keine Rechtsberatung · keine freigegebene Vertragsvorlage.</div>
+<div class="grid grid-2"><article class="card stack"><h2>Dokumentvorschau</h2><pre class="document-preview" style="white-space:pre-wrap;font:inherit;line-height:1.8;overflow-wrap:anywhere">{{ document.data.content|default('Demo-Inhalt. Vor Verwendung fachlich prüfen.') }}</pre></article><aside class="card stack"><h2>Gut vorbereitet arbeiten</h2><p class="muted">Speichern Sie das Muster für Ihre lokale Vorbereitung. Der Download enthält eine deutliche Demo-Kennzeichnung.</p><dl><dt>Format</dt><dd>Textdatei · TXT</dd><dt>Freigabe</dt><dd>{{ document.data.audience|default('Zugriffsberechtigte Partner') }}</dd><dt>Letzte Aktualisierung</dt><dd>{{ document.data.lastUpdated|default(document.updatedAt|date('Y-m-d'))|date('d.m.Y') }}</dd></dl><a class="btn btn-primary" href="{{ path('app_document_download', {id:document.id}) }}">Demo-Muster herunterladen</a>{{ parts.favorite('document', document, favorites, '') }}<p class="muted"><small>Der Zugriff auf diese Datei wird auch beim Download geprüft.</small></p></aside></div>
+{% endblock %}

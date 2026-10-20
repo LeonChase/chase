@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %}Partnernetzwerk · CHASE{% endblock %}
+{% block body %}
+<div class="page-heading"><div><span class="eyebrow">Gemeinsam mehr erreichen</span><h1>Das CHASE Partnernetzwerk</h1><p>Unsere Regionen. Unser Wissen. Ein gemeinsames Netzwerk.</p></div></div>
+<div class="tabs"><a href="{{ path('app_news') }}">News aus der Zentrale</a><a class="active" href="{{ path('app_network') }}">Partnernetzwerk</a></div>
+<div class="alert">Alle angezeigten Profile sind synthetische Demo-Beispiele. Nur ausdrücklich freigegebene Profilangaben sind sichtbar; private Kontaktdaten werden nicht angezeigt.</div>
+<form method="get" class="card toolbar"><div class="field" style="flex:1"><label for="partner-query">Partner oder Region suchen</label><input type="search" name="q" id="partner-query" value="{{ q }}" placeholder="Name oder Region …"></div><button class="btn btn-primary" type="submit">Suchen</button><a class="btn btn-secondary" href="{{ path('app_network') }}">Alle Partner</a></form>
+<div class="grid grid-3">{% for partner in partners %}<article class="card stack"><div class="partner-avatar" aria-hidden="true" style="width:60px;height:60px;border-radius:20px;background:rgba(255,106,0,.12);color:var(--accent,#FF6A00);display:grid;place-items:center;font-weight:800;font-size:22px">{{ partner.title|slice(0,1) }}</div><span class="badge">Demo-Profil</span><h2>{{ partner.data.displayName|default(partner.title) }}</h2><strong>{{ partner.data.position|default('CHASE Partner (Demo)') }}</strong><p class="muted">{{ partner.data.region|default('Region noch nicht hinterlegt') }}</p><p>{{ partner.data.profileDescription|default('Synthetisches Benutzerprofil für die Testumgebung.') }}</p></article>{% else %}<div class="card empty-state"><h2>Keine freigegebenen Profile gefunden</h2><p>Ändern Sie Ihre Suche oder versuchen Sie eine andere Region.</p></div>{% endfor %}</div>
+{% endblock %}

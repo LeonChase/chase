@@ -1,0 +1,72 @@
+[
+  {
+    "id": "lead-01",
+    "name": "Lena Käuferin (Demo)",
+    "email": "lena.kaeuferin@example.test",
+    "phone": null,
+    "interest": "Kaufinteresse Eigentumswohnung",
+    "source": "Website (Demo)",
+    "status": "Neu",
+    "ownerUserId": "u-001",
+    "propertyId": "obj-1001",
+    "nextFollowUp": "2026-10-23",
+    "notes": "Nur synthetische Anfrage, keine echte Kontaktaufnahme.",
+    "isDemo": true
+  },
+  {
+    "id": "lead-02",
+    "name": "Tom Eigentümer (Demo)",
+    "email": "tom.eigentuemer@example.test",
+    "phone": null,
+    "interest": "Verkaufsbewertung",
+    "source": "Bewertungs-Landingpage (Demo)",
+    "status": "Qualifiziert",
+    "ownerUserId": "u-002",
+    "propertyId": null,
+    "nextFollowUp": "2026-10-24",
+    "notes": "Wünscht fiktive unverbindliche Erstberatung.",
+    "isDemo": true
+  },
+  {
+    "id": "lead-03",
+    "name": "Mia Suchkundin (Demo)",
+    "email": "mia.suchkundin@example.test",
+    "phone": null,
+    "interest": "Einfamilienhaus",
+    "source": "Empfehlung (Demo)",
+    "status": "Termin",
+    "ownerUserId": "u-003",
+    "propertyId": "obj-1002",
+    "nextFollowUp": "2026-10-26",
+    "notes": "Fiktives Suchprofil.",
+    "isDemo": true
+  },
+  {
+    "id": "lead-04",
+    "name": "Nils Immobilienbesitzer (Demo)",
+    "email": "nils.besitzer@example.test",
+    "phone": null,
+    "interest": "Eigentümerakquise",
+    "source": "Facebook (Demo)",
+    "status": "Kontaktiert",
+    "ownerUserId": "u-004",
+    "propertyId": null,
+    "nextFollowUp": "2026-10-28",
+    "notes": "Keine reale Kampagne.",
+    "isDemo": true
+  },
+  {
+    "id": "lead-05",
+    "name": "Emma Kaufinteressentin (Demo)",
+    "email": "emma.interessentin@example.test",
+    "phone": null,
+    "interest": "Eigentumswohnung",
+    "source": "Exposé (Demo)",
+    "status": "Auftrag",
+    "ownerUserId": "u-001",
+    "propertyId": "obj-1001",
+    "nextFollowUp": null,
+    "notes": "Ausschließlich Demo-Zustand.",
+    "isDemo": true
+  }
+]

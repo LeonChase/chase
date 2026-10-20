@@ -1,0 +1,134 @@
+[
+  {
+    "id": "academy-01",
+    "title": "So gelingt ein aussagekräftiges Exposé",
+    "category": "Vermarktung",
+    "readingMinutes": 6,
+    "teaser": "Welche Aussagen gehören ins Exposé und welche müssen geprüft werden?",
+    "content": [
+      [
+        "Objektdaten kontrollieren",
+        "Wohnfläche, Baujahr, Flächen und Ausstattung nur übernehmen, wenn sie belegt sind."
+      ],
+      [
+        "Zielgruppe und Nutzen",
+        "Relevante Stärken klar formulieren, ohne Versprechen oder Fakten zu erfinden."
+      ],
+      [
+        "Freigabe dokumentieren",
+        "Fotos, Grundrisse, Pflichtangaben und Eigentümerfreigabe vor Veröffentlichung prüfen."
+      ]
+    ],
+    "isDemo": true
+  },
+  {
+    "id": "academy-02",
+    "title": "Erstgespräch mit Eigentümern vorbereiten",
+    "category": "Akquise",
+    "readingMinutes": 5,
+    "teaser": "Die wichtigsten Fragen vor der Objektaufnahme.",
+    "content": [
+      [
+        "Bedarf verstehen",
+        "Verkaufsanlass, Zeitrahmen und Erwartungen sachlich ermitteln."
+      ],
+      [
+        "Objektbasis erfassen",
+        "Adresse, Baujahr, Flächen, Zustand, Modernisierungen und Unterlagen strukturiert abfragen."
+      ],
+      [
+        "Folgeschritte klären",
+        "Begehung, Unterlagen und weiteres Vorgehen abstimmen."
+      ]
+    ],
+    "isDemo": true
+  },
+  {
+    "id": "academy-03",
+    "title": "Dokumentenprüfung: typische Hinweise",
+    "category": "Unterlagen",
+    "readingMinutes": 7,
+    "teaser": "Worauf beim Überblick über Grundbuch, Energieausweis und WEG-Unterlagen zu achten ist.",
+    "content": [
+      [
+        "Grundbuch",
+        "Eigentümer- und Rechteverhältnisse von Fachkundigen prüfen lassen; keine rechtlichen Schlussfolgerungen aus einer automatischen Extraktion ziehen."
+      ],
+      [
+        "Energieausweis",
+        "Vorliegen, gültige Angaben, Ausweisart und Vermarktungspflichten klären."
+      ],
+      [
+        "WEG",
+        "Teilungserklärung, Hausgeld und Beschlusslage vor Exposé und Kaufentscheidung prüfen."
+      ]
+    ],
+    "isDemo": true
+  },
+  {
+    "id": "academy-04",
+    "title": "KI im Makleralltag verantwortungsvoll nutzen",
+    "category": "Digitalisierung",
+    "readingMinutes": 4,
+    "teaser": "KI beschleunigt Texte und Bilder, ersetzt aber keine fachliche Freigabe.",
+    "content": [
+      [
+        "Qualitätssicherung",
+        "KI-Outputs auf belegbare Aussagen und Vollständigkeit überprüfen."
+      ],
+      [
+        "Datenschutz",
+        "Vertrauliche Unterlagen nur in dafür freigegebenen Systemen verarbeiten."
+      ],
+      [
+        "Bildtransparenz",
+        "Virtuelles Staging und Objektveränderungen klar kennzeichnen."
+      ]
+    ],
+    "isDemo": true
+  },
+  {
+    "id": "academy-05",
+    "title": "Regionale Sichtbarkeit aufbauen",
+    "category": "Marketing",
+    "readingMinutes": 5,
+    "teaser": "Konsistenter Auftritt in Website, Social Media und Eigentümerkommunikation.",
+    "content": [
+      [
+        "Einheitliches Profil",
+        "Kontaktdaten, Bildsprache und Leistungsangebot konsistent halten."
+      ],
+      [
+        "Regionale Relevanz",
+        "Sachlich über den lokalen Markt und typische Fragen informieren."
+      ],
+      [
+        "Kontinuität",
+        "Regelmäßige hochwertige Beiträge sind wertvoller als unkontrollierte Masse."
+      ]
+    ],
+    "isDemo": true
+  },
+  {
+    "id": "academy-06",
+    "title": "Grundlagen der Immobilienbewertung",
+    "category": "Bewertung",
+    "readingMinutes": 8,
+    "teaser": "Vergleichs-, Ertrags- und Sachwertverfahren einordnen.",
+    "content": [
+      [
+        "Wertermittlungsverfahren",
+        "Verfahren unterscheiden sich nach Immobilientyp und Datengrundlage."
+      ],
+      [
+        "Marktdaten",
+        "Verlässliche Vergleichsfälle und aktuelle Faktoren können lizenzpflichtig sein."
+      ],
+      [
+        "Ergebnisprüfung",
+        "Automatische Ausgaben stets fachlich plausibilisieren, insbesondere bei Sonderobjekten."
+      ]
+    ],
+    "isDemo": true
+  }
+]

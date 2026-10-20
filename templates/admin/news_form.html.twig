@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ new ? 'Nachricht erstellen' : 'Nachricht bearbeiten' }} · CHASE{% endblock %}
+{% block body %}
+<div class="page-heading"><div><span class="badge">Synthetische interne Demo-News</span><h1>{{ new ? 'Eine neue Nachricht' : 'Nachricht bearbeiten' }}</h1><p class="muted">Veröffentlichte Meldungen erscheinen im Portal und zählen zu den ungelesenen News der Partner.</p></div><a class="btn btn-secondary" href="/admin/news">Zur Übersicht</a></div>
+{% include 'admin/_nav.html.twig' %}
+<section class="card">{% include 'admin/_errors.html.twig' %}<form method="post"><input type="hidden" name="_token" value="{{ csrf_token('portal') }}"><div class="form-grid">
+<div class="field"><label for="title">Titel</label><input id="title" name="title" value="{{ values.title }}" required minlength="3" maxlength="180"></div>
+<div class="field"><label for="category">Kategorie</label><select id="category" name="category">{% for category in categories %}<option {{ values.category == category ? 'selected' }}>{{ category }}</option>{% endfor %}</select></div>
+<div class="field"><label for="status">Status</label><select id="status" name="status">{% for status in states %}<option {{ values.status == status ? 'selected' }}>{{ status }}</option>{% endfor %}</select></div>
+<div class="field"><label for="pinned"><input id="pinned" type="checkbox" name="pinned" value="1" {{ values.pinned ? 'checked' }}> Als wichtige Meldung anpinnen</label></div>
+</div><div class="field"><label for="summary">Kurze Zusammenfassung</label><textarea id="summary" name="summary" rows="3" required minlength="3" maxlength="500">{{ values.summary }}</textarea></div><div class="field"><label for="body">Nachrichtentext</label><textarea id="body" name="body" rows="12" required minlength="5" maxlength="30000">{{ values.body }}</textarea><small class="muted">Klartext, keine externen Veröffentlichungen. Alle Inhalte bleiben als lokale Demo gekennzeichnet.</small></div><button class="btn btn-primary" type="submit">Nachricht speichern</button></form></section>
+{% endblock %}

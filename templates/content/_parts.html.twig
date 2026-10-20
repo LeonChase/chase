@@ -1,0 +1,18 @@
+{% macro filters(categories, q, category, favoriteOnly, allowFavorites, unreadOnly, allowUnread) %}
+<form method="get" class="card toolbar" aria-label="Inhalte filtern">
+    <div class="field" style="flex:2;min-width:180px"><label for="content-search">Suchen</label><input id="content-search" type="search" name="q" value="{{ q }}" placeholder="Titel oder Stichwort …" maxlength="200"></div>
+    <div class="field" style="flex:1;min-width:160px"><label for="content-category">Kategorie</label><select id="content-category" name="category"><option value="">Alle Kategorien</option>{% for item in categories %}<option value="{{ item }}" {{ category == item ? 'selected' : '' }}>{{ item }}</option>{% endfor %}</select></div>
+    {% if allowFavorites %}<label class="checkbox-field"><input type="checkbox" name="favorites" value="1" {{ favoriteOnly ? 'checked' : '' }}> Nur Merkliste</label>{% endif %}
+    {% if allowUnread %}<label class="checkbox-field"><input type="checkbox" name="unread" value="1" {{ unreadOnly ? 'checked' : '' }}> Nur ungelesene</label>{% endif %}
+    <button class="btn btn-primary" type="submit">Filtern</button><a class="btn btn-secondary" href="{{ app.request.pathInfo }}">Zurücksetzen</a>
+</form>
+{% endmacro %}
+
+{% macro favorite(type, item, favorites, back) %}
+<form method="post" action="{{ path('app_content_preference', {kind: 'favorite', type: type, id: item.id}) }}">
+    <input type="hidden" name="_token" value="{{ csrf_token('portal') }}"><input type="hidden" name="back" value="{{ back|default('') }}">
+    <button type="submit" class="btn btn-secondary" aria-pressed="{{ item.id in favorites ? 'true' : 'false' }}" aria-label="{{ item.id in favorites ? 'Aus Merkliste entfernen: ' : 'Merken: ' }}{{ item.title }}">{{ item.id in favorites ? '★ Gemerkt' : '☆ Merken' }}</button>
+</form>
+{% endmacro %}
+
+{% macro category(category, isDemo) %}<div class="toolbar"><span class="badge">{{ category|default('Wissen') }}</span>{% if isDemo %}<span class="badge badge-neutral">Demo-Inhalt</span>{% endif %}</div>{% endmacro %}

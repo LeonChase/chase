@@ -1,0 +1,75 @@
+#!/usr/bin/env python3
+"""Optional proxy fallback: fetch exact composer.lock GitHub references via HTTPS codeload.
+
+Keeps composer.json, composer.lock, expected checksums, and TLS verification unchanged.
+GitHub's zipball endpoint normally redirects to this same official archive service.
+Only exact hexadecimal commit references from the lock file are accepted.
+"""
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+import tempfile
+import zipfile
+
+root = Path(__file__).resolve().parent.parent
+os.chdir(root)
+composer = root / '.tools/bin/composer'
+composer_command = str(composer) if composer.exists() else 'composer'
+cache = Path(subprocess.check_output([composer_command, 'config', 'cache-files-dir', '--absolute'], text=True).strip())
+lock = json.loads((root / 'composer.lock').read_text())
+packages = lock.get('packages', []) + lock.get('packages-dev', [])
+
+def fetch(package):
+    dist = package.get('dist', {})
+    url, reference = dist.get('url', ''), dist.get('reference', '')
+    match = re.fullmatch(r'https://api\.github\.com/repos/([\w.-]+/[\w.-]+)/zipball/([a-f0-9]{40})', url)
+    if not match or dist.get('type') != 'zip' or reference != match.group(2):
+        return {'name': package['name'], 'status': 'unsupported; normal Composer download remains available'}
+    filename = cache / package['name'] / (hashlib.sha1(url.encode()).hexdigest() + '.zip')
+    if filename.exists():
+        if dist.get('shasum') and hashlib.sha1(filename.read_bytes()).hexdigest() != dist['shasum']:
+            raise RuntimeError('Expected lockfile checksum does not match cached archive for ' + package['name'])
+        with zipfile.ZipFile(filename) as archive:
+            if archive.testzip() is not None:
+                raise RuntimeError('Invalid cached ZIP: ' + str(filename))
+        return {'name': package['name'], 'version': package['version'], 'reference': reference, 'url': 'https://codeload.github.com/' + match.group(1) + '/legacy.zip/' + reference, 'sha256': hashlib.sha256(filename.read_bytes()).hexdigest(), 'status': 'cached'}
+    filename.parent.mkdir(parents=True, exist_ok=True)
+    archive_url = 'https://codeload.github.com/' + match.group(1) + '/legacy.zip/' + reference
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(dir=filename.parent, suffix='.download', delete=False) as temp:
+            temporary = Path(temp.name)
+        subprocess.run(['curl', '--fail', '--location', '--retry', '2', '--max-time', '120', '--silent', '--show-error', '--output', str(temporary), archive_url], check=True)
+        data = temporary.read_bytes()
+        if dist.get('shasum') and hashlib.sha1(data).hexdigest() != dist['shasum']:
+            raise RuntimeError('Expected lockfile checksum does not match for ' + package['name'])
+        with zipfile.ZipFile(temporary) as archive:
+            if archive.testzip() is not None:
+                raise RuntimeError('Invalid downloaded ZIP for ' + package['name'])
+        temporary.replace(filename)
+        return {'name': package['name'], 'version': package['version'], 'reference': reference, 'url': archive_url, 'sha256': hashlib.sha256(data).hexdigest(), 'status': 'downloaded'}
+    finally:
+        if temporary and temporary.exists():
+            temporary.unlink()
+
+results, failures = [], []
+with ThreadPoolExecutor(max_workers=8) as executor:
+    pending = {executor.submit(fetch, package): package['name'] for package in packages}
+    for future in as_completed(pending):
+        try:
+            result = future.result()
+            results.append(result)
+            print(result['name'] + ': ' + result['status'], flush=True)
+        except Exception as error:
+            failures.append({'name': pending[future], 'error': str(error)})
+            print(pending[future] + ': ' + str(error), file=sys.stderr, flush=True)
+manifest = root / '.tools/composer-archive-provenance.json'
+manifest.parent.mkdir(parents=True, exist_ok=True)
+manifest.write_text(json.dumps({'source': 'GitHub official HTTPS codeload service; exact lockfile references; TLS and existing lockfile checksums verified', 'packages': sorted(results, key=lambda row: row['name']), 'failures': failures}, indent=2) + '\n')
+print(f'{len(results)} archives ready; {len(failures)} failures.')
+sys.exit(bool(failures))

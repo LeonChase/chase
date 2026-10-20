@@ -1,0 +1,35 @@
+security:
+  password_hashers:
+    Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: auto
+  providers:
+    portal_users:
+      entity:
+        class: App\Entity\User
+        property: email
+  role_hierarchy:
+    ROLE_AGENT: ROLE_USER
+    ROLE_REGION_MANAGER: ROLE_AGENT
+    ROLE_ADMIN: ROLE_USER
+    ROLE_SUPER_ADMIN: ROLE_ADMIN
+  firewalls:
+    main:
+      lazy: true
+      provider: portal_users
+      user_checker: App\Security\ActiveUserChecker
+      form_login:
+        login_path: app_login
+        check_path: app_login
+        username_parameter: email
+        password_parameter: password
+        enable_csrf: true
+        default_target_path: /
+      login_throttling:
+        max_attempts: 5
+        interval: '1 minute'
+      logout:
+        path: app_logout
+        target: /login
+        enable_csrf: true
+  access_control:
+    - { path: ^/login$, roles: PUBLIC_ACCESS }
+    - { path: ^/, roles: ROLE_USER }

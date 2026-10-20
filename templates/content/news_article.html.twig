@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% import 'content/_parts.html.twig' as parts %}
+{% block title %}{{ article.title }} · CHASE News{% endblock %}
+{% block body %}
+<a class="back-link" href="{{ path('app_news') }}">← Alle Nachrichten</a>
+<div class="page-heading"><div>{{ parts.category(article.data.category|default('Unternehmen'), true) }}<h1>{{ article.title }}</h1><p>{{ article.data.summary|default('') }}</p></div></div>
+<article class="card stack" style="max-width:960px"><div class="toolbar"><span class="muted">CHASE Zentrale · {{ article.data.publishedAt|default(article.createdAt|date('c'))|date('d.m.Y H:i', 'Europe/Berlin') }}</span>{% if article.data.pinned|default(false) %}<span class="badge">Angepinnt</span>{% endif %}<span class="badge">{{ article.id in read ? 'Gelesen' : 'Ungelesen' }}</span></div><div style="white-space:pre-wrap;line-height:1.9">{{ article.data.body|default('Interner Demo-Beitrag.') }}</div><div class="alert">Synthetische Demo-Nachricht. Keine verbindliche interne Unternehmensmeldung.</div><form method="post" action="{{ path('app_content_preference', {kind:'read', type:'news', id:article.id}) }}"><input type="hidden" name="_token" value="{{ csrf_token('portal') }}"><button class="btn btn-primary" type="submit">{{ article.id in read ? 'Als ungelesen markieren' : 'Als gelesen markieren' }}</button></form></article>
+{% endblock %}

@@ -1,0 +1,9 @@
+/vendor/
+/var/
+/.tools/
+/.env.local
+/.phpunit.cache/
+/node_modules/
+/coverage/
+
+/dist/

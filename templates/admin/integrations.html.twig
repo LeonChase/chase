@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}API-Status · CHASE{% endblock %}
+{% block body %}
+<div class="page-heading"><div><span class="badge">Keine Live-Verbindungen</span><h1>Integrationen & Grenzen</h1><p class="muted">Das Portal läuft lokal. Keine Verbindung zur produktiven CHASE-Website, kein automatischer Versand und keine kostenpflichtigen API-Aufrufe.</p></div></div>
+{% include 'admin/_nav.html.twig' %}
+<div class="grid grid-2">
+<section class="card"><span class="badge">Lokale Demo</span><h2>onOffice</h2><p>Der lokale Mock-Adapter importiert ausschließlich die mitgelieferten synthetischen Objektdaten. Ein erneuter Import aktualisiert die externe Demo-ID statt Dubletten anzulegen.</p><p class="muted">Die echte API ist nicht verbunden. Später: freigegebene Zugangsdaten, offizielles API-Modul, Rechte- und Konfliktprüfung.</p><a class="btn btn-secondary" href="/crm">Lokale Importvorschau</a></section>
+<section class="card"><span class="badge">Regelbasierte Demo</span><h2>Textgenerierung</h2><p>Der Offline-Generator erstellt nachvollziehbare Textbausteine aus vorhandenen Fakten. Er sendet keine Daten an externe Anbieter.</p><p class="muted">OpenAI ist nicht verbunden. Echte API-Nutzung benötigt eine eigene Freigabe, Budgetlimits und einen ausschließlich serverseitigen Schlüssel.</p><a class="btn btn-secondary" href="/studio">KI-Studio öffnen</a></section>
+<section class="card"><span class="badge">Externe API nicht verbunden</span><h2>Social Media & Benachrichtigungen</h2><p>Beiträge und Marketingtermine werden intern vorbereitet. Es gibt keine automatische Veröffentlichung auf Instagram, Facebook oder LinkedIn und keinen E-Mail-Versand.</p><p class="muted">Authentifizierung und Bestätigung vor jeder echten Veröffentlichung folgen später.</p></section>
+<section class="card"><span class="badge">Geplant</span><h2>SSO, Bilder & Bewertung</h2><p>Gemeinsame Website-Anmeldung, Bild-/Video-Erzeugung, professionelle Marktbewertung sowie Outlook sind als getrennte spätere Anbindungen vorgesehen.</p><p class="muted">Keine geteilten Website-Sitzungen, keine reale Marktwertermittlung und keine angeblich erzeugten KI-Bilder.</p></section>
+</div>
+<section class="card"><h2>Aktivierung im späteren Echtbetrieb</h2><p>Aus Sicherheits- und Kostengründen lassen sich externe Dienste in diesem Prototyp nicht durch einen Schalter aktivieren. Zugangsdaten gehören später in sichere Servereinstellungen. Vor dem ersten echten Aufruf sind Prüfung und ausdrückliche Freigabe erforderlich.</p></section>
+{% endblock %}

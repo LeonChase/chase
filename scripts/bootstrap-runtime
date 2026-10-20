@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+# Optional helper for Debian 13 cloud machines without PHP/Composer.
+# Does not require root or install system packages. Official signed APT metadata
+# and package checksums remain enabled. Application setup is handled separately.
+set -euo pipefail
+CHASE_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+CHASE_TOOLS="$CHASE_ROOT/.tools"
+if [[ -x "$CHASE_TOOLS/bin/php" && -x "$CHASE_TOOLS/bin/composer" ]]; then
+  "$CHASE_TOOLS/bin/php" -r 'foreach (["pdo_sqlite", "mbstring", "dom", "curl", "intl", "zip"] as $e) { if (!extension_loaded($e)) { fwrite(STDERR, "Missing extension: $e\n"); exit(1); } } echo "PHP ", PHP_VERSION, " with required extensions ready.\n";'
+  "$CHASE_TOOLS/bin/composer" --version
+  exit 0
+fi
+if [[ ! -f /etc/debian_version || ! -x /usr/bin/apt-get || ! -r /usr/share/keyrings/debian-archive-keyring.gpg ]]; then
+  echo 'This optional runtime helper requires Debian 13 with its official APT keyring. Install PHP 8.3+ and Composer with your operating system package manager.' >&2
+  exit 1
+fi
+if [[ "$(cut -d. -f1 /etc/debian_version)" != 13 ]]; then
+  echo 'This helper supports Debian 13 only. Install PHP 8.3+ and Composer with your operating system package manager.' >&2
+  exit 1
+fi
+mkdir -p "$CHASE_TOOLS"/{root,bin,empty-scan,composer-home,composer-cache,tmp} \
+  "$CHASE_TOOLS/apt/etc"/{apt.conf.d,sources.list.d,preferences.d} \
+  "$CHASE_TOOLS/apt/state/lists/partial" "$CHASE_TOOLS/apt/cache/archives/partial"
+cat > "$CHASE_TOOLS/apt/etc/sources.list" <<'SOURCES'
+deb [signed-by=/usr/share/keyrings/debian-archive-keyring.gpg] https://deb.debian.org/debian trixie main
+deb [signed-by=/usr/share/keyrings/debian-archive-keyring.gpg] https://deb.debian.org/debian-security trixie-security main
+deb [signed-by=/usr/share/keyrings/debian-archive-keyring.gpg] https://deb.debian.org/debian trixie-updates main
+SOURCES
+cat > "$CHASE_TOOLS/apt/apt.conf" <<CONFIG
+Dir::Etc "$CHASE_TOOLS/apt/etc";
+Dir::State "$CHASE_TOOLS/apt/state";
+Dir::State::status "$CHASE_TOOLS/apt/state/status";
+Dir::Cache "$CHASE_TOOLS/apt/cache";
+APT::Sandbox::User "$(id -un)";
+CONFIG
+cp /var/lib/dpkg/status "$CHASE_TOOLS/apt/state/status"
+APT_CONFIG="$CHASE_TOOLS/apt/apt.conf" /usr/bin/apt-get update --error-on=any
+APT_CONFIG="$CHASE_TOOLS/apt/apt.conf" /usr/bin/apt-get --download-only --no-install-recommends -y install \
+  php8.4-cli php8.4-sqlite3 php8.4-mbstring php8.4-xml php8.4-curl php8.4-intl php8.4-zip composer
+for package in "$CHASE_TOOLS"/apt/cache/archives/*.deb; do
+  dpkg-deb -x "$package" "$CHASE_TOOLS/root"
+done
+python3 - "$CHASE_TOOLS" <<'PYTHON'
+import hashlib
+import json
+import subprocess
+import sys
+from pathlib import Path
+root = Path(sys.argv[1])
+extensions = ('ctype', 'curl', 'dom', 'exif', 'fileinfo', 'iconv', 'intl', 'mbstring', 'pdo', 'pdo_sqlite', 'phar', 'posix', 'readline', 'simplexml', 'sqlite3', 'tokenizer', 'xml', 'xmlreader', 'xmlwriter', 'zip')
+php_ini = '''[PHP]
+date.timezone=Europe/Berlin
+memory_limit=512M
+upload_max_filesize=15M
+post_max_size=18M
+max_execution_time=60
+display_errors=stderr
+log_errors=On
+session.use_strict_mode=1
+session.use_only_cookies=1
+session.cookie_httponly=1
+session.cookie_samesite=Lax
+zend.assertions=1
+assert.exception=1
+'''
+php_ini += f'extension_dir={root}/root/usr/lib/php/20240924\n'
+php_ini += f'include_path=.:{root}/root/usr/share/php\n'
+php_ini += ''.join(f'extension={extension}\n' for extension in extensions)
+php_ini += 'zend_extension=opcache\n'
+(root / 'php.ini').write_text(php_ini)
+# Relocate Debian-generated autoload maps, preserving the signed source archives.
+for file in (root / 'root/usr/share/php').rglob('autoload.php'):
+    file.write_text(file.read_text().replace("'/usr/share/php/", "getenv('CHASE_RUNTIME_ROOT') . '/usr/share/php/"))
+manifest = []
+for archive in sorted((root / 'apt/cache/archives').glob('*.deb')):
+    package = subprocess.check_output(['dpkg-deb', '--field', str(archive), 'Package'], text=True).strip()
+    version = subprocess.check_output(['dpkg-deb', '--field', str(archive), 'Version'], text=True).strip()
+    manifest.append({'package': package, 'version': version, 'sha256': hashlib.sha256(archive.read_bytes()).hexdigest()})
+(root / 'runtime-manifest.json').write_text(json.dumps({'source': 'Official Debian trixie/trixie-security signed APT metadata; APT-verified downloads', 'packages': manifest}, indent=2) + '\n')
+PYTHON
+cat > "$CHASE_TOOLS/bin/php" <<'PHP_WRAPPER'
+#!/usr/bin/env bash
+set -e
+CHASE_TOOLS="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+export CHASE_RUNTIME_ROOT="$CHASE_TOOLS/root"
+export PHPRC="$CHASE_TOOLS/php.ini"
+export PHP_INI_SCAN_DIR="$CHASE_TOOLS/empty-scan"
+export LD_LIBRARY_PATH="$CHASE_TOOLS/root/usr/lib/x86_64-linux-gnu${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+exec "$CHASE_RUNTIME_ROOT/usr/bin/php8.4" "$@"
+PHP_WRAPPER
+cat > "$CHASE_TOOLS/bin/composer" <<'COMPOSER_WRAPPER'
+#!/usr/bin/env bash
+set -e
+CHASE_TOOLS="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+export COMPOSER_HOME="${COMPOSER_HOME:-$CHASE_TOOLS/composer-home}"
+export COMPOSER_CACHE_DIR="${COMPOSER_CACHE_DIR:-$CHASE_TOOLS/composer-cache}"
+exec "$CHASE_TOOLS/bin/php" "$CHASE_TOOLS/root/usr/bin/composer" "$@"
+COMPOSER_WRAPPER
+chmod +x "$CHASE_TOOLS/bin/php" "$CHASE_TOOLS/bin/composer"
+"$CHASE_TOOLS/bin/php" -v
+"$CHASE_TOOLS/bin/composer" --version
+"$CHASE_TOOLS/bin/php" -r 'foreach (["pdo_sqlite", "mbstring", "dom", "curl", "intl", "zip"] as $e) { if (!extension_loaded($e)) { fwrite(STDERR, "Missing extension: $e\n"); exit(1); } } echo "All required PHP extensions loaded.\n";'
+echo "Run: export PATH=\"$CHASE_TOOLS/bin:\$PATH\""

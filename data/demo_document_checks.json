@@ -1,0 +1,38 @@
+{
+  "disclaimer": "Synthetische Checklisten, keine automatische Dokumentenanalyse und keine rechtliche Beurteilung.",
+  "types": [
+    {
+      "type": "Grundbuchauszug",
+      "items": [
+        "Ist das Dokument vollständig und aktuell genug für den Anwendungsfall?",
+        "Stimmen die Objektidentifikationsdaten?",
+        "Gibt es erkennbare Eintragungen in Abteilung II oder III, die fachlich zu prüfen sind?",
+        "Wer prüft die Rechtsfolgen der Eintragungen?"
+      ]
+    },
+    {
+      "type": "Energieausweis",
+      "items": [
+        "Ist ein gültiger Energieausweis vorhanden?",
+        "Sind Ausweisart, Energieträger und Kennwerte nachvollziehbar?",
+        "Sind die für das Inserat erforderlichen Angaben geprüft?"
+      ]
+    },
+    {
+      "type": "Teilungserklärung/WEG",
+      "items": [
+        "Liegen Teilungserklärung und Gemeinschaftsordnung vollständig vor?",
+        "Sind Sondernutzungsrechte und Stimmrechte geprüft?",
+        "Liegen Hausgeldabrechnung, Wirtschaftsplan und Protokolle vor?"
+      ]
+    },
+    {
+      "type": "Wohnflächenberechnung",
+      "items": [
+        "Welche Berechnungsmethode wurde verwendet?",
+        "Sind Schrägen, Balkone, Terrassen und Nebenflächen korrekt berücksichtigt?",
+        "Sind Abweichungen zwischen Unterlagen und Istzustand dokumentiert?"
+      ]
+    }
+  ]
+}

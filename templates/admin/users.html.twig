@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Benutzerverwaltung · CHASE{% endblock %}
+{% block body %}
+<div class="page-heading"><div><span class="badge">Administration</span><h1>Menschen & Berechtigungen</h1><p class="muted">Lokale Demo-Konten, Regionen und fiktive KI-Budgets.</p></div></div>
+{% include 'admin/_nav.html.twig' %}
+<section class="card"><div class="table-wrap"><table><thead><tr><th>Name / Anmeldung</th><th>Region</th><th>Rolle</th><th>Status</th><th>Demo-Budget</th><th><span class="muted">Aktion</span></th></tr></thead><tbody>
+{% for account in accounts %}<tr><td><strong>{{ account.name }}</strong><br><small class="muted">{{ account.email }}</small></td><td>{{ account.region }}</td><td>{% for role in account.roles %}{{ {'ROLE_AGENT':'Makler:in','ROLE_REGION_MANAGER':'Regionalleitung','ROLE_ADMIN':'Administration','ROLE_SUPER_ADMIN':'Technische Administration'}[role]|default(role) }}{% if not loop.last %}, {% endif %}{% endfor %}</td><td><span class="badge">{{ account.active ? 'Aktiv' : 'Deaktiviert' }}</span></td><td>{{ account.budgetCredits|number_format(0, ',', '.') }}</td><td>{% if is_granted('ROLE_SUPER_ADMIN') or account.id == app.user.id or ('ROLE_ADMIN' not in account.roles and 'ROLE_SUPER_ADMIN' not in account.roles) %}<a class="btn btn-secondary" href="{{ path('app_admin_user_edit', {id: account.id}) }}">Bearbeiten</a>{% else %}<small class="muted">Technische Administration</small>{% endif %}</td></tr>{% endfor %}
+</tbody></table></div></section>
+<section class="card"><h2>Demo-Konto anlegen</h2><p class="muted">Ein zufälliges lokales Startpasswort erscheint nach dem Speichern einmalig. Keine öffentliche Registrierung und kein automatischer E-Mail-Versand.</p>
+{% include 'admin/_errors.html.twig' %}
+<form method="post"><input type="hidden" name="_token" value="{{ csrf_token('portal') }}">{% include 'admin/_user_fields.html.twig' %}<button class="btn btn-primary" type="submit">Demo-Konto erstellen</button></form></section>
+{% endblock %}

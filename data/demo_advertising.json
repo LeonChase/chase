@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ad-01",
+    "title": "CHASE Visitenkarten",
+    "category": "Print",
+    "description": "Visitenkarten im Corporate Design mit Partnerdaten.",
+    "unit": "500 Stück",
+    "priceLabel": "Preis auf Anfrage",
+    "status": "Demo – nicht bestellbar",
+    "isDemo": true
+  },
+  {
+    "id": "ad-02",
+    "title": "Verkaufsschild",
+    "category": "Objektwerbung",
+    "description": "Wetterfestes Objektschild im CHASE-Layout.",
+    "unit": "1 Stück",
+    "priceLabel": "Preis auf Anfrage",
+    "status": "Demo – nicht bestellbar",
+    "isDemo": true
+  },
+  {
+    "id": "ad-03",
+    "title": "Bauzaunbanner",
+    "category": "Außenwerbung",
+    "description": "Großformatiges Banner für lokale Sichtbarkeit.",
+    "unit": "1 Stück",
+    "priceLabel": "Preis auf Anfrage",
+    "status": "Demo – nicht bestellbar",
+    "isDemo": true
+  },
+  {
+    "id": "ad-04",
+    "title": "Objektflyer A4",
+    "category": "Print",
+    "description": "Vorlage für kompakte Objektpräsentationen.",
+    "unit": "100 Stück",
+    "priceLabel": "Preis auf Anfrage",
+    "status": "Demo – nicht bestellbar",
+    "isDemo": true
+  },
+  {
+    "id": "ad-05",
+    "title": "Akquise-Postkarte",
+    "category": "Akquise",
+    "description": "Regionale Eigentümeransprache mit wechselbarem Motiv.",
+    "unit": "250 Stück",
+    "priceLabel": "Preis auf Anfrage",
+    "status": "Demo – nicht bestellbar",
+    "isDemo": true
+  },
+  {
+    "id": "ad-06",
+    "title": "Social-Media-Vorlagenset",
+    "category": "Digital",
+    "description": "Layouts für neue Immobilienangebote und Referenzen.",
+    "unit": "Digitales Set",
+    "priceLabel": "Preis auf Anfrage",
+    "status": "Demo – nicht bestellbar",
+    "isDemo": true
+  }
+]

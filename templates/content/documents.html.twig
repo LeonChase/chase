@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% import 'content/_parts.html.twig' as parts %}
+{% block title %}Dokumentencenter · CHASE{% endblock %}
+{% block body %}
+<div class="page-heading"><div><span class="eyebrow">Ihr Arbeitswissen an einem Ort</span><h1>Dokumentencenter</h1><p>Vorlagen, Unterlagen und Checklisten für Ihren Makleralltag.</p></div><span class="badge">{{ items|length }} Dokumente</span></div>
+<div class="alert">Alle Dateien sind unverbindliche Demo-Muster. Vor echter Verwendung sind eine CHASE-Freigabe und gegebenenfalls eine fachliche Prüfung erforderlich.</div>
+{{ parts.filters(categories, q, category, favoriteOnly, true, false, false) }}
+<div class="grid grid-3">
+{% for item in items %}
+<article class="card stack"><div class="content-symbol" aria-hidden="true">▤</div>{{ parts.category(item.data.category|default('Dokumente'), item.data.isDemo|default(true)) }}<h2><a href="{{ path('app_document', {id:item.id}) }}">{{ item.title }}</a></h2><p class="muted">{{ item.data.description|default('Unverbindliches Arbeitsmuster für die Demo.') }}</p><small class="muted">{{ item.data.format|default('TXT-DEMO') }} · Stand {{ item.data.lastUpdated|default(item.updatedAt|date('Y-m-d'))|date('d.m.Y') }}</small><div class="toolbar"><a class="btn btn-primary" href="{{ path('app_document', {id:item.id}) }}">Dokument öffnen</a>{{ parts.favorite('document', item, favorites, 'list') }}</div></article>
+{% else %}<div class="card empty-state"><h2>Keine passenden Dokumente</h2><p>Ändern Sie Ihre Suche oder zeigen Sie wieder alle Kategorien an.</p><a class="btn btn-secondary" href="{{ path('app_documents') }}">Alle Dokumente</a></div>{% endfor %}
+</div>
+{% endblock %}

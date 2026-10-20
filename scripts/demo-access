@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+cd "$(dirname "$0")/.."
+if [ ! -f var/demo-credentials.txt ]; then echo 'Bitte zuerst ./scripts/setup ausführen.' >&2; exit 1; fi
+cat var/demo-credentials.txt

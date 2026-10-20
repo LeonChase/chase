@@ -1,0 +1,17 @@
+parameters:
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+      $projectDir: '%kernel.project_dir%'
+      $environment: '%kernel.environment%'
+  App\:
+    resource: '../src/'
+    exclude: '../src/{Entity,Kernel.php}'
+  App\Integration\TextGenerationProvider: '@App\Service\DemoTextProvider'
+  App\Integration\PropertyValuationProvider: '@App\Integration\DemoValuationProvider'
+  App\Integration\ImageProcessingProvider: '@App\Integration\DisabledExternalProvider'
+  App\Integration\DocumentExtractionProvider: '@App\Integration\DisabledExternalProvider'
+  App\Integration\NotificationProvider: '@App\Integration\DisabledExternalProvider'
+  App\Integration\SocialPublishingProvider: '@App\Integration\DisabledExternalProvider'

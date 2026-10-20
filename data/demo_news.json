@@ -1,0 +1,46 @@
+[
+  {
+    "id": "news-01",
+    "title": "Willkommen im CHASE Partnerportal",
+    "category": "Unternehmen",
+    "summary": "Ein zentraler Demo-Arbeitsplatz für Partner ist gestartet.",
+    "body": "Diese Nachricht ist ein Demo-Beispiel. Im echten Portal veröffentlicht die CHASE Zentrale hier verbindliche interne Updates, neue Vorlagen und Schulungshinweise.",
+    "publishedAt": "2026-10-17T10:00:00+02:00",
+    "pinned": true,
+    "status": "Veröffentlicht",
+    "isDemo": true
+  },
+  {
+    "id": "news-02",
+    "title": "Neue Academy-Einheit: Exposés richtig vorbereiten",
+    "category": "Schulung",
+    "summary": "Ein kurzer Lernbaustein zur strukturierten Objektaufnahme.",
+    "body": "Vor Veröffentlichung Flächen, Baujahr, Energiekennwerte und Eigentümerfreigaben prüfen. Demo-Hinweis, keine Rechtsberatung.",
+    "publishedAt": "2026-10-18T08:30:00+02:00",
+    "pinned": false,
+    "status": "Veröffentlicht",
+    "isDemo": true
+  },
+  {
+    "id": "news-03",
+    "title": "Marketingidee der Woche: Eigentümer-Ratgeber",
+    "category": "Marketing",
+    "summary": "Nutze eine regionale Themenkampagne zur Eigentümeransprache.",
+    "body": "Ein kurzes Fachthema für den regionalen Social-Media-Kalender vorbereiten. Die Veröffentlichung bleibt in der Demo deaktiviert.",
+    "publishedAt": "2026-10-19T09:00:00+02:00",
+    "pinned": false,
+    "status": "Veröffentlicht",
+    "isDemo": true
+  },
+  {
+    "id": "news-04",
+    "title": "Hinweis zur Demo-onOffice-Verbindung",
+    "category": "System",
+    "summary": "Der Objektimport arbeitet zunächst mit synthetischen Daten.",
+    "body": "Die onOffice-Verbindung ist nicht live. Für den echten Betrieb benötigen wir API-Zugänge, Rechtekonzept und Datenschutzprüfung.",
+    "publishedAt": "2026-10-19T12:00:00+02:00",
+    "pinned": false,
+    "status": "Veröffentlicht",
+    "isDemo": true
+  }
+]

@@ -1,0 +1,77 @@
+[
+  {
+    "id": "ki-expose",
+    "name": "Exposé-Generator",
+    "category": "Text",
+    "status": "Demo aktiv",
+    "inputs": [
+      "Objekttyp",
+      "Ort",
+      "Wohnfläche",
+      "Zimmer",
+      "Grundstück",
+      "Baujahr",
+      "Ausstattung",
+      "Besonderheiten",
+      "Zustand",
+      "Ton"
+    ],
+    "output": "Überschrift, Objektbeschreibung, Highlights"
+  },
+  {
+    "id": "ki-lage",
+    "name": "Lagebeschreibung",
+    "category": "Text",
+    "status": "Demo aktiv (nur belegte Informationen)",
+    "inputs": [
+      "Ort",
+      "Ortsteil",
+      "Vom Nutzer verifizierte Lagefakten"
+    ],
+    "output": "Neutraler Lagebeschreibungstext"
+  },
+  {
+    "id": "ki-social",
+    "name": "Social-Media-Beitrag",
+    "category": "Marketing",
+    "status": "Demo aktiv",
+    "inputs": [
+      "Objektdaten",
+      "Kanal",
+      "Ton"
+    ],
+    "output": "Kurzbeitrag und passende neutrale CTA"
+  },
+  {
+    "id": "ki-dokument",
+    "name": "Dokumenten-Checkliste",
+    "category": "Analyse",
+    "status": "Beispielcheckliste, kein echter Scan",
+    "inputs": [
+      "Dokumententyp"
+    ],
+    "output": "Prüffragen und Verifizierungshinweise"
+  },
+  {
+    "id": "ki-bild",
+    "name": "Bildoptimierung",
+    "category": "Bild",
+    "status": "Vorschau, keine KI-Verarbeitung",
+    "inputs": [
+      "Bild"
+    ],
+    "output": "Vorschau / später über API"
+  },
+  {
+    "id": "ki-video",
+    "name": "Video aus Fotos",
+    "category": "Video",
+    "status": "Geplant",
+    "inputs": [
+      "Bilder",
+      "Ausrichtung",
+      "Dauer"
+    ],
+    "output": "Späterer Video-Workflow"
+  }
+]

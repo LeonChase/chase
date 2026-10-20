@@ -1,0 +1,7 @@
+<?php
+namespace App\Entity;
+use Doctrine\ORM\Mapping as ORM;
+#[ORM\Entity]
+#[ORM\Table(name:'portal_content_post')]
+#[ORM\Index(name:'portal_content_post_scope',columns:['tenant_id','owner_id'])]
+class ContentPost extends Record {}

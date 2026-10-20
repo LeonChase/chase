@@ -1,0 +1,24 @@
+[
+  {
+    "id": "usage-demo-001",
+    "userId": "u-001",
+    "tool": "expose",
+    "mode": "mock",
+    "time": "2026-10-19T10:00:00+02:00",
+    "costEur": 0.0,
+    "tokensInput": null,
+    "tokensOutput": null,
+    "isDemo": true
+  },
+  {
+    "id": "usage-demo-002",
+    "userId": "u-003",
+    "tool": "social-post",
+    "mode": "mock",
+    "time": "2026-10-19T14:30:00+02:00",
+    "costEur": 0.0,
+    "tokensInput": null,
+    "tokensOutput": null,
+    "isDemo": true
+  }
+]
