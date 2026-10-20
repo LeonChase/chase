@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ entry.term }} · Immobilienlexikon{% endblock %}
+{% block breadcrumb %}Academy / Immobilienlexikon{% endblock %}
+{% block body %}
+<a class="back-link" href="{{ path('app_lexicon',{letter:entry.term|slice(0,1)|upper}) }}">← Zum Immobilienlexikon</a>
+<div class="page-heading"><div><span class="eyebrow">CHASE Immobilienlexikon</span><h1>{{ entry.term }}</h1><p>Einfach erklärt. Direkt aus Ihrem bereitgestellten Lexikon.</p></div><span class="badge">Original · Seite {{ entry.page }}</span></div>
+<article class="card stack" style="max-width:960px"><p style="font-size:1.08rem;line-height:1.95;white-space:pre-line">{{ entry.definition }}</p><div class="alert">Die Erklärung stammt aus der bereitgestellten Vorlage. Fachliche Aktualität und Anwendbarkeit im Einzelfall prüfen.</div><div class="toolbar"><a class="btn btn-primary" href="{{ path('app_lexicon') }}">Weitere Begriffe nachschlagen</a>{% if sourceDocument %}<a class="btn btn-secondary" href="{{ path('app_document_download',{id:sourceDocument.id}) }}">Original-PDF herunterladen</a>{% endif %}</div><details><summary>Quellenangabe</summary><p class="muted">{{ source.filename|default('CHASE Immobilienlexikon') }}, PDF-Seite {{ entry.page }}.</p><small class="muted" style="overflow-wrap:anywhere">SHA-256: {{ source.sha256|default('nicht hinterlegt') }}</small></details></article>
+{% endblock %}

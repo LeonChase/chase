@@ -53,3 +53,18 @@
         if (target.dataset.objectUrl) URL.revokeObjectURL(target.dataset.objectUrl); const url = URL.createObjectURL(file); target.src = url; target.dataset.objectUrl = url; target.hidden = false;
     }));
 })();
+
+// The page links also work without JavaScript. Keyboard and swipe add a book-like interaction.
+(() => {
+    const viewer = document.querySelector('[data-catalog-viewer]');
+    if (viewer) {
+        const turn = (direction) => { const link = viewer.querySelector(direction < 0 ? '[data-catalog-prev]' : '[data-catalog-next]'); if (link && link.getAttribute('aria-disabled') !== 'true') window.location.assign(link.href); };
+        viewer.addEventListener('keydown', event => { if (event.target.closest('input,select,textarea,button')) return; if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); turn(event.key === 'ArrowLeft' ? -1 : 1); } });
+        let touch = null;
+        viewer.querySelector('.catalog-page-image')?.addEventListener('touchstart', event => { if (event.touches.length === 1) touch = {x:event.touches[0].clientX,y:event.touches[0].clientY}; }, {passive:true});
+        viewer.querySelector('.catalog-page-image')?.addEventListener('touchend', event => { if (!touch || !event.changedTouches[0]) return; const dx = event.changedTouches[0].clientX - touch.x; const dy = event.changedTouches[0].clientY - touch.y; touch = null; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) turn(dx > 0 ? -1 : 1); }, {passive:true});
+    }
+    const toggle = document.querySelector('[data-catalog-personalize]');
+    const preview = document.querySelector('[data-catalog-personalization]');
+    toggle?.addEventListener('change', () => { if (preview) preview.hidden = !toggle.checked; });
+})();

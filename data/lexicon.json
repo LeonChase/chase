@@ -1,0 +1,2683 @@
+{
+  "source": {
+    "title": "CHASE Immobilienlexikon A–Z",
+    "filename": "CHASE_Immobilienlexikon_A-Z.pdf",
+    "sha256": "ddfdaaff491973edc16aa69ad2d49ca2789724dbbe1bc316744aa43860608bf8",
+    "pageCount": 21,
+    "entryCount": 441,
+    "contentPages": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "knowledgeAsOf": "Oktober 2026",
+    "notice": "Angaben zu Recht, Steuern und Finanzierung sind allgemeine Erläuterungen und ersetzen keine Prüfung des Einzelfalls.",
+    "usageNotice": "Hinweis zur Verwendung: Die Erläuterungen sind bewusst vereinfacht. Je nach Vertragsart, Bundesland und Sachverhalt können andere Regeln gelten. Zahlenwerte, Rechtslagen und Förderbedingungen können sich ändern. Bei rechtlichen, steuerlichen und technischen Fragen die jeweils aktuellen Grundlagen und Fachleute hinzuziehen.",
+    "extraction": "Vollständige lokale PDF-Textextraktion; nur Layout-Zeilenumbrüche und Wortabstände zusammengeführt. Keine Definitionen ergänzt."
+  },
+  "entries": [
+    {
+      "id": "abgeschlossenheitsbescheinigung",
+      "term": "Abgeschlossenheitsbescheinigung",
+      "definition": "Behördliche Bescheinigung, dass eine Wohnung oder andere Einheit baulich ausreichend von anderen Einheiten getrennt ist. Wichtig bei der Aufteilung nach WEG.",
+      "page": 2
+    },
+    {
+      "id": "abgeschlossenheitsplan",
+      "term": "Abgeschlossenheitsplan",
+      "definition": "Bauzeichnung, die die räumliche Abgrenzung von Sondereigentum und gemeinschaftlichen Flächen darstellt.",
+      "page": 2
+    },
+    {
+      "id": "abloesebetrag",
+      "term": "Ablösebetrag",
+      "definition": "Summe, mit der eine bestehende Darlehensschuld zu einem bestimmten Zeitpunkt vollständig zurückgezahlt wird.",
+      "page": 2
+    },
+    {
+      "id": "abnahme",
+      "term": "Abnahme",
+      "definition": "Erklärung, dass eine Bauleistung im Wesentlichen vertragsgemäß erbracht wurde. Sie hat Auswirkungen auf Vergütung und Gewährleistung.",
+      "page": 2
+    },
+    {
+      "id": "abnahmeprotokoll",
+      "term": "Abnahmeprotokoll",
+      "definition": "Schriftliche Festhaltung des Zustands und möglicher Mängel bei der Abnahme von Bauleistungen.",
+      "page": 2
+    },
+    {
+      "id": "abschreibung",
+      "term": "Abschreibung",
+      "definition": "Verteilung von Anschaffungs- oder Herstellungskosten über die steuerlich maßgebliche Nutzungsdauer.",
+      "page": 2
+    },
+    {
+      "id": "absetzung-fuer-abnutzung-afa",
+      "term": "Absetzung für Abnutzung (AfA)",
+      "definition": "Steuerlicher Abzug für die Abnutzung eines Gebäudes. Der Grund und Boden wird grundsätzlich nicht abgeschrieben.",
+      "page": 2
+    },
+    {
+      "id": "abstandszahlung",
+      "term": "Abstandszahlung",
+      "definition": "Vereinbarte Zahlung etwa für die Übernahme von Möbeln oder Einrichtungen. Sie ist von Miete und Kaution zu unterscheiden.",
+      "page": 2
+    },
+    {
+      "id": "abtretung",
+      "term": "Abtretung",
+      "definition": "Übertragung einer Forderung oder eines Rechts auf eine andere Person, etwa einer Grundschuld an eine andere Bank.",
+      "page": 2
+    },
+    {
+      "id": "agb",
+      "term": "AGB",
+      "definition": "Allgemeine Geschäftsbedingungen. Vorformulierte Vertragsregeln, deren Einbeziehung und Wirksamkeit gesetzlichen Grenzen unterliegen.",
+      "page": 2
+    },
+    {
+      "id": "alleinauftrag",
+      "term": "Alleinauftrag",
+      "definition": "Maklerauftrag, bei dem der Auftraggeber während der Laufzeit grundsätzlich keinen weiteren Makler mit derselben Aufgabe beauftragt.",
+      "page": 2
+    },
+    {
+      "id": "altbau",
+      "term": "Altbau",
+      "definition": "Älteres Gebäude. Der Begriff hat ohne genaue zeitliche Einordnung keine einheitliche gesetzliche Definition.",
+      "page": 2
+    },
+    {
+      "id": "amortisation",
+      "term": "Amortisation",
+      "definition": "Rückfluss einer Investition über Erträge oder Einsparungen beziehungsweise die planmäßige Rückzahlung eines Darlehens.",
+      "page": 2
+    },
+    {
+      "id": "anbau",
+      "term": "Anbau",
+      "definition": "Bauliche Erweiterung eines bestehenden Gebäudes, etwa ein neuer Wohnraum oder Wintergarten.",
+      "page": 2
+    },
+    {
+      "id": "anfangstilgung",
+      "term": "Anfangstilgung",
+      "definition": "Tilgungsanteil eines Darlehens zu Beginn der Finanzierung, meist als Prozentsatz des Darlehensbetrags vereinbart.",
+      "page": 2
+    },
+    {
+      "id": "angebotspreis",
+      "term": "Angebotspreis",
+      "definition": "Preis, zu dem eine Immobilie am Markt angeboten wird. Er muss nicht dem später vereinbarten Kaufpreis entsprechen.",
+      "page": 2
+    },
+    {
+      "id": "annuitaet",
+      "term": "Annuität",
+      "definition": "Regelmäßige Kreditrate, die sich aus Zinsen und Tilgung zusammensetzt.",
+      "page": 2
+    },
+    {
+      "id": "annuitaetendarlehen",
+      "term": "Annuitätendarlehen",
+      "definition": "Darlehen mit üblicherweise gleichbleibender Rate während der Zinsbindung. Der Tilgungsanteil wächst mit sinkender Restschuld.",
+      "page": 2
+    },
+    {
+      "id": "anschaffungskosten",
+      "term": "Anschaffungskosten",
+      "definition": "Aufwendungen für den Erwerb eines Vermögensgegenstands einschließlich bestimmter Erwerbsnebenkosten.",
+      "page": 2
+    },
+    {
+      "id": "anschlussfinanzierung",
+      "term": "Anschlussfinanzierung",
+      "definition": "Finanzierung einer verbleibenden Restschuld nach dem Ende einer bisherigen Zinsbindung.",
+      "page": 2
+    },
+    {
+      "id": "anschlusskosten",
+      "term": "Anschlusskosten",
+      "definition": "Kosten für die Anbindung eines Grundstücks oder Gebäudes an Versorgungsnetze wie Wasser, Strom und Abwasser.",
+      "page": 2
+    },
+    {
+      "id": "anwesenheitspflicht",
+      "term": "Anwesenheitspflicht",
+      "definition": "Vertraglich oder gesetzlich vorgesehene Pflicht, persönlich an einem Termin teilzunehmen. Beim Notar ist Vertretung unter Voraussetzungen möglich.",
+      "page": 3
+    },
+    {
+      "id": "auflassung",
+      "term": "Auflassung",
+      "definition": "Notarielle Einigung von Verkäufer und Käufer über den Eigentumsübergang am Grundstück. Eigentümer wird der Käufer erst mit Grundbucheintragung.",
+      "page": 3
+    },
+    {
+      "id": "auflassungsvormerkung",
+      "term": "Auflassungsvormerkung",
+      "definition": "Grundbucheintrag, der den Anspruch des Käufers auf spätere Eigentumsübertragung absichert.",
+      "page": 3
+    },
+    {
+      "id": "aufteilungsplan",
+      "term": "Aufteilungsplan",
+      "definition": "Bei einer Wohnungseigentumsaufteilung verwendete Pläne, die Sonder- und Gemeinschaftseigentum kenntlich machen.",
+      "page": 3
+    },
+    {
+      "id": "aufteilungsvereinbarung",
+      "term": "Aufteilungsvereinbarung",
+      "definition": "Rechtliche Regelung, mit der Wohnungseigentum begründet oder zugeordnet wird, meist im Rahmen der Teilungserklärung.",
+      "page": 3
+    },
+    {
+      "id": "auftragsbestaetigung",
+      "term": "Auftragsbestätigung",
+      "definition": "Dokumentation darüber, welcher Maklerauftrag zu welchen Bedingungen erteilt wurde.",
+      "page": 3
+    },
+    {
+      "id": "ausbaureserve",
+      "term": "Ausbaureserve",
+      "definition": "Baulich möglicherweise nutzbare Fläche, die erst nach Prüfung und gegebenenfalls Genehmigung ausgebaut werden kann.",
+      "page": 3
+    },
+    {
+      "id": "ausfallwagnis",
+      "term": "Ausfallwagnis",
+      "definition": "Risiko, dass vereinbarte Einnahmen, insbesondere Mieten, ausbleiben.",
+      "page": 3
+    },
+    {
+      "id": "auskunftspflicht",
+      "term": "Auskunftspflicht",
+      "definition": "Gesetzliche oder vertragliche Pflicht, bestimmte Informationen zu liefern, etwa bei einer Verwaltung oder in einem Vertrag.",
+      "page": 3
+    },
+    {
+      "id": "aussenprovision",
+      "term": "Außenprovision",
+      "definition": "Maklervergütung, die der Käufer oder Interessent tragen soll, soweit die Vereinbarung rechtlich zulässig ist.",
+      "page": 3
+    },
+    {
+      "id": "aval",
+      "term": "Aval",
+      "definition": "Bürgschaft oder Garantie einer Bank, etwa als Sicherheit anstelle einer Barkaution.",
+      "page": 3
+    },
+    {
+      "id": "balkon",
+      "term": "Balkon",
+      "definition": "An der Außenwand liegende, meist offene Fläche, die von einer Wohnung aus betreten wird.",
+      "page": 3
+    },
+    {
+      "id": "bankbuergschaft",
+      "term": "Bankbürgschaft",
+      "definition": "Verpflichtung einer Bank, für eine bestimmte Schuld einzustehen. Sie kann unter anderem eine Mietsicherheit ersetzen.",
+      "page": 3
+    },
+    {
+      "id": "bauabnahme",
+      "term": "Bauabnahme",
+      "definition": "Rechtlich bedeutsame Bestätigung der im Wesentlichen ordnungsgemäßen Bauleistung durch den Auftraggeber.",
+      "page": 3
+    },
+    {
+      "id": "bauakte",
+      "term": "Bauakte",
+      "definition": "Bei der Bauaufsicht geführte Unterlagen zu einem Grundstück oder Gebäude, etwa Anträge, Genehmigungen und Zeichnungen.",
+      "page": 3
+    },
+    {
+      "id": "bauantrag",
+      "term": "Bauantrag",
+      "definition": "Formeller Antrag auf Genehmigung einer genehmigungspflichtigen Baumaßnahme.",
+      "page": 3
+    },
+    {
+      "id": "bauanzeige",
+      "term": "Bauanzeige",
+      "definition": "Anzeige eines Bauvorhabens bei der zuständigen Behörde. Sie ersetzt nicht in jedem Fall eine erforderliche Baugenehmigung.",
+      "page": 3
+    },
+    {
+      "id": "bauart",
+      "term": "Bauart",
+      "definition": "Art der baulichen Konstruktion, beispielsweise Massivbau, Holzbau oder Fertigbauweise.",
+      "page": 3
+    },
+    {
+      "id": "baubeschreibung",
+      "term": "Baubeschreibung",
+      "definition": "Darstellung von Bauleistungen, Materialien und Ausstattungsstandards, die bei Neubauvorhaben den vereinbarten Leistungsumfang konkretisiert.",
+      "page": 3
+    },
+    {
+      "id": "baudenkmalschutz",
+      "term": "Baudenkmalschutz",
+      "definition": "Rechtlicher Schutz von Gebäuden oder Anlagen mit besonderer historischer oder kultureller Bedeutung.",
+      "page": 3
+    },
+    {
+      "id": "bauflaeche",
+      "term": "Baufläche",
+      "definition": "Im Planungsrecht für eine bauliche Nutzung vorgesehene Fläche. Ob tatsächlich gebaut werden darf, hängt von weiteren Vorgaben ab.",
+      "page": 3
+    },
+    {
+      "id": "baugenehmigung",
+      "term": "Baugenehmigung",
+      "definition": "Behördliche Genehmigung einer genehmigungspflichtigen Baumaßnahme. Sie belegt nicht automatisch jede tatsächlich ausgeführte Änderung.",
+      "page": 3
+    },
+    {
+      "id": "baugesetzbuch-baugb",
+      "term": "Baugesetzbuch (BauGB)",
+      "definition": "Wichtiges Gesetz für Bauleitplanung, Bauzulässigkeit und städtebauliche Maßnahmen.",
+      "page": 4
+    },
+    {
+      "id": "baugrenze",
+      "term": "Baugrenze",
+      "definition": "Linie im Bebauungsplan, die Gebäude oder Gebäudeteile grundsätzlich nicht überschreiten dürfen.",
+      "page": 4
+    },
+    {
+      "id": "baulast",
+      "term": "Baulast",
+      "definition": "Öffentlich-rechtliche Verpflichtung eines Grundstückseigentümers gegenüber der Bauaufsicht, etwa eine Zufahrt zu sichern.",
+      "page": 4
+    },
+    {
+      "id": "baulastenverzeichnis",
+      "term": "Baulastenverzeichnis",
+      "definition": "Behördliches Register, in dem Baulasten dokumentiert werden. Es ist vom Grundbuch zu unterscheiden.",
+      "page": 4
+    },
+    {
+      "id": "bauliche-veraenderung",
+      "term": "Bauliche Veränderung",
+      "definition": "Maßnahme am Gemeinschaftseigentum, die über dessen ordnungsgemäße Erhaltung hinausgeht. In einer WEG gelten besondere Beschlussregeln.",
+      "page": 4
+    },
+    {
+      "id": "baumangel",
+      "term": "Baumangel",
+      "definition": "Abweichung einer Bauleistung von der vereinbarten oder geschuldeten Beschaffenheit.",
+      "page": 4
+    },
+    {
+      "id": "baunebenkosten",
+      "term": "Baunebenkosten",
+      "definition": "Kosten zusätzlich zur eigentlichen Bauleistung, etwa für Planung, Genehmigungen, Vermessung und Prüfungen.",
+      "page": 4
+    },
+    {
+      "id": "bauordnung",
+      "term": "Bauordnung",
+      "definition": "Landesrechtliche Vorschriften etwa zu Abständen, Brandschutz und Genehmigung von Bauvorhaben.",
+      "page": 4
+    },
+    {
+      "id": "bauvoranfrage",
+      "term": "Bauvoranfrage",
+      "definition": "Anfrage an die Behörde, mit der einzelne Fragen zur Zulässigkeit eines geplanten Bauvorhabens vorab geklärt werden können.",
+      "page": 4
+    },
+    {
+      "id": "bauvorbescheid",
+      "term": "Bauvorbescheid",
+      "definition": "Verbindliche behördliche Entscheidung zu bestimmten Fragen eines Bauvorhabens, soweit sein Inhalt reicht.",
+      "page": 4
+    },
+    {
+      "id": "bauzustand",
+      "term": "Bauzustand",
+      "definition": "Tatsächlicher baulicher Zustand einer Immobilie unter Berücksichtigung von Alter, Nutzung, Mängeln und Modernisierungen.",
+      "page": 4
+    },
+    {
+      "id": "bebauungsplan",
+      "term": "Bebauungsplan",
+      "definition": "Kommunaler Plan, der unter anderem zulässige Nutzungen, Geschosszahlen und überbaubare Flächen festlegt.",
+      "page": 4
+    },
+    {
+      "id": "beirat",
+      "term": "Beirat",
+      "definition": "Von Wohnungseigentümern gewähltes Gremium, das den WEG-Verwalter unterstützt und überwacht.",
+      "page": 4
+    },
+    {
+      "id": "beleihungsauslauf",
+      "term": "Beleihungsauslauf",
+      "definition": "Verhältnis des Kreditbetrags zum Beleihungswert einer Immobilie. Eine wichtige Größe bei der Bankkalkulation.",
+      "page": 4
+    },
+    {
+      "id": "beleihungswert",
+      "term": "Beleihungswert",
+      "definition": "Vorsichtig ermittelter Wert, auf den ein Kreditgeber die langfristige Besicherung einer Immobilie stützt.",
+      "page": 4
+    },
+    {
+      "id": "bereitstellungszinsen",
+      "term": "Bereitstellungszinsen",
+      "definition": "Zinsen für zugesagte, aber noch nicht abgerufene Darlehensmittel nach Ablauf einer vereinbarten bereitstellungsfreien Zeit.",
+      "page": 4
+    },
+    {
+      "id": "beschaffenheitsvereinbarung",
+      "term": "Beschaffenheitsvereinbarung",
+      "definition": "Vertragliche Festlegung bestimmter Eigenschaften einer Immobilie. Sie kann erhebliche Haftungsfolgen haben.",
+      "page": 4
+    },
+    {
+      "id": "besichtigung",
+      "term": "Besichtigung",
+      "definition": "Termin zur persönlichen Prüfung eines Objekts durch Interessenten, oft mit einer dokumentierten Teilnahmebestätigung.",
+      "page": 4
+    },
+    {
+      "id": "bestandsverzeichnis",
+      "term": "Bestandsverzeichnis",
+      "definition": "Teil des Grundbuchs mit Angaben zur Lage und Größe der eingetragenen Grundstücke sowie weiteren Grundstücksbezeichnungen.",
+      "page": 4
+    },
+    {
+      "id": "bestellerprinzip",
+      "term": "Bestellerprinzip",
+      "definition": "Regel bei der Vermittlung von Wohnraummietverträgen, nach der grundsätzlich derjenige zahlt, der den Makler nach den gesetzlichen Voraussetzungen beauftragt.",
+      "page": 4
+    },
+    {
+      "id": "betriebskosten",
+      "term": "Betriebskosten",
+      "definition": "Laufende Kosten des bestimmungsgemäßen Gebrauchs von Gebäude und Grundstück. Nur vereinbarte und zulässige Positionen sind umlagefähig.",
+      "page": 4
+    },
+    {
+      "id": "betriebskostenabrechnung",
+      "term": "Betriebskostenabrechnung",
+      "definition": "Jährliche Gegenüberstellung umlagefähiger Betriebskosten und geleisteter Vorauszahlungen.",
+      "page": 4
+    },
+    {
+      "id": "betriebskostenverordnung-betrkv",
+      "term": "Betriebskostenverordnung (BetrKV)",
+      "definition": "Verordnung, die im Wohnraummietrecht die Arten von Betriebskosten näher bestimmt.",
+      "page": 5
+    },
+    {
+      "id": "beurkundung",
+      "term": "Beurkundung",
+      "definition": "Förmliche Aufnahme rechtlicher Erklärungen durch einen Notar. Sie ist für Grundstückskaufverträge vorgeschrieben.",
+      "page": 5
+    },
+    {
+      "id": "bewirtschaftungskosten",
+      "term": "Bewirtschaftungskosten",
+      "definition": "Kosten einer Immobilie für Verwaltung, Instandhaltung, Betrieb und mögliche Mietausfälle, je nach Bewertungsverfahren abgegrenzt.",
+      "page": 5
+    },
+    {
+      "id": "bezugsfertigkeit",
+      "term": "Bezugsfertigkeit",
+      "definition": "Zustand, in dem Räume grundsätzlich entsprechend ihrem vorgesehenen Zweck bewohnt oder genutzt werden können.",
+      "page": 5
+    },
+    {
+      "id": "bgb",
+      "term": "BGB",
+      "definition": "Bürgerliches Gesetzbuch. Es regelt unter anderem Kauf, Miete, Maklerverträge und zahlreiche Rechte an Immobilien.",
+      "page": 5
+    },
+    {
+      "id": "bieterverfahren",
+      "term": "Bieterverfahren",
+      "definition": "Vermarktungsprozess, in dem Interessenten innerhalb eines Zeitraums Angebote abgeben. Der Verkäufer muss nicht das höchste Gebot annehmen.",
+      "page": 5
+    },
+    {
+      "id": "bindungsfrist",
+      "term": "Bindungsfrist",
+      "definition": "Zeitraum, in dem eine Partei an ein wirksam abgegebenes Angebot gebunden sein kann.",
+      "page": 5
+    },
+    {
+      "id": "bodenrichtwert",
+      "term": "Bodenrichtwert",
+      "definition": "Aus Kaufpreisen abgeleiteter durchschnittlicher Bodenwert je Quadratmeter für eine Zone mit bestimmten Grundstücksmerkmalen.",
+      "page": 5
+    },
+    {
+      "id": "bodenwert",
+      "term": "Bodenwert",
+      "definition": "Wert des Grundstücksbodens ohne die darauf stehenden Gebäude.",
+      "page": 5
+    },
+    {
+      "id": "bodenwertverzinsung",
+      "term": "Bodenwertverzinsung",
+      "definition": "Rechnerischer Teil des Grundstücksertrags, der im Ertragswertverfahren dem Boden zugeordnet wird.",
+      "page": 5
+    },
+    {
+      "id": "bonitaet",
+      "term": "Bonität",
+      "definition": "Wirtschaftliche Fähigkeit und voraussichtliche Bereitschaft, Zahlungsverpflichtungen zu erfüllen.",
+      "page": 5
+    },
+    {
+      "id": "bruttogrundflaeche-bgf",
+      "term": "Bruttogrundfläche (BGF)",
+      "definition": "Nach festgelegten Messregeln ermittelte Gesamtfläche aller Grundrissebenen eines Bauwerks, einschließlich bestimmter Konstruktionsflächen.",
+      "page": 5
+    },
+    {
+      "id": "bruttorendite",
+      "term": "Bruttorendite",
+      "definition": "Jährliche Bruttoeinnahmen im Verhältnis zu den Anschaffungskosten oder zum Kaufpreis. Nebenkosten und Aufwand können das Ergebnis verändern.",
+      "page": 5
+    },
+    {
+      "id": "buchgrundschuld",
+      "term": "Buchgrundschuld",
+      "definition": "Grundschuld, bei der kein gesonderter Grundschuldbrief ausgegeben wird.",
+      "page": 5
+    },
+    {
+      "id": "buergschaft",
+      "term": "Bürgschaft",
+      "definition": "Einstehen einer Person für eine fremde Verbindlichkeit gegenüber dem Gläubiger.",
+      "page": 5
+    },
+    {
+      "id": "cashflow",
+      "term": "Cashflow",
+      "definition": "Tatsächlicher Überschuss oder Fehlbetrag der Einzahlungen gegenüber den Auszahlungen in einem Zeitraum.",
+      "page": 5
+    },
+    {
+      "id": "courtage",
+      "term": "Courtage",
+      "definition": "Anderer Begriff für Maklerprovision.",
+      "page": 5
+    },
+    {
+      "id": "co2-kostenaufteilung",
+      "term": "CO₂-Kostenaufteilung",
+      "definition": "Gesetzliche Aufteilung bestimmter Kohlendioxidkosten zwischen Vermieter und Mieter bei fossil beheizten Immobilien.",
+      "page": 5
+    },
+    {
+      "id": "crm",
+      "term": "CRM",
+      "definition": "Customer-Relationship-Management. Software zur Organisation von Kontakten, Vorgängen und dokumentierten Kundenaktivitäten.",
+      "page": 5
+    },
+    {
+      "id": "dachgeschossausbau",
+      "term": "Dachgeschossausbau",
+      "definition": "Umwandlung eines Dachraums in zusätzliche Nutz- oder Wohnfläche, soweit baurechtlich zulässig.",
+      "page": 5
+    },
+    {
+      "id": "darlehen",
+      "term": "Darlehen",
+      "definition": "Überlassung eines Geldbetrags gegen vereinbarte Rückzahlung und gegebenenfalls Zinsen.",
+      "page": 5
+    },
+    {
+      "id": "darlehensauszahlung",
+      "term": "Darlehensauszahlung",
+      "definition": "Bereitstellung des zugesagten Kreditbetrags, häufig erst nach Erfüllung der Auszahlungsbedingungen.",
+      "page": 6
+    },
+    {
+      "id": "darlehensrate",
+      "term": "Darlehensrate",
+      "definition": "Regelmäßig zu zahlender Betrag aus Zins, Tilgung und gegebenenfalls weiteren Bestandteilen.",
+      "page": 6
+    },
+    {
+      "id": "darlehensrestschuld",
+      "term": "Darlehensrestschuld",
+      "definition": "Noch nicht zurückgezahlter Darlehensbetrag zu einem bestimmten Zeitpunkt.",
+      "page": 6
+    },
+    {
+      "id": "datenschutz-grundverordnung-dsgvo",
+      "term": "Datenschutz-Grundverordnung (DSGVO)",
+      "definition": "EU-Recht zum Schutz personenbezogener Daten. Für Makler besonders relevant bei CRM, Ausweisdaten und Interessentenkommunikation.",
+      "page": 6
+    },
+    {
+      "id": "denkmalabschreibung",
+      "term": "Denkmalabschreibung",
+      "definition": "Besondere steuerliche Abzugsmöglichkeit für begünstigte Aufwendungen an Baudenkmälern unter gesetzlichen Voraussetzungen.",
+      "page": 6
+    },
+    {
+      "id": "denkmalschutz",
+      "term": "Denkmalschutz",
+      "definition": "Schutzrechtliche Vorschriften für Kulturdenkmale, die Umbauten und Sanierungen einschränken können.",
+      "page": 6
+    },
+    {
+      "id": "dienstbarkeit",
+      "term": "Dienstbarkeit",
+      "definition": "Recht, ein fremdes Grundstück in bestimmter Weise zu nutzen oder dessen Nutzung einzuschränken.",
+      "page": 6
+    },
+    {
+      "id": "din-277",
+      "term": "DIN 277",
+      "definition": "Norm zur Ermittlung von Grundflächen und Rauminhalten im Bauwesen. Sie ist keine Wohnflächenverordnung.",
+      "page": 6
+    },
+    {
+      "id": "disagio",
+      "term": "Disagio",
+      "definition": "Bei Darlehensauszahlung einbehaltener Abschlag vom Nennbetrag, der wirtschaftlich Kreditkosten darstellt.",
+      "page": 6
+    },
+    {
+      "id": "doppelhaushaelfte-dhh",
+      "term": "Doppelhaushälfte (DHH)",
+      "definition": "Eine von zwei aneinandergebauten Hauseinheiten mit jeweils eigenständiger Nutzung.",
+      "page": 6
+    },
+    {
+      "id": "drittverwendungsfaehigkeit",
+      "term": "Drittverwendungsfähigkeit",
+      "definition": "Eignung einer Immobilie, auch von anderen Nutzern wirtschaftlich sinnvoll verwendet werden zu können.",
+      "page": 6
+    },
+    {
+      "id": "due-diligence",
+      "term": "Due Diligence",
+      "definition": "Systematische Prüfung einer Immobilie vor dem Kauf, etwa rechtlich, technisch, wirtschaftlich und steuerlich.",
+      "page": 6
+    },
+    {
+      "id": "eigenbedarfskuendigung",
+      "term": "Eigenbedarfskündigung",
+      "definition": "Ordentliche Vermieterkündigung wegen gesetzlich anerkannten Bedarfs für sich, Familienangehörige oder Haushaltsangehörige.",
+      "page": 6
+    },
+    {
+      "id": "eigenkapital",
+      "term": "Eigenkapital",
+      "definition": "Eigene Mittel, die ein Käufer oder Bauherr in den Erwerb oder Bau einbringt.",
+      "page": 6
+    },
+    {
+      "id": "eigenkapitalquote",
+      "term": "Eigenkapitalquote",
+      "definition": "Anteil der eigenen Mittel an der gesamten Finanzierung oder Investition.",
+      "page": 6
+    },
+    {
+      "id": "eigentuemergemeinschaft",
+      "term": "Eigentümergemeinschaft",
+      "definition": "Gesamtheit der Wohnungseigentümer einer Immobilie, die über gemeinschaftliche Angelegenheiten entscheidet.",
+      "page": 6
+    },
+    {
+      "id": "eigentumsumschreibung",
+      "term": "Eigentumsumschreibung",
+      "definition": "Eintragung des Käufers als neuer Eigentümer im Grundbuch nach Erfüllung der Voraussetzungen.",
+      "page": 6
+    },
+    {
+      "id": "eigentumswohnung-etw",
+      "term": "Eigentumswohnung (ETW)",
+      "definition": "Wohnung, an der Sondereigentum und ein zugehöriger Anteil am Gemeinschaftseigentum bestehen.",
+      "page": 6
+    },
+    {
+      "id": "einbaukueche",
+      "term": "Einbauküche",
+      "definition": "In eine Immobilie eingepasste Küchenmöbel und Geräte. Ob sie mitverkauft oder mitvermietet werden, muss geklärt sein.",
+      "page": 6
+    },
+    {
+      "id": "einfacher-maklerauftrag",
+      "term": "Einfacher Maklerauftrag",
+      "definition": "Nicht exklusiver Auftrag, bei dem der Eigentümer grundsätzlich selbst tätig werden und weitere Makler beauftragen kann.",
+      "page": 6
+    },
+    {
+      "id": "einheitswert",
+      "term": "Einheitswert",
+      "definition": "Historische steuerliche Bewertungsgröße, die im Bereich der Grundsteuer weitgehend durch neue Bewertungsregeln abgelöst wurde.",
+      "page": 6
+    },
+    {
+      "id": "einliegerwohnung",
+      "term": "Einliegerwohnung",
+      "definition": "Räumlich zugeordnete, meist kleinere zusätzliche Wohnung in einem Gebäude.",
+      "page": 6
+    },
+    {
+      "id": "eintragungsvoraussetzungen",
+      "term": "Eintragungsvoraussetzungen",
+      "definition": "Rechtliche Unterlagen und Erklärungen, die vor einer Änderung des Grundbuchs vorliegen müssen.",
+      "page": 6
+    },
+    {
+      "id": "energieausweis",
+      "term": "Energieausweis",
+      "definition": "Dokument über die energetischen Eigenschaften eines Gebäudes. Zu unterscheiden sind Bedarfs- und Verbrauchsausweis.",
+      "page": 7
+    },
+    {
+      "id": "energiebedarfsausweis",
+      "term": "Energiebedarfsausweis",
+      "definition": "Energieausweis, dessen Kennwerte auf einem rechnerisch ermittelten Gebäudeenergiebedarf beruhen.",
+      "page": 7
+    },
+    {
+      "id": "energieeffizienzklasse",
+      "term": "Energieeffizienzklasse",
+      "definition": "Im Energieausweis ausgewiesene Einordnung des energetischen Zustands eines Wohngebäudes anhand bestimmter Kennwerte.",
+      "page": 7
+    },
+    {
+      "id": "energietraeger",
+      "term": "Energieträger",
+      "definition": "Quelle zur Bereitstellung von Wärme oder Strom, etwa Erdgas, Fernwärme oder Elektrizität.",
+      "page": 7
+    },
+    {
+      "id": "energieverbrauchsausweis",
+      "term": "Energieverbrauchsausweis",
+      "definition": "Energieausweis, dessen Kennwerte sich wesentlich aus dem gemessenen Energieverbrauch vergangener Perioden ableiten.",
+      "page": 7
+    },
+    {
+      "id": "enev",
+      "term": "EnEV",
+      "definition": "Frühere Energieeinsparverordnung. Sie wurde durch spätere Gebäudeenergieregeln abgelöst und findet sich noch in alten Unterlagen.",
+      "page": 7
+    },
+    {
+      "id": "erbbaurecht",
+      "term": "Erbbaurecht",
+      "definition": "Veräußerliches und vererbliches Recht, auf oder unter einem fremden Grundstück ein Bauwerk zu haben.",
+      "page": 7
+    },
+    {
+      "id": "erbbauzins",
+      "term": "Erbbauzins",
+      "definition": "Wiederkehrendes Entgelt, das der Erbbauberechtigte nach Vereinbarung an den Grundstückseigentümer zahlt.",
+      "page": 7
+    },
+    {
+      "id": "erbengemeinschaft",
+      "term": "Erbengemeinschaft",
+      "definition": "Gemeinschaft mehrerer Erben, denen der Nachlass zunächst gemeinsam zusteht.",
+      "page": 7
+    },
+    {
+      "id": "erhaltung",
+      "term": "Erhaltung",
+      "definition": "Maßnahmen zur Bewahrung des ordnungsgemäßen Zustands, insbesondere Reparatur und Instandsetzung.",
+      "page": 7
+    },
+    {
+      "id": "erhaltungsruecklage",
+      "term": "Erhaltungsrücklage",
+      "definition": "Von der WEG angesparte Mittel zur Finanzierung künftiger Erhaltungsmaßnahmen am Gemeinschaftseigentum.",
+      "page": 7
+    },
+    {
+      "id": "erschliessung",
+      "term": "Erschließung",
+      "definition": "Herstellung der notwendigen Anbindung eines Grundstücks etwa an Straße, Ver- und Entsorgung.",
+      "page": 7
+    },
+    {
+      "id": "erschliessungsbeitrag",
+      "term": "Erschließungsbeitrag",
+      "definition": "Kommunale Abgabe für bestimmte Erschließungsmaßnahmen nach den jeweils anwendbaren Vorschriften.",
+      "page": 7
+    },
+    {
+      "id": "ertragswert",
+      "term": "Ertragswert",
+      "definition": "Wert einer Immobilie, der vor allem aus nachhaltig erzielbaren Erträgen abgeleitet wird.",
+      "page": 7
+    },
+    {
+      "id": "ertragswertverfahren",
+      "term": "Ertragswertverfahren",
+      "definition": "Wertermittlungsverfahren auf Basis von Rohertrag, Bewirtschaftungskosten, Bodenwert und marktgerechter Kapitalisierung.",
+      "page": 7
+    },
+    {
+      "id": "expose",
+      "term": "Exposé",
+      "definition": "Zusammenstellung wesentlicher Objektangaben, Bilder und Verkaufs- oder Vermietungskonditionen für Interessenten.",
+      "page": 7
+    },
+    {
+      "id": "faelligkeit",
+      "term": "Fälligkeit",
+      "definition": "Zeitpunkt, ab dem eine vertraglich oder gesetzlich geschuldete Leistung verlangt werden kann.",
+      "page": 7
+    },
+    {
+      "id": "faelligkeitsmitteilung",
+      "term": "Fälligkeitsmitteilung",
+      "definition": "Notarielle Nachricht, dass die Voraussetzungen für die Zahlung des Kaufpreises vorliegen.",
+      "page": 7
+    },
+    {
+      "id": "faktor",
+      "term": "Faktor",
+      "definition": "Bei Kapitalanlagen häufig Verhältnis von Kaufpreis zur Jahresnettokaltmiete. Auch als Kaufpreisfaktor bezeichnet.",
+      "page": 7
+    },
+    {
+      "id": "farming",
+      "term": "Farming",
+      "definition": "Systematische lokale Akquise in einem geografisch begrenzten Gebiet durch wiederkehrende Präsenz.",
+      "page": 7
+    },
+    {
+      "id": "fehlbelegung",
+      "term": "Fehlbelegung",
+      "definition": "Nutzung öffentlich geförderten Wohnraums entgegen bestimmten Belegungsbedingungen.",
+      "page": 7
+    },
+    {
+      "id": "fernwaerme",
+      "term": "Fernwärme",
+      "definition": "Zentrale Versorgung von Gebäuden mit Wärme über ein Leitungsnetz.",
+      "page": 7
+    },
+    {
+      "id": "festzins",
+      "term": "Festzins",
+      "definition": "Für eine vereinbarte Laufzeit unveränderlicher Zinssatz eines Darlehens.",
+      "page": 7
+    },
+    {
+      "id": "feuchtigkeitsschaden",
+      "term": "Feuchtigkeitsschaden",
+      "definition": "Schädigung durch eingedrungene oder kondensierte Feuchte, beispielsweise an Putz, Dämmung oder Holz.",
+      "page": 8
+    },
+    {
+      "id": "fiktives-baujahr",
+      "term": "Fiktives Baujahr",
+      "definition": "Für Bewertungszwecke angepasste Altersgröße, die umfangreiche Modernisierungen berücksichtigen kann.",
+      "page": 8
+    },
+    {
+      "id": "finanzierungsbestaetigung",
+      "term": "Finanzierungsbestätigung",
+      "definition": "Erklärung eines Finanzierungspartners zu einem möglichen Kredit. Ihre Aussagekraft hängt vom verbindlichen Inhalt ab.",
+      "page": 8
+    },
+    {
+      "id": "finanzierungsvermittlung",
+      "term": "Finanzierungsvermittlung",
+      "definition": "Vermittlung von Kontakten oder Verträgen für Darlehen, bei Immobilienverbraucherdarlehen unter besonderen Erlaubnisregeln.",
+      "page": 8
+    },
+    {
+      "id": "flur",
+      "term": "Flur",
+      "definition": "Räumliche Unterteilung einer Gemarkung im Liegenschaftskataster.",
+      "page": 8
+    },
+    {
+      "id": "flurkarte",
+      "term": "Flurkarte",
+      "definition": "Kartendarstellung der Flurstücke und ihrer Grenzen im Liegenschaftskataster.",
+      "page": 8
+    },
+    {
+      "id": "flurstueck",
+      "term": "Flurstück",
+      "definition": "Amtlich vermessene und im Kataster unter einer Nummer geführte Grundstücksfläche.",
+      "page": 8
+    },
+    {
+      "id": "forward-darlehen",
+      "term": "Forward-Darlehen",
+      "definition": "Heute vereinbartes Darlehen, dessen Zinsbindung und Auszahlung erst später beginnen.",
+      "page": 8
+    },
+    {
+      "id": "franchise",
+      "term": "Franchise",
+      "definition": "Vertriebssystem, bei dem rechtlich selbstständige Partner eine Marke und vereinbarte Abläufe nutzen.",
+      "page": 8
+    },
+    {
+      "id": "freistellungserklaerung",
+      "term": "Freistellungserklärung",
+      "definition": "Erklärung, dass bestimmte Sicherheiten oder Belastungen unter festgelegten Voraussetzungen freigegeben werden.",
+      "page": 8
+    },
+    {
+      "id": "fremdkapital",
+      "term": "Fremdkapital",
+      "definition": "Finanzierungsmittel, die von Dritten stammen und regelmäßig zurückzuzahlen sind.",
+      "page": 8
+    },
+    {
+      "id": "fremdverwaltung",
+      "term": "Fremdverwaltung",
+      "definition": "Verwaltung einer fremden Immobilie durch einen beauftragten Dienstleister.",
+      "page": 8
+    },
+    {
+      "id": "gebaeudeeffizienz",
+      "term": "Gebäudeeffizienz",
+      "definition": "Beschreibung der Energieeffizienz eines Gebäudes anhand seines energetischen Zustands und Verbrauchs oder Bedarfs.",
+      "page": 8
+    },
+    {
+      "id": "gebaeudeenergieausweis",
+      "term": "Gebäudeenergieausweis",
+      "definition": "Andere Bezeichnung für Energieausweis.",
+      "page": 8
+    },
+    {
+      "id": "gebaeudenutzflaeche",
+      "term": "Gebäudenutzfläche",
+      "definition": "Energiebezogene Flächengröße, die von der tatsächlichen Wohnfläche abweichen kann.",
+      "page": 8
+    },
+    {
+      "id": "gebaeudeversicherung",
+      "term": "Gebäudeversicherung",
+      "definition": "Versicherung gegen vertraglich abgedeckte Sachschäden am Gebäude, etwa Feuer, Leitungswasser oder Sturm.",
+      "page": 8
+    },
+    {
+      "id": "geldwaeschegesetz-gwg",
+      "term": "Geldwäschegesetz (GwG)",
+      "definition": "Regelt unter anderem Identifizierungs-, Aufzeichnungs- und Meldepflichten bestimmter Berufsgruppen einschließlich Immobilienmaklern.",
+      "page": 8
+    },
+    {
+      "id": "gemarkung",
+      "term": "Gemarkung",
+      "definition": "Katasterbezirk, in dem Flurstücke und Fluren registriert werden.",
+      "page": 8
+    },
+    {
+      "id": "gemeindliches-vorkaufsrecht",
+      "term": "Gemeindliches Vorkaufsrecht",
+      "definition": "Gesetzliches Erwerbsrecht einer Gemeinde bei bestimmten Grundstücksverkäufen unter den Voraussetzungen des BauGB.",
+      "page": 8
+    },
+    {
+      "id": "gemeinschaftseigentum",
+      "term": "Gemeinschaftseigentum",
+      "definition": "Teile, Anlagen und Einrichtungen eines WEG-Gebäudes, die nicht Sondereigentum sind oder gesetzlich gemeinschaftlich bleiben.",
+      "page": 8
+    },
+    {
+      "id": "gemeinschaftsordnung",
+      "term": "Gemeinschaftsordnung",
+      "definition": "Vereinbarte Regeln der Wohnungseigentümer über Rechte und Pflichten innerhalb der WEG.",
+      "page": 8
+    },
+    {
+      "id": "genehmigungsfreistellung",
+      "term": "Genehmigungsfreistellung",
+      "definition": "Baurechtliches Verfahren, in dem bestimmte Vorhaben unter gesetzlichen Voraussetzungen ohne klassische Baugenehmigung ausgeführt werden dürfen.",
+      "page": 8
+    },
+    {
+      "id": "geschaeftswert",
+      "term": "Geschäftswert",
+      "definition": "Für bestimmte Gebühren maßgeblicher Wert eines Rechtsgeschäfts oder einer Angelegenheit.",
+      "page": 8
+    },
+    {
+      "id": "geschossflaechenzahl-gfz",
+      "term": "Geschossflächenzahl (GFZ)",
+      "definition": "Verhältnis der maßgeblichen Geschossfläche zur Grundstücksfläche nach den Regeln des Bauplanungsrechts.",
+      "page": 9
+    },
+    {
+      "id": "gewaehrleistung",
+      "term": "Gewährleistung",
+      "definition": "Gesetzliche oder vertragliche Rechte bei Mängeln einer geschuldeten Leistung.",
+      "page": 9
+    },
+    {
+      "id": "gewerbemietvertrag",
+      "term": "Gewerbemietvertrag",
+      "definition": "Mietvertrag über Räume, die nicht zu Wohnzwecken überlassen werden. Es gelten teils andere Schutzregeln.",
+      "page": 9
+    },
+    {
+      "id": "gewerbeordnung-34c",
+      "term": "Gewerbeordnung § 34c",
+      "definition": "Erlaubnisvorschrift unter anderem für Immobilienmakler und bestimmte andere Immobiliengewerbe.",
+      "page": 9
+    },
+    {
+      "id": "gewerbeordnung-34i",
+      "term": "Gewerbeordnung § 34i",
+      "definition": "Erlaubnisvorschrift für gewerbliche Vermittler von Immobiliar-Verbraucherdarlehen.",
+      "page": 9
+    },
+    {
+      "id": "gewerbezentralregister",
+      "term": "Gewerbezentralregister",
+      "definition": "Register über bestimmte gewerberechtlich relevante Entscheidungen und Verstöße.",
+      "page": 9
+    },
+    {
+      "id": "glaeubiger",
+      "term": "Gläubiger",
+      "definition": "Person oder Unternehmen mit einem Anspruch gegen einen Schuldner.",
+      "page": 9
+    },
+    {
+      "id": "grundbuch",
+      "term": "Grundbuch",
+      "definition": "Öffentliches Register über Eigentum und bestimmte Rechte an Grundstücken, beim Grundbuchamt geführt.",
+      "page": 9
+    },
+    {
+      "id": "grundbuch-abteilung-i",
+      "term": "Grundbuch Abteilung I",
+      "definition": "Enthält die Eigentümer und die Grundlage ihrer Eintragung.",
+      "page": 9
+    },
+    {
+      "id": "grundbuch-abteilung-ii",
+      "term": "Grundbuch Abteilung II",
+      "definition": "Enthält Lasten und Beschränkungen wie Dienstbarkeiten oder Vormerkungen, aber grundsätzlich keine Grundpfandrechte.",
+      "page": 9
+    },
+    {
+      "id": "grundbuch-abteilung-iii",
+      "term": "Grundbuch Abteilung III",
+      "definition": "Enthält Grundpfandrechte wie Grundschulden und Hypotheken.",
+      "page": 9
+    },
+    {
+      "id": "grundbuchauszug",
+      "term": "Grundbuchauszug",
+      "definition": "Wiedergabe des aktuellen Inhalts eines Grundbuchblatts. Für Einsicht ist grundsätzlich ein berechtigtes Interesse erforderlich.",
+      "page": 9
+    },
+    {
+      "id": "grundbuchberichtigung",
+      "term": "Grundbuchberichtigung",
+      "definition": "Anpassung des Grundbuchs, wenn der eingetragene Inhalt nicht mehr mit der tatsächlichen Rechtslage übereinstimmt.",
+      "page": 9
+    },
+    {
+      "id": "grunddienstbarkeit",
+      "term": "Grunddienstbarkeit",
+      "definition": "Dingliches Recht zugunsten eines anderen Grundstücks, etwa ein Wegerecht.",
+      "page": 9
+    },
+    {
+      "id": "grunderwerbsteuer",
+      "term": "Grunderwerbsteuer",
+      "definition": "Steuer, die grundsätzlich beim Erwerb eines inländischen Grundstücks anfällt. Der Satz hängt vom Bundesland ab.",
+      "page": 9
+    },
+    {
+      "id": "grundflaechenzahl-grz",
+      "term": "Grundflächenzahl (GRZ)",
+      "definition": "Kennzahl im Baurecht, wie viel Grundfläche eines Grundstücks im Verhältnis zur Grundstücksfläche überbaut werden darf.",
+      "page": 9
+    },
+    {
+      "id": "grundpfandrecht",
+      "term": "Grundpfandrecht",
+      "definition": "Dingliches Sicherungsrecht an einer Immobilie, besonders Grundschuld oder Hypothek.",
+      "page": 9
+    },
+    {
+      "id": "grundriss",
+      "term": "Grundriss",
+      "definition": "Maßstäbliche Darstellung der Raumaufteilung eines Geschosses von oben.",
+      "page": 9
+    },
+    {
+      "id": "grundschuld",
+      "term": "Grundschuld",
+      "definition": "Grundpfandrecht zur Sicherung von Forderungen. Es ist rechtlich nicht automatisch an ein bestimmtes Darlehen gebunden.",
+      "page": 9
+    },
+    {
+      "id": "grundsteuer",
+      "term": "Grundsteuer",
+      "definition": "Wiederkehrende kommunale Steuer auf Grundbesitz nach den jeweils geltenden Bemessungsregeln.",
+      "page": 9
+    },
+    {
+      "id": "grundstueck",
+      "term": "Grundstück",
+      "definition": "Räumlich abgegrenzter Teil der Erdoberfläche, der als rechtliche Einheit im Grundbuch geführt wird.",
+      "page": 9
+    },
+    {
+      "id": "grundstuecksgleiche-rechte",
+      "term": "Grundstücksgleiche Rechte",
+      "definition": "Rechte, die in wichtigen Punkten grundstücksähnlich behandelt werden, etwa das Erbbaurecht.",
+      "page": 9
+    },
+    {
+      "id": "grundstuecksteilung",
+      "term": "Grundstücksteilung",
+      "definition": "Aufteilung einer Grundstücksfläche in kleinere Flurstücke oder rechtlich selbstständige Grundstücke.",
+      "page": 9
+    },
+    {
+      "id": "gutachterausschuss",
+      "term": "Gutachterausschuss",
+      "definition": "Unabhängiges Gremium, das unter anderem Kaufpreise auswertet und Bodenrichtwerte sowie Marktdaten ermittelt.",
+      "page": 9
+    },
+    {
+      "id": "hausgeld",
+      "term": "Hausgeld",
+      "definition": "Monatliche Vorschüsse eines Wohnungseigentümers für gemeinschaftliche Kosten und häufig die Erhaltungsrücklage.",
+      "page": 10
+    },
+    {
+      "id": "hausgeldabrechnung",
+      "term": "Hausgeldabrechnung",
+      "definition": "Abrechnung der Hausgeldvorschüsse und tatsächlichen Kosten einer Abrechnungsperiode innerhalb der WEG.",
+      "page": 10
+    },
+    {
+      "id": "hausordnung",
+      "term": "Hausordnung",
+      "definition": "Regeln zum Zusammenleben und zur Nutzung gemeinsamer Bereiche eines Hauses.",
+      "page": 10
+    },
+    {
+      "id": "hausverwaltung",
+      "term": "Hausverwaltung",
+      "definition": "Organisation und Betreuung der kaufmännischen, technischen und rechtlich zulässigen Aufgaben einer Immobilie.",
+      "page": 10
+    },
+    {
+      "id": "heizkostenabrechnung",
+      "term": "Heizkostenabrechnung",
+      "definition": "Verteilung und Abrechnung der Heiz- und Warmwasserkosten nach den einschlägigen Regeln.",
+      "page": 10
+    },
+    {
+      "id": "heizkostenverordnung",
+      "term": "Heizkostenverordnung",
+      "definition": "Verordnung zur verbrauchsabhängigen Erfassung und Verteilung bestimmter Heiz- und Warmwasserkosten.",
+      "page": 10
+    },
+    {
+      "id": "heizlast",
+      "term": "Heizlast",
+      "definition": "Wärmeleistung, die benötigt wird, um ein Gebäude bei festgelegten Außentemperaturen ausreichend zu beheizen.",
+      "page": 10
+    },
+    {
+      "id": "herstellungskosten",
+      "term": "Herstellungskosten",
+      "definition": "Aufwendungen zur Herstellung, Erweiterung oder wesentlichen Verbesserung eines Wirtschaftsguts.",
+      "page": 10
+    },
+    {
+      "id": "hinterliegergrundstueck",
+      "term": "Hinterliegergrundstück",
+      "definition": "Grundstück ohne unmittelbare Lage an der öffentlichen Straße. Seine Erreichbarkeit muss rechtlich geklärt sein.",
+      "page": 10
+    },
+    {
+      "id": "hoai",
+      "term": "HOAI",
+      "definition": "Honorarordnung für Architekten und Ingenieure. Sie enthält Regeln und Orientierungswerte für bestimmte Planungsleistungen.",
+      "page": 10
+    },
+    {
+      "id": "hochparterre",
+      "term": "Hochparterre",
+      "definition": "Geschoss, dessen Fußboden etwas oberhalb des Geländeniveaus liegt.",
+      "page": 10
+    },
+    {
+      "id": "hybridheizung",
+      "term": "Hybridheizung",
+      "definition": "Heizanlage, die mehrere Wärmeerzeuger oder Energiequellen kombiniert.",
+      "page": 10
+    },
+    {
+      "id": "hypothek",
+      "term": "Hypothek",
+      "definition": "Grundpfandrecht, das anders als die Grundschuld eng an eine bestimmte Forderung gebunden ist.",
+      "page": 10
+    },
+    {
+      "id": "identitaetspruefung",
+      "term": "Identitätsprüfung",
+      "definition": "Überprüfung der Identität einer Person anhand geeigneter Dokumente oder zulässiger Verfahren.",
+      "page": 10
+    },
+    {
+      "id": "immobilie",
+      "term": "Immobilie",
+      "definition": "Unbewegliches Vermögen, insbesondere Grundstücke und darauf befindliche Gebäude.",
+      "page": 10
+    },
+    {
+      "id": "immobilienbewertung",
+      "term": "Immobilienbewertung",
+      "definition": "Ermittlung eines Werts oder einer Wertspanne für eine Immobilie anhand geeigneter Daten und Verfahren.",
+      "page": 10
+    },
+    {
+      "id": "immobilienfinanzierung",
+      "term": "Immobilienfinanzierung",
+      "definition": "Bereitstellung von Eigen- und Fremdmitteln zum Erwerb, Neubau oder zur Modernisierung einer Immobilie.",
+      "page": 10
+    },
+    {
+      "id": "immobilienmakler",
+      "term": "Immobilienmakler",
+      "definition": "Vermittelt Verträge über Immobilien oder weist Abschlussgelegenheiten nach, üblicherweise gegen erfolgsabhängige Vergütung.",
+      "page": 10
+    },
+    {
+      "id": "immobilienwertermittlungsverordnung-immowertv",
+      "term": "Immobilienwertermittlungsverordnung (ImmoWertV)",
+      "definition": "Regelt Grundsätze und Verfahren für die Verkehrswertermittlung von Immobilien.",
+      "page": 10
+    },
+    {
+      "id": "impressumspflicht",
+      "term": "Impressumspflicht",
+      "definition": "Pflicht bestimmter geschäftlicher Onlineangebote, gesetzlich vorgegebene Anbieterinformationen leicht erreichbar bereitzustellen.",
+      "page": 10
+    },
+    {
+      "id": "indexmiete",
+      "term": "Indexmiete",
+      "definition": "Miete, deren Entwicklung durch Vereinbarung an einen gesetzlich vorgesehenen Preisindex gekoppelt wird.",
+      "page": 10
+    },
+    {
+      "id": "insolvenzverwalter",
+      "term": "Insolvenzverwalter",
+      "definition": "Vom Gericht bestellte Person zur Verwaltung und Verwertung des Vermögens in einem Insolvenzverfahren.",
+      "page": 10
+    },
+    {
+      "id": "instandhaltung",
+      "term": "Instandhaltung",
+      "definition": "Maßnahmen, die den funktionsfähigen Zustand einer Immobilie erhalten.",
+      "page": 11
+    },
+    {
+      "id": "instandsetzung",
+      "term": "Instandsetzung",
+      "definition": "Beseitigung vorhandener Schäden oder Funktionsstörungen an Bauteilen und Anlagen.",
+      "page": 11
+    },
+    {
+      "id": "interessenbekundung",
+      "term": "Interessenbekundung",
+      "definition": "Erklärung, dass eine Person an einem Objekt interessiert ist. Sie ist regelmäßig noch kein verbindlicher Kaufvertrag.",
+      "page": 11
+    },
+    {
+      "id": "investitionskosten",
+      "term": "Investitionskosten",
+      "definition": "Gesamte für eine Investition aufzuwendende Mittel einschließlich relevanter Nebenkosten.",
+      "page": 11
+    },
+    {
+      "id": "investitionsstau",
+      "term": "Investitionsstau",
+      "definition": "Über längere Zeit aufgeschobene notwendige Erhaltungs- oder Modernisierungsmaßnahmen.",
+      "page": 11
+    },
+    {
+      "id": "isb-foerderbank",
+      "term": "ISB / Förderbank",
+      "definition": "Landesspezifische Förderinstitution für bestimmte Wohnraum- oder Wirtschaftsförderungen.",
+      "page": 11
+    },
+    {
+      "id": "jahresabrechnung",
+      "term": "Jahresabrechnung",
+      "definition": "Zusammenstellung von Einnahmen und Ausgaben beziehungsweise Kosten und Vorschüssen für ein Jahr.",
+      "page": 11
+    },
+    {
+      "id": "jahresnettokaltmiete",
+      "term": "Jahresnettokaltmiete",
+      "definition": "Summe der Kaltmieten eines Objekts ohne vereinbarte Betriebs- oder Heizkostenvorauszahlungen innerhalb eines Jahres.",
+      "page": 11
+    },
+    {
+      "id": "jahresrohertrag",
+      "term": "Jahresrohertrag",
+      "definition": "Nach dem verwendeten Verfahren maßgebliche Summe der vor Kostenabzug erzielbaren Erträge einer Immobilie.",
+      "page": 11
+    },
+    {
+      "id": "jahressollmiete",
+      "term": "Jahressollmiete",
+      "definition": "Summe der vereinbarten oder unterstellten Jahresmieten bei vollständiger Vermietung, je nach Berechnung.",
+      "page": 11
+    },
+    {
+      "id": "jahresueberschuss",
+      "term": "Jahresüberschuss",
+      "definition": "Positives Jahresergebnis, nachdem die einschlägigen Aufwendungen berücksichtigt wurden.",
+      "page": 11
+    },
+    {
+      "id": "kapitalanlage",
+      "term": "Kapitalanlage",
+      "definition": "Investition, von der Erträge oder Wertsteigerung erwartet werden, etwa eine vermietete Eigentumswohnung.",
+      "page": 11
+    },
+    {
+      "id": "kapitaldienst",
+      "term": "Kapitaldienst",
+      "definition": "Regelmäßige Zahlungen für Zinsen und Tilgung von Krediten.",
+      "page": 11
+    },
+    {
+      "id": "kapitaldienstfaehigkeit",
+      "term": "Kapitaldienstfähigkeit",
+      "definition": "Fähigkeit, Kreditraten aus verfügbaren Einnahmen und Mitteln zu bezahlen.",
+      "page": 11
+    },
+    {
+      "id": "kapitalisierungszinssatz",
+      "term": "Kapitalisierungszinssatz",
+      "definition": "Zinssatz, mit dem künftige Erträge in einen heutigen Wert umgerechnet werden.",
+      "page": 11
+    },
+    {
+      "id": "kappungsgrenze",
+      "term": "Kappungsgrenze",
+      "definition": "Grenze für bestimmte Mieterhöhungen zur ortsüblichen Vergleichsmiete innerhalb eines festgelegten Zeitraums.",
+      "page": 11
+    },
+    {
+      "id": "kataster",
+      "term": "Kataster",
+      "definition": "Amtliches Verzeichnis über Grundstücksflächen und ihre geometrischen Merkmale.",
+      "page": 11
+    },
+    {
+      "id": "kaufnebenkosten",
+      "term": "Kaufnebenkosten",
+      "definition": "Zusätzliche Erwerbskosten etwa für Grunderwerbsteuer, Notar, Grundbuch und gegebenenfalls Makler.",
+      "page": 11
+    },
+    {
+      "id": "kaufpreisaufteilung",
+      "term": "Kaufpreisaufteilung",
+      "definition": "Aufteilung des Kaufpreises beispielsweise auf Boden und Gebäude für steuerliche oder bewertungsbezogene Zwecke.",
+      "page": 11
+    },
+    {
+      "id": "kaufpreisfaelligkeit",
+      "term": "Kaufpreisfälligkeit",
+      "definition": "Zeitpunkt, ab dem der Verkäufer die Zahlung des Kaufpreises rechtlich verlangen kann.",
+      "page": 11
+    },
+    {
+      "id": "kaufpreisfaktor",
+      "term": "Kaufpreisfaktor",
+      "definition": "Verhältnis von Kaufpreis zur Jahresmiete. Ein Faktor von 20 entspricht vereinfacht dem Zwanzigfachen einer Jahresmiete.",
+      "page": 11
+    },
+    {
+      "id": "kaufpreissammlung",
+      "term": "Kaufpreissammlung",
+      "definition": "Bei Gutachterausschüssen geführte Sammlung ausgewerteter Grundstückskaufverträge als Marktgrundlage.",
+      "page": 11
+    },
+    {
+      "id": "kaufpreiszahlung",
+      "term": "Kaufpreiszahlung",
+      "definition": "Überweisung des fälligen Kaufpreises nach den vertraglich geregelten Voraussetzungen.",
+      "page": 12
+    },
+    {
+      "id": "kaufvertrag",
+      "term": "Kaufvertrag",
+      "definition": "Vereinbarung über den Verkauf einer Immobilie. Grundstückskaufverträge müssen notariell beurkundet werden.",
+      "page": 12
+    },
+    {
+      "id": "kaution",
+      "term": "Kaution",
+      "definition": "Sicherheit, die ein Mieter für Ansprüche aus dem Mietverhältnis stellt. Für Wohnraum gelten gesetzliche Grenzen.",
+      "page": 12
+    },
+    {
+      "id": "kellerfeuchtigkeit",
+      "term": "Kellerfeuchtigkeit",
+      "definition": "Feuchte im Keller, deren Ursache etwa seitlich eindringendes Wasser, Kondensation oder aufsteigende Feuchtigkeit sein kann.",
+      "page": 12
+    },
+    {
+      "id": "kfw",
+      "term": "KfW",
+      "definition": "Kreditanstalt für Wiederaufbau. Förderbank mit verschiedenen Kredit- und Zuschussprogrammen.",
+      "page": 12
+    },
+    {
+      "id": "kleinreparaturklausel",
+      "term": "Kleinreparaturklausel",
+      "definition": "Vertragsklausel, die unter engen Voraussetzungen bestimmte kleinere Reparaturkosten auf Wohnraummieter übertragen kann.",
+      "page": 12
+    },
+    {
+      "id": "konditionen",
+      "term": "Konditionen",
+      "definition": "Vereinbarte Bedingungen eines Darlehens oder Vertrags, etwa Zins, Tilgung und Laufzeit.",
+      "page": 12
+    },
+    {
+      "id": "konkludenter-vertragsschluss",
+      "term": "Konkludenter Vertragsschluss",
+      "definition": "Vertragsschluss durch schlüssiges Verhalten statt ausdrücklicher Erklärung, sofern keine vorgeschriebene Form entgegensteht.",
+      "page": 12
+    },
+    {
+      "id": "kostenmiete",
+      "term": "Kostenmiete",
+      "definition": "Miete, deren Berechnung sich in bestimmten Regelungen des geförderten Wohnungsbaus an den laufenden Kosten orientiert.",
+      "page": 12
+    },
+    {
+      "id": "kreditwuerdigkeitspruefung",
+      "term": "Kreditwürdigkeitsprüfung",
+      "definition": "Bewertung, ob ein Kreditnehmer einen Kredit voraussichtlich vertragsgemäß zurückzahlen kann.",
+      "page": 12
+    },
+    {
+      "id": "kuendigungsausschluss",
+      "term": "Kündigungsausschluss",
+      "definition": "Wirksame Vereinbarung, nach der eine ordentliche Kündigung für einen bestimmten Zeitraum ausgeschlossen sein kann.",
+      "page": 12
+    },
+    {
+      "id": "kuendigungsfrist",
+      "term": "Kündigungsfrist",
+      "definition": "Zeitraum, der zwischen dem Zugang einer Kündigung und ihrer Wirkung liegen muss.",
+      "page": 12
+    },
+    {
+      "id": "kuendigungsschutz",
+      "term": "Kündigungsschutz",
+      "definition": "Gesetzlicher Schutz insbesondere von Wohnraummietern vor bestimmten Kündigungen.",
+      "page": 12
+    },
+    {
+      "id": "lage",
+      "term": "Lage",
+      "definition": "Räumliches Umfeld einer Immobilie mit Einfluss auf Nutzung, Nachfrage und Wert.",
+      "page": 12
+    },
+    {
+      "id": "lageplan",
+      "term": "Lageplan",
+      "definition": "Kartierte Darstellung eines Grundstücks und seiner Umgebung, unter Umständen mit Gebäuden, Grenzen und weiteren Angaben.",
+      "page": 12
+    },
+    {
+      "id": "landesbauordnung-lbo",
+      "term": "Landesbauordnung (LBO)",
+      "definition": "Bauordnungsrecht des jeweiligen Bundeslandes mit Anforderungen etwa an Sicherheit und Genehmigungen.",
+      "page": 12
+    },
+    {
+      "id": "laufzeit",
+      "term": "Laufzeit",
+      "definition": "Dauer eines Vertrags oder einer vereinbarten Finanzierung.",
+      "page": 12
+    },
+    {
+      "id": "leasing",
+      "term": "Leasing",
+      "definition": "Zeitlich begrenzte Überlassung eines Wirtschaftsguts gegen Entgelt unter den vereinbarten Vertragsbedingungen.",
+      "page": 12
+    },
+    {
+      "id": "leerstand",
+      "term": "Leerstand",
+      "definition": "Zeitraum, in dem eine Einheit nicht genutzt oder vermietet ist.",
+      "page": 12
+    },
+    {
+      "id": "leerstandsquote",
+      "term": "Leerstandsquote",
+      "definition": "Anteil der leerstehenden Einheiten oder Flächen an einem Gesamtbestand.",
+      "page": 12
+    },
+    {
+      "id": "leibrente",
+      "term": "Leibrente",
+      "definition": "Wiederkehrende Zahlung für die Lebensdauer einer bestimmten Person, etwa im Rahmen eines Immobilienverkaufs.",
+      "page": 12
+    },
+    {
+      "id": "liegenschaft",
+      "term": "Liegenschaft",
+      "definition": "Grundstück oder Grundbesitz, häufig einschließlich der vorhandenen Bebauung.",
+      "page": 12
+    },
+    {
+      "id": "liegenschaftskataster",
+      "term": "Liegenschaftskataster",
+      "definition": "Amtliches Verzeichnis der Flurstücke, ihrer Lage und ihrer geometrischen Merkmale.",
+      "page": 12
+    },
+    {
+      "id": "liegenschaftszins",
+      "term": "Liegenschaftszins",
+      "definition": "Marktbezogener Zinssatz, mit dem der Wert von Grundstücken im Ertragswertverfahren abgeleitet wird.",
+      "page": 13
+    },
+    {
+      "id": "loeschungsbewilligung",
+      "term": "Löschungsbewilligung",
+      "definition": "Erklärung eines Berechtigten, die erforderliche Löschung eines Rechts im Grundbuch zu ermöglichen.",
+      "page": 13
+    },
+    {
+      "id": "maengelanzeige",
+      "term": "Mängelanzeige",
+      "definition": "Mitteilung über einen festgestellten Mangel, verbunden mit dessen Beschreibung und gegebenenfalls einer Abhilfeforderung.",
+      "page": 13
+    },
+    {
+      "id": "maengelhaftung",
+      "term": "Mängelhaftung",
+      "definition": "Gesetzliche oder vertragliche Verantwortung für Fehler einer Leistung oder Sache.",
+      "page": 13
+    },
+    {
+      "id": "makler-und-bautraegerverordnung-mabv",
+      "term": "Makler- und Bauträgerverordnung (MaBV)",
+      "definition": "Verordnung mit besonderen Berufspflichten für bestimmte Immobiliengewerbe, unter anderem zu Kundengeldern und Dokumentation.",
+      "page": 13
+    },
+    {
+      "id": "makleralleinauftrag",
+      "term": "Makleralleinauftrag",
+      "definition": "Auftrag, der während seiner Laufzeit die Einschaltung weiterer Makler grundsätzlich ausschließt, je nach Vertragsgestaltung.",
+      "page": 13
+    },
+    {
+      "id": "maklererlaubnis",
+      "term": "Maklererlaubnis",
+      "definition": "Erlaubnis zum Ausüben bestimmter Maklertätigkeiten nach § 34c GewO.",
+      "page": 13
+    },
+    {
+      "id": "maklergebuehr",
+      "term": "Maklergebühr",
+      "definition": "Umgangssprachlicher Ausdruck für Maklerprovision.",
+      "page": 13
+    },
+    {
+      "id": "maklerklausel",
+      "term": "Maklerklausel",
+      "definition": "Vertragsklausel zur Maklerbeteiligung oder Provisionsabrede. Ihre rechtliche Wirkung hängt von Inhalt und Vertrag ab.",
+      "page": 13
+    },
+    {
+      "id": "maklernachweis",
+      "term": "Maklernachweis",
+      "definition": "Tätigkeit, bei der der Makler dem Interessenten eine konkrete Möglichkeit zum Abschluss eines Hauptvertrags aufzeigt.",
+      "page": 13
+    },
+    {
+      "id": "maklerprovision",
+      "term": "Maklerprovision",
+      "definition": "Vergütung des Maklers, die bei Vorliegen der gesetzlichen und vertraglichen Voraussetzungen entsteht.",
+      "page": 13
+    },
+    {
+      "id": "maklervertrag",
+      "term": "Maklervertrag",
+      "definition": "Vertrag über den Nachweis oder die Vermittlung einer Vertragsgelegenheit. Beim Kauf von Wohnungen und Einfamilienhäusern gilt Textform.",
+      "page": 13
+    },
+    {
+      "id": "marktanalyse",
+      "term": "Marktanalyse",
+      "definition": "Systematische Untersuchung von Angebot, Nachfrage, Preisen und Vermarktungsbedingungen.",
+      "page": 13
+    },
+    {
+      "id": "marktanpassung",
+      "term": "Marktanpassung",
+      "definition": "Anpassung eines vorläufigen Bewertungswerts an das tatsächliche Marktgeschehen.",
+      "page": 13
+    },
+    {
+      "id": "marktwert",
+      "term": "Marktwert",
+      "definition": "Im Immobilienbereich häufig gleichbedeutend mit Verkehrswert im Sinne des § 194 BauGB.",
+      "page": 13
+    },
+    {
+      "id": "mietausfall",
+      "term": "Mietausfall",
+      "definition": "Ausbleiben erwarteter Mieteinnahmen, etwa wegen Leerstand oder Zahlungsstörung.",
+      "page": 13
+    },
+    {
+      "id": "mietbescheinigung",
+      "term": "Mietbescheinigung",
+      "definition": "Bestätigung bestimmter Daten eines Mietverhältnisses, beispielsweise für Behörden oder Kreditgeber.",
+      "page": 13
+    },
+    {
+      "id": "mietbindung",
+      "term": "Mietbindung",
+      "definition": "Rechtliche Begrenzung der Miethöhe, häufig bei öffentlich gefördertem Wohnraum.",
+      "page": 13
+    },
+    {
+      "id": "miete",
+      "term": "Miete",
+      "definition": "Entgelt, das ein Nutzer für die zeitweise Überlassung einer Sache oder Fläche zahlt.",
+      "page": 13
+    },
+    {
+      "id": "mieterauskunft",
+      "term": "Mieterauskunft",
+      "definition": "Angaben eines Mietinteressenten zur Prüfung einer möglichen Vermietung. Die Zulässigkeit richtet sich nach Erforderlichkeit und Datenschutz.",
+      "page": 13
+    },
+    {
+      "id": "mieterhoehung",
+      "term": "Mieterhöhung",
+      "definition": "Anhebung der vereinbarten Miete auf gesetzlicher oder vertraglicher Grundlage.",
+      "page": 13
+    },
+    {
+      "id": "mietervorkaufsrecht",
+      "term": "Mietervorkaufsrecht",
+      "definition": "Gesetzliches Vorkaufsrecht eines Mieters in bestimmten Fällen der Umwandlung und Veräußerung von Wohnraum.",
+      "page": 13
+    },
+    {
+      "id": "mietindex",
+      "term": "Mietindex",
+      "definition": "Statistische Größe zur Beobachtung der Entwicklung von Mieten über einen Zeitraum.",
+      "page": 13
+    },
+    {
+      "id": "mietkaution",
+      "term": "Mietkaution",
+      "definition": "Vom Mieter gestellte Sicherheit. Bei Wohnraum grundsätzlich auf höchstens drei Nettokaltmieten begrenzt.",
+      "page": 14
+    },
+    {
+      "id": "mietminderung",
+      "term": "Mietminderung",
+      "definition": "Gesetzliche Verringerung der Miete, wenn ein erheblicher Mangel die Gebrauchstauglichkeit beeinträchtigt.",
+      "page": 14
+    },
+    {
+      "id": "mietpreisbremse",
+      "term": "Mietpreisbremse",
+      "definition": "Regeln zur Begrenzung bestimmter Wiedervermietungsmieten in ausgewiesenen angespannten Wohnungsmärkten.",
+      "page": 14
+    },
+    {
+      "id": "mietrendite",
+      "term": "Mietrendite",
+      "definition": "Verhältnis zwischen den erzielten Mieterträgen und dem eingesetzten Kaufpreis oder Kapital.",
+      "page": 14
+    },
+    {
+      "id": "mietspiegel",
+      "term": "Mietspiegel",
+      "definition": "Übersicht über die ortsübliche Vergleichsmiete einer Gemeinde oder eines Gebiets.",
+      "page": 14
+    },
+    {
+      "id": "mietvertrag",
+      "term": "Mietvertrag",
+      "definition": "Vertrag zur Überlassung einer Sache oder von Räumen gegen Entgelt.",
+      "page": 14
+    },
+    {
+      "id": "mietverwaltung",
+      "term": "Mietverwaltung",
+      "definition": "Verwaltung vermieteter Einheiten, etwa Mieteingang, Verträge, Betriebskosten und technische Betreuung.",
+      "page": 14
+    },
+    {
+      "id": "mietwert",
+      "term": "Mietwert",
+      "definition": "Marktüblich erzielbare Miete einer Immobilie unter bestimmten Bedingungen.",
+      "page": 14
+    },
+    {
+      "id": "mikrolage",
+      "term": "Mikrolage",
+      "definition": "Unmittelbares Umfeld eines Objekts, etwa Straße, Nachbarschaft und Zugänglichkeit.",
+      "page": 14
+    },
+    {
+      "id": "modernisierung",
+      "term": "Modernisierung",
+      "definition": "Maßnahme, die den Gebrauchswert nachhaltig erhöht, Energie spart oder die Wohnverhältnisse dauerhaft verbessert.",
+      "page": 14
+    },
+    {
+      "id": "modernisierungsumlage",
+      "term": "Modernisierungsumlage",
+      "definition": "Unter gesetzlichen Voraussetzungen mögliche Mieterhöhung nach bestimmten Modernisierungen.",
+      "page": 14
+    },
+    {
+      "id": "nachweismakler",
+      "term": "Nachweismakler",
+      "definition": "Makler, dessen Tätigkeit im Nachweis einer konkreten Vertragsgelegenheit besteht.",
+      "page": 14
+    },
+    {
+      "id": "nebenkosten",
+      "term": "Nebenkosten",
+      "definition": "Umgangssprachlicher Ausdruck für zusätzlich zur Grundmiete anfallende Kosten. Nicht jede Ausgabe ist umlagefähig.",
+      "page": 14
+    },
+    {
+      "id": "negativzeugnis",
+      "term": "Negativzeugnis",
+      "definition": "Behördliche Bestätigung, dass ein bestimmtes Vorkaufsrecht nicht besteht oder nicht ausgeübt wird, soweit erforderlich.",
+      "page": 14
+    },
+    {
+      "id": "nennbetrag",
+      "term": "Nennbetrag",
+      "definition": "Im Darlehensvertrag zugesagter Kapitalbetrag, der vom tatsächlich ausgezahlten Betrag abweichen kann.",
+      "page": 14
+    },
+    {
+      "id": "nettokaltmiete",
+      "term": "Nettokaltmiete",
+      "definition": "Miete ohne Betriebs- und Heizkosten. Auch Grundmiete genannt.",
+      "page": 14
+    },
+    {
+      "id": "nettorendite",
+      "term": "Nettorendite",
+      "definition": "Rendite nach Abzug definierter Kosten. Die genaue Berechnung muss angegeben werden.",
+      "page": 14
+    },
+    {
+      "id": "niessbrauch",
+      "term": "Nießbrauch",
+      "definition": "Dingliches Recht, Nutzungen aus einer fremden Sache zu ziehen, etwa selbst zu wohnen oder Mieten zu vereinnahmen.",
+      "page": 14
+    },
+    {
+      "id": "notar",
+      "term": "Notar",
+      "definition": "Unabhängige Amtsperson, die bestimmte Rechtsgeschäfte beurkundet und deren rechtliche Abwicklung begleitet.",
+      "page": 14
+    },
+    {
+      "id": "notaranderkonto",
+      "term": "Notaranderkonto",
+      "definition": "Treuhandkonto des Notars zur besonderen Absicherung bestimmter Zahlungen. Im Immobilienkauf kein automatischer Standard.",
+      "page": 14
+    },
+    {
+      "id": "notarielle-beurkundung",
+      "term": "Notarielle Beurkundung",
+      "definition": "Förmlicher Vorgang, in dem der Notar den Vertrag erläutert, die Erklärungen aufnimmt und beurkundet.",
+      "page": 14
+    },
+    {
+      "id": "nutzflaeche",
+      "term": "Nutzfläche",
+      "definition": "Fläche für bestimmte Nutzungszwecke, etwa Lager oder Technik, nach dem jeweils verwendeten Berechnungsmaßstab.",
+      "page": 14
+    },
+    {
+      "id": "nutzungsaenderung",
+      "term": "Nutzungsänderung",
+      "definition": "Änderung der rechtlich zulässigen Verwendung einer baulichen Anlage, die genehmigungspflichtig sein kann.",
+      "page": 15
+    },
+    {
+      "id": "nutzwert",
+      "term": "Nutzwert",
+      "definition": "Wert oder Vorteil, den eine Immobilie durch ihre praktische Nutzbarkeit bietet, unabhängig vom reinen Verkaufswert.",
+      "page": 15
+    },
+    {
+      "id": "objektaufnahme",
+      "term": "Objektaufnahme",
+      "definition": "Strukturierte Erfassung aller wichtigen Informationen und Dokumente zu einer Immobilie vor der Vermarktung.",
+      "page": 15
+    },
+    {
+      "id": "objektbeschreibung",
+      "term": "Objektbeschreibung",
+      "definition": "Textliche Darstellung von Eigenschaften, Ausstattung, Zustand und Besonderheiten einer Immobilie.",
+      "page": 15
+    },
+    {
+      "id": "objektdaten",
+      "term": "Objektdaten",
+      "definition": "Informationen wie Größe, Baujahr, Energiekennwerte, Rechte und Mietverhältnisse, die für Verkauf oder Bewertung benötigt werden.",
+      "page": 15
+    },
+    {
+      "id": "objektunterlagen",
+      "term": "Objektunterlagen",
+      "definition": "Dokumente zum Objekt, etwa Grundbuchauszug, Pläne, Energieausweis und Mietverträge.",
+      "page": 15
+    },
+    {
+      "id": "offenbarungspflicht",
+      "term": "Offenbarungspflicht",
+      "definition": "Pflicht, bestimmte wesentliche Umstände ungefragt mitzuteilen, etwa bekannte erhebliche Mängel bei einem Verkauf.",
+      "page": 15
+    },
+    {
+      "id": "off-market-verkauf",
+      "term": "Off-Market-Verkauf",
+      "definition": "Vermarktung einer Immobilie ohne breite öffentliche Bewerbung, oft gezielt an ausgewählte Interessenten.",
+      "page": 15
+    },
+    {
+      "id": "option",
+      "term": "Option",
+      "definition": "Vertraglich vereinbartes Recht, eine bestimmte Leistung oder Entscheidung unter Bedingungen später zu verlangen.",
+      "page": 15
+    },
+    {
+      "id": "optionsfrist",
+      "term": "Optionsfrist",
+      "definition": "Zeitraum, innerhalb dessen eine Option wirksam ausgeübt werden kann.",
+      "page": 15
+    },
+    {
+      "id": "ortsuebliche-vergleichsmiete",
+      "term": "Ortsübliche Vergleichsmiete",
+      "definition": "Miete, die für vergleichbaren Wohnraum vor Ort nach den gesetzlichen Regeln ermittelt wird.",
+      "page": 15
+    },
+    {
+      "id": "pacht",
+      "term": "Pacht",
+      "definition": "Überlassung einer Sache oder eines Rechts gegen Entgelt einschließlich des Rechts zur Fruchtziehung.",
+      "page": 15
+    },
+    {
+      "id": "passivhaus",
+      "term": "Passivhaus",
+      "definition": "Gebäudekonzept mit sehr geringem Heizwärmebedarf durch gute Hülle und kontrollierte Lüftung.",
+      "page": 15
+    },
+    {
+      "id": "pauschalmiete",
+      "term": "Pauschalmiete",
+      "definition": "Miete, die bestimmte Kosten pauschal abdeckt. Die konkrete vertragliche Aufteilung ist entscheidend.",
+      "page": 15
+    },
+    {
+      "id": "persoenliche-dienstbarkeit",
+      "term": "Persönliche Dienstbarkeit",
+      "definition": "Dingliches Recht zugunsten einer bestimmten Person, ein Grundstück in bestimmter Weise zu nutzen.",
+      "page": 15
+    },
+    {
+      "id": "photovoltaik-pv",
+      "term": "Photovoltaik (PV)",
+      "definition": "Technik zur Umwandlung von Sonnenlicht in elektrischen Strom.",
+      "page": 15
+    },
+    {
+      "id": "portfolio",
+      "term": "Portfolio",
+      "definition": "Bestand mehrerer Immobilien eines Eigentümers oder Investors.",
+      "page": 15
+    },
+    {
+      "id": "preisindikation",
+      "term": "Preisindikation",
+      "definition": "Unverbindliche Einschätzung einer möglichen Preisgröße, keine verbindliche Kaufzusage.",
+      "page": 15
+    },
+    {
+      "id": "projektentwicklung",
+      "term": "Projektentwicklung",
+      "definition": "Planung und wirtschaftliche Gestaltung eines Bau- oder Immobilienvorhabens bis zur Umsetzung oder Verwertung.",
+      "page": 15
+    },
+    {
+      "id": "provision",
+      "term": "Provision",
+      "definition": "Vergütung für die erfolgreiche Vermittlung oder den Nachweis eines Hauptvertrags, soweit vereinbart und rechtlich zulässig.",
+      "page": 15
+    },
+    {
+      "id": "provisionsanspruch",
+      "term": "Provisionsanspruch",
+      "definition": "Anspruch des Maklers bei wirksamem Vertrag, erfolgreichem Nachweis oder Vermittlung und ursächlichem Hauptvertrag.",
+      "page": 15
+    },
+    {
+      "id": "provisionshinweis",
+      "term": "Provisionshinweis",
+      "definition": "Angabe im Inserat oder Exposé darüber, ob und in welcher Höhe eine Maklerprovision verlangt wird.",
+      "page": 15
+    },
+    {
+      "id": "provisionssicherung",
+      "term": "Provisionssicherung",
+      "definition": "Nachvollziehbare Dokumentation des Maklervertrags, der Objektkenntnis, Tätigkeit und Vertragsabschlüsse.",
+      "page": 16
+    },
+    {
+      "id": "qualifizierter-alleinauftrag",
+      "term": "Qualifizierter Alleinauftrag",
+      "definition": "Maklerauftrag mit zusätzlichen Pflichten des Auftraggebers, etwa Interessenten an den Makler zu verweisen, soweit wirksam vereinbart.",
+      "page": 16
+    },
+    {
+      "id": "qualifizierter-mietspiegel",
+      "term": "Qualifizierter Mietspiegel",
+      "definition": "Mietspiegel, der nach anerkannten wissenschaftlichen Grundsätzen erstellt und entsprechend anerkannt wurde.",
+      "page": 16
+    },
+    {
+      "id": "quartier",
+      "term": "Quartier",
+      "definition": "Räumlich zusammenhängender Stadt- oder Ortsteil mit bestimmtem Nutzungs- oder Entwicklungscharakter.",
+      "page": 16
+    },
+    {
+      "id": "quote",
+      "term": "Quote",
+      "definition": "Prozentualer Anteil an einer Gesamtmenge, etwa bei Leerstand, Eigenkapital oder Mietausfall.",
+      "page": 16
+    },
+    {
+      "id": "raeumungsklage",
+      "term": "Räumungsklage",
+      "definition": "Gerichtliches Verfahren zur Durchsetzung eines Anspruchs auf Rückgabe geräumter Räume.",
+      "page": 16
+    },
+    {
+      "id": "rahmenvertrag",
+      "term": "Rahmenvertrag",
+      "definition": "Vertrag, der allgemeine Regeln für mehrere spätere Einzelaufträge festlegt.",
+      "page": 16
+    },
+    {
+      "id": "rang",
+      "term": "Rang",
+      "definition": "Reihenfolge, in der Grundstücksrechte bei bestimmten Vorgängen berücksichtigt werden, insbesondere bei der Zwangsversteigerung.",
+      "page": 16
+    },
+    {
+      "id": "rangbescheinigung",
+      "term": "Rangbescheinigung",
+      "definition": "Notarielle oder sonstige Bestätigung über die vorgesehene Rangposition einer Grundbucheintragung unter bestimmten Voraussetzungen.",
+      "page": 16
+    },
+    {
+      "id": "rangruecktritt",
+      "term": "Rangrücktritt",
+      "definition": "Vereinbarung, mit der ein Berechtigter die Rangstelle seines Rechts zugunsten eines anderen Rechts zurücksetzt.",
+      "page": 16
+    },
+    {
+      "id": "reallast",
+      "term": "Reallast",
+      "definition": "Grundbuchlich gesichertes Recht auf wiederkehrende Leistungen aus einem Grundstück.",
+      "page": 16
+    },
+    {
+      "id": "reinertrag",
+      "term": "Reinertrag",
+      "definition": "Ertrag nach Abzug der für ein Bewertungsverfahren maßgeblichen Bewirtschaftungskosten vom Rohertrag.",
+      "page": 16
+    },
+    {
+      "id": "rendite",
+      "term": "Rendite",
+      "definition": "Verhältnis des wirtschaftlichen Ertrags zum eingesetzten Kapital oder Kaufpreis.",
+      "page": 16
+    },
+    {
+      "id": "renovierung",
+      "term": "Renovierung",
+      "definition": "Maßnahmen zur optischen oder funktionalen Erneuerung, etwa Streichen oder Austausch von Belägen. Nicht gleichbedeutend mit Modernisierung.",
+      "page": 16
+    },
+    {
+      "id": "restkaufpreis",
+      "term": "Restkaufpreis",
+      "definition": "Noch nicht gezahlter Teil eines vereinbarten Kaufpreises.",
+      "page": 16
+    },
+    {
+      "id": "restnutzungsdauer",
+      "term": "Restnutzungsdauer",
+      "definition": "Voraussichtlicher Zeitraum, in dem ein Gebäude bei angemessener Unterhaltung noch wirtschaftlich nutzbar ist.",
+      "page": 16
+    },
+    {
+      "id": "restschuld",
+      "term": "Restschuld",
+      "definition": "Noch offener Betrag eines Darlehens nach bisherigen Rückzahlungen.",
+      "page": 16
+    },
+    {
+      "id": "risikozuschlag",
+      "term": "Risikozuschlag",
+      "definition": "Zusätzlicher Zins- oder Kostenaufschlag zur Abgeltung eines höheren Risikos.",
+      "page": 16
+    },
+    {
+      "id": "rohbauland",
+      "term": "Rohbauland",
+      "definition": "Fläche mit erkennbarem Baulandcharakter, bei der die Voraussetzungen für eine sofortige Bebauung noch nicht vollständig vorliegen.",
+      "page": 16
+    },
+    {
+      "id": "rohertrag",
+      "term": "Rohertrag",
+      "definition": "Summe der für die Bewertung maßgeblichen Erträge einer Immobilie vor Bewirtschaftungskosten.",
+      "page": 16
+    },
+    {
+      "id": "rueckauflassungsvormerkung",
+      "term": "Rückauflassungsvormerkung",
+      "definition": "Grundbucheintrag, der einen vertraglichen Anspruch auf Rückübertragung eines Grundstücks sichern kann.",
+      "page": 16
+    },
+    {
+      "id": "ruecklage",
+      "term": "Rücklage",
+      "definition": "Zurückgelegte Mittel für zukünftige Ausgaben, etwa Instandhaltung oder größere Reparaturen.",
+      "page": 16
+    },
+    {
+      "id": "sachmangel",
+      "term": "Sachmangel",
+      "definition": "Abweichung des Kaufgegenstands von der rechtlich geschuldeten Beschaffenheit.",
+      "page": 17
+    },
+    {
+      "id": "sachwert",
+      "term": "Sachwert",
+      "definition": "Wert einer Immobilie, der aus Bodenwert und dem wertbezogenen Bestand baulicher Anlagen abgeleitet wird.",
+      "page": 17
+    },
+    {
+      "id": "sachwertfaktor",
+      "term": "Sachwertfaktor",
+      "definition": "Marktdatenbasierter Faktor zur Anpassung eines vorläufigen Sachwerts an das Marktgeschehen.",
+      "page": 17
+    },
+    {
+      "id": "sachwertverfahren",
+      "term": "Sachwertverfahren",
+      "definition": "Bewertungsverfahren, das Bodenwert und bauliche Anlagen unter Berücksichtigung von Marktanpassungen verbindet.",
+      "page": 17
+    },
+    {
+      "id": "sanierung",
+      "term": "Sanierung",
+      "definition": "Umfangreiche Maßnahme zur Beseitigung baulicher Schäden oder grundlegenden Verbesserung des Gebäudezustands.",
+      "page": 17
+    },
+    {
+      "id": "schluesselfertig",
+      "term": "Schlüsselfertig",
+      "definition": "Vertragliche Beschreibung eines bestimmten Fertigstellungszustands. Der genaue Leistungsumfang ergibt sich aus dem Vertrag.",
+      "page": 17
+    },
+    {
+      "id": "schluesselprotokoll",
+      "term": "Schlüsselprotokoll",
+      "definition": "Auflistung der bei Übergabe ausgehändigten Schlüssel nach Art und Anzahl.",
+      "page": 17
+    },
+    {
+      "id": "schoenheitsreparaturen",
+      "term": "Schönheitsreparaturen",
+      "definition": "Arbeiten zur Beseitigung gewöhnlicher Gebrauchsspuren an dekorativen Oberflächen. Die Kostentragung hängt von wirksamen Vereinbarungen ab.",
+      "page": 17
+    },
+    {
+      "id": "schufa",
+      "term": "SCHUFA",
+      "definition": "Auskunftei, die unter anderem Informationen zur Beurteilung von Kredit- und Zahlungsausfallrisiken verarbeitet.",
+      "page": 17
+    },
+    {
+      "id": "schuldner",
+      "term": "Schuldner",
+      "definition": "Person, die eine Leistung, häufig eine Zahlung, schuldet.",
+      "page": 17
+    },
+    {
+      "id": "sicherungsabrede",
+      "term": "Sicherungsabrede",
+      "definition": "Vereinbarung, für welche Forderungen eine Grundschuld oder andere Sicherheit eingesetzt werden darf.",
+      "page": 17
+    },
+    {
+      "id": "solaranlage",
+      "term": "Solaranlage",
+      "definition": "Anlage zur Nutzung der Sonnenenergie, entweder thermisch oder als Photovoltaik.",
+      "page": 17
+    },
+    {
+      "id": "sollmiete",
+      "term": "Sollmiete",
+      "definition": "Mieteinnahme, die sich bei vollständiger Vertragserfüllung beziehungsweise kalkulierter Vermietung ergeben soll.",
+      "page": 17
+    },
+    {
+      "id": "sonderabschreibung",
+      "term": "Sonderabschreibung",
+      "definition": "Zusätzliche steuerliche Abschreibung bei bestimmten begünstigten Investitionen nach gesetzlichen Voraussetzungen.",
+      "page": 17
+    },
+    {
+      "id": "sondereigentum",
+      "term": "Sondereigentum",
+      "definition": "Alleineigentum an bestimmten Räumen oder Einheiten innerhalb einer Wohnungseigentümergemeinschaft.",
+      "page": 17
+    },
+    {
+      "id": "sonderkuendigungsrecht",
+      "term": "Sonderkündigungsrecht",
+      "definition": "Gesetzliches oder vertragliches Recht, in einem besonderen Fall abweichend von der regulären Kündigungsregel zu kündigen.",
+      "page": 17
+    },
+    {
+      "id": "sondernutzungsrecht",
+      "term": "Sondernutzungsrecht",
+      "definition": "Exklusive Nutzungsbefugnis an Teilen des Gemeinschaftseigentums, etwa Garten oder Stellplatz, soweit wirksam begründet.",
+      "page": 17
+    },
+    {
+      "id": "sonderumlage",
+      "term": "Sonderumlage",
+      "definition": "Zusätzliche Zahlungspflicht der Wohnungseigentümer aufgrund eines entsprechenden Beschlusses.",
+      "page": 17
+    },
+    {
+      "id": "sozialbindung",
+      "term": "Sozialbindung",
+      "definition": "Belegungs- oder Mietpreisbindung bestimmter öffentlich geförderter Wohnungen.",
+      "page": 17
+    },
+    {
+      "id": "staffelmiete",
+      "term": "Staffelmiete",
+      "definition": "Mietvereinbarung, bei der die Miete zu vereinbarten Terminen um festgelegte Beträge steigt.",
+      "page": 17
+    },
+    {
+      "id": "stammgrundstueck",
+      "term": "Stammgrundstück",
+      "definition": "Ursprüngliches Grundstück, aus dem durch Teilung weitere Flurstücke oder Grundstücke hervorgehen können.",
+      "page": 17
+    },
+    {
+      "id": "stellplatznachweis",
+      "term": "Stellplatznachweis",
+      "definition": "Nachweis baurechtlich notwendiger Stellplätze, soweit nach Landesrecht erforderlich.",
+      "page": 17
+    },
+    {
+      "id": "stichtag",
+      "term": "Stichtag",
+      "definition": "Festgelegter Zeitpunkt, auf den sich eine Bewertung oder rechtliche Betrachtung bezieht.",
+      "page": 17
+    },
+    {
+      "id": "substanzwert",
+      "term": "Substanzwert",
+      "definition": "Umgangssprachliche Bezeichnung für den aus Grundstück und baulicher Substanz abgeleiteten Wert.",
+      "page": 18
+    },
+    {
+      "id": "teileigentum",
+      "term": "Teileigentum",
+      "definition": "Sondereigentum an nicht zu Wohnzwecken dienenden Räumen in einer WEG.",
+      "page": 18
+    },
+    {
+      "id": "teilungserklaerung",
+      "term": "Teilungserklärung",
+      "definition": "Notarielle Erklärung zur Aufteilung eines Grundstücks in Wohnungs- und Teileigentum mit zugehörigen Regelungen.",
+      "page": 18
+    },
+    {
+      "id": "teilungsgenehmigung",
+      "term": "Teilungsgenehmigung",
+      "definition": "Behördliche Zustimmung zu einer Teilung, soweit sie im konkreten Fall rechtlich erforderlich ist.",
+      "page": 18
+    },
+    {
+      "id": "teilungsversteigerung",
+      "term": "Teilungsversteigerung",
+      "definition": "Gerichtliches Verfahren zur Aufhebung einer Gemeinschaft an einer Immobilie durch Versteigerung.",
+      "page": 18
+    },
+    {
+      "id": "textform",
+      "term": "Textform",
+      "definition": "Erklärung in lesbaren Zeichen mit Nennung des Erklärenden auf einem dauerhaften Datenträger, beispielsweise per E-Mail.",
+      "page": 18
+    },
+    {
+      "id": "tilgung",
+      "term": "Tilgung",
+      "definition": "Rückzahlung des Darlehenskapitals. Sie verringert die Restschuld.",
+      "page": 18
+    },
+    {
+      "id": "tilgungssatzwechsel",
+      "term": "Tilgungssatzwechsel",
+      "definition": "Vertraglich zugelassene Änderung des vereinbarten Tilgungsanteils während einer Finanzierung.",
+      "page": 18
+    },
+    {
+      "id": "treuhandkonto",
+      "term": "Treuhandkonto",
+      "definition": "Konto, auf dem fremdes Geld für einen bestimmten Zweck verwahrt und verwaltet wird.",
+      "page": 18
+    },
+    {
+      "id": "trockenbau",
+      "term": "Trockenbau",
+      "definition": "Innenausbau mit vorgefertigten Platten- und Profilkonstruktionen ohne traditionelle Nassbauweise.",
+      "page": 18
+    },
+    {
+      "id": "ueberbau",
+      "term": "Überbau",
+      "definition": "Bebauung über eine Grundstücksgrenze hinweg. Für ihre rechtliche Behandlung gelten besondere Regeln.",
+      "page": 18
+    },
+    {
+      "id": "uebergabe",
+      "term": "Übergabe",
+      "definition": "Übertragung des tatsächlichen Besitzes und der vereinbarten Unterlagen nach Kauf oder Mietbeginn.",
+      "page": 18
+    },
+    {
+      "id": "uebergabeprotokoll",
+      "term": "Übergabeprotokoll",
+      "definition": "Gemeinsame Dokumentation des Objektzustands, der Zählerstände, Schlüssel und gegebenenfalls Mängel bei der Übergabe.",
+      "page": 18
+    },
+    {
+      "id": "uebertragungssteuer",
+      "term": "Übertragungssteuer",
+      "definition": "Ungenauer Sammelbegriff für Abgaben beim Eigentumswechsel, im Immobilienkauf meist die Grunderwerbsteuer.",
+      "page": 18
+    },
+    {
+      "id": "umlagefaehigkeit",
+      "term": "Umlagefähigkeit",
+      "definition": "Frage, ob bestimmte Betriebskosten auf einen Mieter umgelegt werden dürfen.",
+      "page": 18
+    },
+    {
+      "id": "umschuldung",
+      "term": "Umschuldung",
+      "definition": "Ablösung eines bestehenden Kredits durch ein anderes Darlehen.",
+      "page": 18
+    },
+    {
+      "id": "unbedenklichkeitsbescheinigung",
+      "term": "Unbedenklichkeitsbescheinigung",
+      "definition": "Bescheinigung der Finanzverwaltung für die Eigentumsumschreibung, meist nach Erledigung der Grunderwerbsteuer.",
+      "page": 18
+    },
+    {
+      "id": "unterspannbahn",
+      "term": "Unterspannbahn",
+      "definition": "Bahn unter der Dacheindeckung, die als zusätzliche wasserableitende Schicht dient.",
+      "page": 18
+    },
+    {
+      "id": "untervermietung",
+      "term": "Untervermietung",
+      "definition": "Überlassung der Mieträume oder eines Teils an einen Dritten durch den Hauptmieter.",
+      "page": 18
+    },
+    {
+      "id": "u-wert",
+      "term": "U-Wert",
+      "definition": "Wärmedurchgangskoeffizient eines Bauteils. Je kleiner der Wert, desto geringer ist bei sonst gleichen Bedingungen der Wärmeverlust.",
+      "page": 18
+    },
+    {
+      "id": "valutierung",
+      "term": "Valutierung",
+      "definition": "Auszahlung eines Darlehens, ganz oder teilweise.",
+      "page": 18
+    },
+    {
+      "id": "veraeusserungsbeschraenkung",
+      "term": "Veräußerungsbeschränkung",
+      "definition": "Rechtliche Einschränkung, die beim Verkauf einer Immobilie beachtet werden muss.",
+      "page": 19
+    },
+    {
+      "id": "veraeusserungsgewinn",
+      "term": "Veräußerungsgewinn",
+      "definition": "Differenz zwischen Veräußerungserlös und steuerlich oder wirtschaftlich maßgeblichen Kosten und Werten.",
+      "page": 19
+    },
+    {
+      "id": "verbrauchsausweis",
+      "term": "Verbrauchsausweis",
+      "definition": "Kurzform für Energieverbrauchsausweis.",
+      "page": 19
+    },
+    {
+      "id": "vergleichsmiete",
+      "term": "Vergleichsmiete",
+      "definition": "Miete für vergleichbare Objekte. Im Wohnraummietrecht ist die gesetzlich definierte ortsübliche Vergleichsmiete maßgeblich.",
+      "page": 19
+    },
+    {
+      "id": "vergleichswert",
+      "term": "Vergleichswert",
+      "definition": "Aus Preisen vergleichbarer Immobilien und geeigneten Anpassungen ermittelter Immobilienwert.",
+      "page": 19
+    },
+    {
+      "id": "vergleichswertverfahren",
+      "term": "Vergleichswertverfahren",
+      "definition": "Wertermittlungsverfahren, das auf Vergleichspreisen oder geeigneten Vergleichsfaktoren beruht.",
+      "page": 19
+    },
+    {
+      "id": "verkehrswert",
+      "term": "Verkehrswert",
+      "definition": "Preis, der im gewöhnlichen Geschäftsverkehr zu einem Stichtag unter üblichen Bedingungen erzielbar wäre.",
+      "page": 19
+    },
+    {
+      "id": "vermieterbescheinigung",
+      "term": "Vermieterbescheinigung",
+      "definition": "Umgangssprachliche Bezeichnung für die Wohnungsgeberbestätigung zur Anmeldung eines Wohnsitzes.",
+      "page": 19
+    },
+    {
+      "id": "vermietungsstand",
+      "term": "Vermietungsstand",
+      "definition": "Anteil eines Bestands, der zu einem Zeitpunkt vermietet ist.",
+      "page": 19
+    },
+    {
+      "id": "vermittlung",
+      "term": "Vermittlung",
+      "definition": "Tätigkeit, mit der ein Makler auf den Abschluss eines Vertrags zwischen Parteien hinwirkt.",
+      "page": 19
+    },
+    {
+      "id": "verteilerschluessel",
+      "term": "Verteilerschlüssel",
+      "definition": "Regel, nach der bestimmte Kosten auf Wohnungen oder Eigentümer verteilt werden.",
+      "page": 19
+    },
+    {
+      "id": "vertragsstrafe",
+      "term": "Vertragsstrafe",
+      "definition": "Vertraglich festgelegte Zahlung für den Fall einer bestimmten Pflichtverletzung, soweit wirksam vereinbart.",
+      "page": 19
+    },
+    {
+      "id": "vertriebsgebiet",
+      "term": "Vertriebsgebiet",
+      "definition": "Räumlicher Bereich, in dem ein Makler oder Vertriebspartner schwerpunktmäßig tätig wird.",
+      "page": 19
+    },
+    {
+      "id": "verwalterbestellung",
+      "term": "Verwalterbestellung",
+      "definition": "Beschluss oder Vorgang, mit dem eine Person oder Gesellschaft zum WEG-Verwalter bestellt wird.",
+      "page": 19
+    },
+    {
+      "id": "verwaltervertrag",
+      "term": "Verwaltervertrag",
+      "definition": "Vertrag über die Aufgaben und Vergütung der Immobilienverwaltung.",
+      "page": 19
+    },
+    {
+      "id": "verwalterzustimmung",
+      "term": "Verwalterzustimmung",
+      "definition": "Im Einzelfall nach Gemeinschaftsordnung erforderliche Zustimmung eines Verwalters zu einer Wohnungsveräußerung.",
+      "page": 19
+    },
+    {
+      "id": "vollmacht",
+      "term": "Vollmacht",
+      "definition": "Befugnis, für eine andere Person rechtserhebliche Erklärungen abzugeben.",
+      "page": 19
+    },
+    {
+      "id": "vorabnahme",
+      "term": "Vorabnahme",
+      "definition": "Technische Prüfung einer Bauleistung vor der eigentlichen rechtlichen Abnahme.",
+      "page": 19
+    },
+    {
+      "id": "vorfaelligkeitsentschaedigung",
+      "term": "Vorfälligkeitsentschädigung",
+      "definition": "Unter bestimmten Voraussetzungen mögliche Entschädigung einer Bank bei vorzeitiger Kreditrückzahlung.",
+      "page": 19
+    },
+    {
+      "id": "vorkaufsrecht",
+      "term": "Vorkaufsrecht",
+      "definition": "Recht, bei einem Verkauf unter bestimmten Voraussetzungen zu den Bedingungen des Kaufvertrags in den Erwerb einzutreten.",
+      "page": 19
+    },
+    {
+      "id": "vormerkung",
+      "term": "Vormerkung",
+      "definition": "Grundbucheintragung zur Sicherung eines Anspruchs auf dingliche Rechtsänderung, beispielsweise einer Eigentumsübertragung.",
+      "page": 19
+    },
+    {
+      "id": "waermebruecke",
+      "term": "Wärmebrücke",
+      "definition": "Bauteilbereich mit erhöhtem Wärmefluss, an dem die innere Oberflächentemperatur sinken kann.",
+      "page": 19
+    },
+    {
+      "id": "waermedaemmung",
+      "term": "Wärmedämmung",
+      "definition": "Maßnahmen und Baustoffe zur Verringerung des Wärmedurchgangs durch Gebäudehülle oder Bauteile.",
+      "page": 19
+    },
+    {
+      "id": "waermemengenzaehler",
+      "term": "Wärmemengenzähler",
+      "definition": "Messgerät zur Erfassung der durch ein Wärmeträgermedium abgegebenen Wärmeenergie.",
+      "page": 20
+    },
+    {
+      "id": "waermepumpe",
+      "term": "Wärmepumpe",
+      "definition": "Heiztechnik, die Umweltwärme unter Einsatz von Antriebsenergie auf ein nutzbares Temperaturniveau bringt.",
+      "page": 20
+    },
+    {
+      "id": "warmmiete",
+      "term": "Warmmiete",
+      "definition": "Gesamtzahlung aus Kaltmiete und vereinbarten Betriebs- und Heizkosten, je nach Vertragsgestaltung.",
+      "page": 20
+    },
+    {
+      "id": "weg",
+      "term": "WEG",
+      "definition": "Abkürzung für Wohnungseigentümergemeinschaft oder für das Wohnungseigentumsgesetz, je nach Zusammenhang.",
+      "page": 20
+    },
+    {
+      "id": "wegerecht",
+      "term": "Wegerecht",
+      "definition": "Recht, einen bestimmten Weg über ein fremdes Grundstück zu nutzen, etwa als Grunddienstbarkeit.",
+      "page": 20
+    },
+    {
+      "id": "weg-verwalter",
+      "term": "WEG-Verwalter",
+      "definition": "Bestellte Person oder Gesellschaft zur Verwaltung des gemeinschaftlichen Eigentums einer WEG.",
+      "page": 20
+    },
+    {
+      "id": "wertermittlungsstichtag",
+      "term": "Wertermittlungsstichtag",
+      "definition": "Zeitpunkt, zu dem die allgemeinen Wertverhältnisse einer Bewertung bestimmt werden.",
+      "page": 20
+    },
+    {
+      "id": "wertgutachten",
+      "term": "Wertgutachten",
+      "definition": "Nachvollziehbare schriftliche Bewertung einer Immobilie auf Grundlage einer festgelegten Bewertungsaufgabe.",
+      "page": 20
+    },
+    {
+      "id": "wertsteigerung",
+      "term": "Wertsteigerung",
+      "definition": "Zunahme eines Immobilienwerts im Zeitablauf. Sie ist nicht mit laufenden Mieteinnahmen gleichzusetzen.",
+      "page": 20
+    },
+    {
+      "id": "widerrufsbelehrung",
+      "term": "Widerrufsbelehrung",
+      "definition": "Information über ein gesetzliches Widerrufsrecht, Fristen und Verfahren, soweit eine Belehrungspflicht besteht.",
+      "page": 20
+    },
+    {
+      "id": "widerrufsrecht",
+      "term": "Widerrufsrecht",
+      "definition": "Recht, einen Vertrag unter gesetzlichen Voraussetzungen innerhalb einer Frist ohne Begründung zu widerrufen.",
+      "page": 20
+    },
+    {
+      "id": "wirtschaftliche-einheit",
+      "term": "Wirtschaftliche Einheit",
+      "definition": "Zusammenfassung eines oder mehrerer Gegenstände für bestimmte Bewertungs- oder Steuerzwecke.",
+      "page": 20
+    },
+    {
+      "id": "wirtschaftsplan",
+      "term": "Wirtschaftsplan",
+      "definition": "Vorausschau über Einnahmen, Ausgaben und Vorschüsse einer WEG für ein Wirtschaftsjahr.",
+      "page": 20
+    },
+    {
+      "id": "wohnflaechenabweichung",
+      "term": "Wohnflächenabweichung",
+      "definition": "Unterschied zwischen angegebener und tatsächlich ermittelter Wohnfläche mit möglichen rechtlichen Folgen.",
+      "page": 20
+    },
+    {
+      "id": "wohnflaechenberechnung",
+      "term": "Wohnflächenberechnung",
+      "definition": "Ermittlung der anrechenbaren Wohnfläche nach der vereinbarten oder anwendbaren Berechnungsmethode.",
+      "page": 20
+    },
+    {
+      "id": "wohnflaechenverordnung-woflv",
+      "term": "Wohnflächenverordnung (WoFlV)",
+      "definition": "Regeln zur Berechnung der Wohnfläche insbesondere im preisgebundenen Wohnraum, häufig auch vertraglich verwendet.",
+      "page": 20
+    },
+    {
+      "id": "wohngebaeudeversicherung",
+      "term": "Wohngebäudeversicherung",
+      "definition": "Versicherung bestimmter Sachrisiken eines Wohngebäudes im vereinbarten Umfang.",
+      "page": 20
+    },
+    {
+      "id": "wohngeld",
+      "term": "Wohngeld",
+      "definition": "Staatlicher Zuschuss zu Wohnkosten unter gesetzlichen Voraussetzungen. Nicht mit WEG-Hausgeld verwechseln.",
+      "page": 20
+    },
+    {
+      "id": "wohnrecht",
+      "term": "Wohnrecht",
+      "definition": "Recht, bestimmte Räume oder eine Wohnung selbst zu nutzen, häufig dinglich gesichert.",
+      "page": 20
+    },
+    {
+      "id": "wohnungseigentum",
+      "term": "Wohnungseigentum",
+      "definition": "Sondereigentum an einer Wohnung zusammen mit dem verbundenen Miteigentumsanteil am Gemeinschaftseigentum.",
+      "page": 20
+    },
+    {
+      "id": "wohnungseigentumsgesetz-weg",
+      "term": "Wohnungseigentumsgesetz (WEG)",
+      "definition": "Gesetz über Begründung, Verwaltung und Nutzung von Wohnungs- und Teileigentum.",
+      "page": 20
+    },
+    {
+      "id": "wohnungsgeberbestaetigung",
+      "term": "Wohnungsgeberbestätigung",
+      "definition": "Bestätigung des Einzugs durch den Wohnungsgeber für die melderechtliche Anmeldung.",
+      "page": 20
+    },
+    {
+      "id": "wohnungsuebergabe",
+      "term": "Wohnungsübergabe",
+      "definition": "Übergabe einer Wohnung mit Dokumentation von Zustand, Zählerständen und Schlüsseln.",
+      "page": 20
+    },
+    {
+      "id": "x-fache-jahresmiete",
+      "term": "X-fache Jahresmiete",
+      "definition": "Umgangssprachlicher Ausdruck für den Kaufpreisfaktor: Kaufpreis geteilt durch jährliche Mieteinnahmen.",
+      "page": 21
+    },
+    {
+      "id": "yield",
+      "term": "Yield",
+      "definition": "Englischer Begriff für Rendite. Bei Immobilien häufig als Verhältnis von Ertrag und Marktwert oder Kaufpreis verwendet.",
+      "page": 21
+    },
+    {
+      "id": "yield-compression",
+      "term": "Yield Compression",
+      "definition": "Rückgang der am Markt geforderten Renditen, der bei sonst gleichen Erträgen Immobilienwerte erhöhen kann.",
+      "page": 21
+    },
+    {
+      "id": "zahlungsverzug",
+      "term": "Zahlungsverzug",
+      "definition": "Nicht rechtzeitige Erfüllung einer fälligen Zahlungspflicht unter den gesetzlichen Voraussetzungen.",
+      "page": 21
+    },
+    {
+      "id": "zeitmietvertrag",
+      "term": "Zeitmietvertrag",
+      "definition": "Befristeter Wohnraummietvertrag, der nur mit gesetzlich anerkanntem Befristungsgrund wirksam vereinbart werden kann.",
+      "page": 21
+    },
+    {
+      "id": "zertifizierter-verwalter",
+      "term": "Zertifizierter Verwalter",
+      "definition": "WEG-Verwalter mit nachgewiesener Qualifikation nach den dafür geltenden gesetzlichen Regeln oder Gleichstellungstatbeständen.",
+      "page": 21
+    },
+    {
+      "id": "zinsbindung",
+      "term": "Zinsbindung",
+      "definition": "Vereinbarte Dauer, während der der Darlehenszinssatz feststeht.",
+      "page": 21
+    },
+    {
+      "id": "zinsertrag",
+      "term": "Zinsertrag",
+      "definition": "Einnahme, die für die Überlassung von Kapital erzielt wird.",
+      "page": 21
+    },
+    {
+      "id": "zinseszins",
+      "term": "Zinseszins",
+      "definition": "Verzinsung bereits aufgelaufener Zinsen oder Erträge, soweit die Voraussetzungen gegeben sind.",
+      "page": 21
+    },
+    {
+      "id": "zinslast",
+      "term": "Zinslast",
+      "definition": "Belastung aus zu zahlenden Kreditzinsen in einer bestimmten Periode.",
+      "page": 21
+    },
+    {
+      "id": "zubehoer",
+      "term": "Zubehör",
+      "definition": "Bewegliche Sachen, die dem wirtschaftlichen Zweck der Hauptsache zu dienen bestimmt und ihr entsprechend zugeordnet sind.",
+      "page": 21
+    },
+    {
+      "id": "zugewinnausgleich",
+      "term": "Zugewinnausgleich",
+      "definition": "Vermögensrechtlicher Ausgleich zwischen Ehegatten im gesetzlichen Güterstand bei dessen Beendigung.",
+      "page": 21
+    },
+    {
+      "id": "zwangsversteigerung",
+      "term": "Zwangsversteigerung",
+      "definition": "Gerichtliches Verfahren zur Verwertung einer Immobilie, meist zur Befriedigung von Gläubigern oder Aufhebung einer Gemeinschaft.",
+      "page": 21
+    },
+    {
+      "id": "zwangsverwaltung",
+      "term": "Zwangsverwaltung",
+      "definition": "Gerichtliches Verfahren, bei dem Erträge einer Immobilie zur Befriedigung von Gläubigern verwaltet werden.",
+      "page": 21
+    },
+    {
+      "id": "zweckentfremdung",
+      "term": "Zweckentfremdung",
+      "definition": "Nutzung von Wohnraum entgegen einer örtlich geltenden Zweckentfremdungsregelung, etwa für bestimmte Kurzzeitvermietungen.",
+      "page": 21
+    },
+    {
+      "id": "zwischenfinanzierung",
+      "term": "Zwischenfinanzierung",
+      "definition": "Zeitlich begrenzte Finanzierung, bis erwartete Mittel verfügbar werden.",
+      "page": 21
+    }
+  ]
+}

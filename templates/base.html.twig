@@ -20,8 +20,7 @@
     <div class="drawer-overlay" data-close-sidebar></div>
     <aside class="sidebar" id="main-navigation" aria-label="Hauptnavigation">
         <a class="brand" href="/" aria-label="CHASE Immobilien – Dashboard">
-            <svg class="brand-mark" width="34" height="43" viewBox="0 0 34 43" fill="none" aria-hidden="true"><path d="M3 40V17L17 3L31 17" stroke="currentColor" stroke-width="3.5" stroke-linecap="square"/></svg>
-            <span class="brand-type"><strong>CHASE<span class="brand-dot">.</span></strong><small>IMMOBILIEN</small></span>
+            <img class="brand-image brand-logo-light" src="/assets/brand/chase-orange.png" alt="CHASE Immobilien" width="166" height="58"><img class="brand-image brand-logo-dark" src="/assets/brand/chase-white.png" alt="CHASE Immobilien" width="166" height="58">
         </a>
         <div class="workspace-label"><span class="workspace-dot"></span><span>PARTNERPORTAL</span><span class="version-label">2.0</span></div>
         <nav class="main-nav">
@@ -29,14 +28,10 @@
             {% set navigation = [
                 ['/', 'home', 'Dashboard'],
                 ['/properties', 'building', 'Meine Immobilien'],
-                ['/studio', 'sparkles', 'KI-Studio'],
-                ['/marketing', 'calendar', 'Marketing & Social'],
                 ['/leads', 'users', 'Akquise & Leads'],
-                ['/valuation', 'house', 'Immobilienbewertung'],
                 ['/documents', 'file-text', 'Dokumente'],
                 ['/academy', 'graduation-cap', 'Wissen / Academy'],
                 ['/advertising', 'megaphone', 'Werbekatalog'],
-                ['/news', 'newspaper', 'News & Netzwerk'],
                 ['/tasks', 'check-square', 'Aufgaben & Checklisten']
             ] %}
             {% for item in navigation %}
@@ -46,6 +41,7 @@
                     {% if item[0] == '/news' and portal.unreadNews > 0 %}<b class="nav-count">{{ portal.unreadNews }}</b>{% endif %}
                     {% if item[0] == '/studio' %}<small class="nav-new">DEMO</small>{% endif %}
                 </a>
+                {% if item[0] == '/properties' %}<a class="nav-link nav-sub-link {{ current starts with '/valuation' ? 'active' : '' }}" href="/valuation" title="Immobilienbewertung" {% if current starts with '/valuation' %}aria-current="page"{% endif %}>{{ icon('house') }}<span>Immobilienbewertung</span></a>{% endif %}
             {% endfor %}
             {% if is_granted('ROLE_ADMIN') %}
                 <div class="nav-divider"></div>
@@ -71,16 +67,17 @@
             </form>
             <div class="topbar-tools">
                 <button class="icon-button theme-toggle" type="button" data-toggle-theme aria-label="Dunklen Modus aktivieren" title="Hell / Dunkel umschalten"><span class="theme-sun">{{ icon('sun') }}</span><span class="theme-moon">{{ icon('moon') }}</span></button>
-                <a class="icon-button notification-button" href="/news" aria-label="Nachrichten{% if portal.unreadNews > 0 %}, {{ portal.unreadNews }} ungelesen{% endif %}">{{ icon('bell') }}{% if portal.unreadNews > 0 %}<span class="notification-dot"></span>{% endif %}</a>
+                <a class="icon-button message-button" href="/messages" aria-label="Nachrichten und Kontakt{% if portal.unreadMessages|default(0) > 0 %}, {{ portal.unreadMessages }} ungelesen{% endif %}" title="Nachrichten & Kontakt">{{ icon('message-circle') }}{% if portal.unreadMessages|default(0) > 0 %}<span class="notification-dot"></span>{% endif %}</a>
+                <a class="icon-button header-help" href="/help/assistant" aria-label="Portalhilfe öffnen" title="Wo finde ich was?">{{ icon('help-circle') }}</a>
+                <a class="icon-button notification-button" href="/news" aria-label="Nachrichten{% if portal.unreadNews > 0 %}, {{ portal.unreadNews }} ungelesen{% endif %}">{{ icon('bell') }}{% if portal.unreadNews > 0 %}<span class="nav-count header-news-count">{{ portal.unreadNews }}</span>{% endif %}</a>
                 <span class="topbar-divider"></span>
                 <div class="profile-dropdown">
                     <button class="profile-trigger" type="button" data-profile-toggle aria-expanded="false" aria-controls="profile-menu">
-                        <span class="avatar">{{ portal.initials }}</span><span class="profile-info"><strong>{{ app.user.name }}</strong><small>{{ app.user.region }}</small></span>{{ icon('chevron-down') }}
+                        <span class="avatar">{% if app.user.preferences.avatarFilename|default('') %}<img src="/profile/avatar/{{ app.user.id }}" alt="Ihr Profilbild" width="35" height="35">{% else %}{{ portal.initials }}{% endif %}</span><span class="profile-info"><strong>{{ app.user.name }}</strong><small>{{ app.user.region }}</small></span>{{ icon('chevron-down') }}
                     </button>
                     <div class="profile-menu" id="profile-menu" hidden>
                         <div class="profile-menu-label">MEIN KONTO · DEMO</div>
                         <a href="/profile">{{ icon('users') }}Mein Profil & Einstellungen</a>
-                        <a href="/usage">{{ icon('wallet') }}KI-Guthaben & Verbrauch</a>
                         <a href="/help">{{ icon('help-circle') }}Hilfe & Ansprechpartner</a>
                         <form action="/logout" method="post"><input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}"><button type="submit">{{ icon('log-out') }}Abmelden</button></form>
                     </div>
@@ -92,7 +89,7 @@
                 {% for type, messages in app.flashes %}{% for message in messages %}<div class="alert alert-{{ type }}" role="status"><span>{{ icon(type == 'error' ? 'help-circle' : 'check') }}</span><span>{{ message }}</span><button class="icon-button" type="button" data-dismiss-alert aria-label="Meldung schließen">{{ icon('x') }}</button></div>{% endfor %}{% endfor %}
             </div>
             {% block body %}{% endblock %}
-            <footer class="page-footer"><span><span class="status-dot"></span>Lokale Demoumgebung · synthetische Beispieldaten</span><a href="/help">Keine externen Dienste verbunden {{ icon('arrow-up-right') }}</a></footer>
+            <footer class="page-footer"><span><span class="status-dot"></span>Lokaler Prototyp · CHASE-Materialien & Beispieldaten</span><a href="/help">Integrationen & Hilfe {{ icon('arrow-up-right') }}</a></footer>
         </main>
     </div>
 </div>

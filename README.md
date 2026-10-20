@@ -4,6 +4,8 @@ Ein eigenständiger, lokal lauffähiger Symfony-Prototyp für das CHASE-Partnern
 
 **Windows 10:** [Schritt-für-Schritt-Anleitung mit Ubuntu/WSL](docs/WINDOWS_10_START.md).
 
+**Überarbeitete Version:** [Neue Abläufe, Originalunterlagen und Update-Anleitung](docs/REVISION_2_1.md).
+
 ## Einfach starten
 
 Diese Befehle im entpackten Projektordner in einem Terminal ausführen:
@@ -41,17 +43,18 @@ Dieser lädt ausschließlich die exakten in `composer.lock` festgelegten GitHub-
 
 ## Ein erster Rundgang
 
-- **Dashboard `/`**: sechs Originalkacheln, eigene Kennzahlen, News, Aufgaben und Marketingaktionen.
-- **Meine Immobilien `/properties`**: Objekt anlegen, bearbeiten und Status ändern. In der Objektakte „Exposé erstellen“ wählen.
-- **KI-Studio `/studio`**: Texte aus überprüften Objektdaten oder manuellen Angaben erstellen, bearbeiten, versionieren, freigeben und als Markdown oder klar markiertes PDF-Muster exportieren. Die Erstellung verwendet feste lokale Regeln, kein echtes KI-Modell.
-- **Marketing `/marketing`**: Social-Entwürfe erstellen und einen internen Termin festlegen. Monats-/Wochenkalender und Kanalvorschau; es wird nichts veröffentlicht.
-- **Landingpage-Vorschau `/marketing/landing-preview`**: vier Vorlagen privat bearbeiten und speichern. Kontaktfelder bleiben deaktiviert; es entsteht keine öffentliche Website.
-- **Leads `/leads`**, **Aufgaben `/tasks`**: eigene Datensätze und Objektverknüpfungen verwalten.
-- **onOffice-Demo `/crm`**: Importvorschau und wiederholbarer lokaler Import ohne Dubletten. Keine echte CRM-Verbindung.
-- **Dokumente `/documents`**, **Academy `/academy`**, **Werbekatalog `/advertising`**, **News `/news`**: lesen, suchen, merken, Lernfortschritt speichern beziehungsweise lokale Anfrageentwürfe zusammenstellen.
-- **Bewertung `/valuation`**: ausschließlich eine transparente Rechenhilfe: Monatsnettokaltmiete × 12 × selbst gewählter Faktor. Kein Marktwertgutachten.
-- **Profil `/profile`**, **Verbrauch `/usage`**: Passwort, Sichtbarkeit und Darstellung sowie persönliche Demo-Credits. Ein Text verwendet einen fiktiven Credit und kostet tatsächlich 0 €.
-- **Admin-Center `/admin`**: nur mit Administrationskonto; Benutzer, Rollen, Regionen, explizite Teamfreigaben, News, Inhalte, Budgets und Auditprotokoll.
+- **Dashboard `/`**: Tagesfokus, Wochenplanung, eigene Kennzahlen und die sechs bekannten Werkzeugkacheln.
+- **Meine Immobilien `/properties`**: Objekt anlegen und in einer gegliederten Maske auf einer Seite bearbeiten. Bilder, Unterlagen, Preis/Provision, Exposé-Texte und Vermarktung gehören direkt zur Objektakte.
+- **Exposé und Medien im Objekt**: drei Textabschnitte mit jeweils maximal 2.000 Zeichen, Bestätigung der Faktenquelle, Versionen, Freigabe sowie Markdown-/PDF-Musterexport. Bilder lassen sich sortieren und beschriften; Bild-KI bleibt ohne Anbieter unverbunden.
+- **Bewertung `/valuation`** (auch unter Meine Immobilien): Sachwert, Ertragswert und Vergleichswert gemäß dem gelieferten Rechner, Objektübernahme und dokumentierte Faktorquellen. Kein behaupteter automatischer Marktdatenabruf.
+- **Leads `/leads`**, **Aufgaben `/tasks`**: lokale Pipeline sowie Aufgabenliste neben einem Kalender, Checklisten und interne Aufgabenangebote. Kalenderdateien sind lokal importier-/exportierbar; kein Live-Abgleich mit Google/Outlook.
+- **Dokumente `/documents`**: neun Arbeitsbereiche mit Unterordnern, Suche, Sortierung, Uploaddatum und privaten Originaldownloads.
+- **Academy `/academy`** und **Lexikon `/academy/lexicon`**: Lernpfad, private Lernvideos und 441 Begriffe aus dem bereitgestellten Immobilienlexikon.
+- **Werbekatalog `/advertising`**: durch Originalseiten blättern, Designs suchen, Mengen in die persönliche Auswahl legen und einen lokalen Anfrageentwurf für ein Angebot zusammenstellen.
+- **Nachrichten `/messages`**, **News `/news`**, **Hilfe `/help/assistant`**: Kontakt und Unternehmensmeldungen über den Kopfbereich; lokaler Hilfewegweiser und Lexikon. Interne Nachrichten sind kein E-Mail-Versand.
+- **Profil `/profile`**: eigenes Bild, Name, Passwort und Darstellung. Das Profilbild erscheint auch in der privaten Landingpage-Vorschau.
+- **Admin-Center `/admin`**: Benutzer, Rollen, Regionen, explizite Teamfreigaben, Inhalte, Budgets und Auditprotokoll. Unter **Unterlagen importieren** das Original-ZIP einmal lokal übernehmen.
+- **onOffice-Demo `/crm`**: wiederholbarer Fixtureimport ohne Dubletten. Kein Live-CRM. Frühere Studio-/Marketingrouten bleiben für vorhandene Entwürfe erreichbar; sie stehen nicht mehr in der Hauptnavigation.
 
 ## Anmeldung und Datenschutz im Demo-Betrieb
 

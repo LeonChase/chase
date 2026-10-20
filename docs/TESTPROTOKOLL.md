@@ -1,5 +1,33 @@
 # Testprotokoll · 20. Oktober 2026
 
+## Aktuelle Revision 2.1
+
+Abschließender Gesamtlauf nach Zusammenführung:
+
+```bash
+./scripts/php bin/console cache:clear --env=test --no-warmup
+./scripts/php vendor/bin/phpunit --colors=never
+```
+
+**161 Tests, 4.546 Assertions, alle erfolgreich, Exitcode 0.** Laufzeit ca. 17 Sekunden unter PHP 8.4.26. Keine übersprungenen oder deaktivierten Tests. Isolierte Testdatenbank; Originalunterlagen und eigene Eingaben bleiben unberührt.
+
+Neue Prüffälle decken die gegliederte Objektmaske, Feldvalidierung und Modernisierungen, privaten Mehrfachupload mit Metadaten/Sortierung/Originalerhalt, drei faktenbasierte Textabschnitte (je maximal 2.000 Zeichen), bestätigte Bildbeschriftungen/Quellen, vorbereitete Medien-Workflows ohne Fake-Ergebnisse, sichere ZIP-Übernahme und echte Originaldownloads, alle 441 Lexikoneinträge und Seitenangaben, Katalogauswahl/Preise-auf-Anfrage, private Nachrichten, Profilbilder, Hilfewegweiser, Aufgabenübernahme/Idempotenz/Freigaben, Checklisten/Wiederholungen, lokalen ICS-Austausch und Lead-Kontaktentwürfe ab.
+
+Die Rechenergebnisse der drei Bewertungsverfahren wurden mit dem gelieferten Original-JavaScript für denselben Prüffall verglichen. Alle sechs verglichenen Werte stimmen bis auf numerische Rundung überein; Dokumentation in `valuation-notes.md`. Faktorquellen, Quartale, gespeicherte Eingaben, Quellensnapshots und CSV-Batchvalidierung sind zusätzlich getestet. Es werden keine Live-Marktdaten vorausgesetzt.
+
+**Upgradeprobe:** Die neue Version wurde mit `scripts/setup` auf eine Kopie einer bestehenden Installation angewendet. Eine neue Migration wurde ausgeführt, 0 neue Demodatensätze erzeugt. Bestehende 5 Benutzer, 4 Objekte und der SHA-256 der lokalen Zugangsdaten-Datei blieben unverändert. Die neuen Nachrichten-/Aufgabenanfragetabellen sind vorhanden.
+
+**Materialimport:** 101 Originale einmal importiert; zweiter Import 0 neu / 0 geändert / 101 unverändert. 42 Katalogprodukte zugeordnet und 14 Originalseiten lokal gerendert. Originale und Vorschauseiten bleiben außerhalb von Git in privatem Speicher.
+
+**Browser:** 1440/390 Pixel, Hell/Dunkel, aktualisiertes Logo/Dashboard/Katalog, eigener Warenkorb, private Originalseiten, Objektaufnahme/Medien/Textworkflow, Aufgaben und Leads visuell geprüft. Zwei gefundene mobile Überläufe (Modernisierungstabelle und Pipeline-Label) behoben und nachgeprüft. Screenshots im selben Verzeichnis. Temporäre Browser-Testdaten samt Datei-, Text- und Creditbuchungen wurden anhand ihrer IDs entfernt.
+
+Container, 60 Twig-Templates, Datenbankschema, Composer-Datei/Plattform und JavaScript-Syntax geprüft. Der optionale aktuelle Browser-Smoke prüft 17 sichtbare Modulrouten sowie Anmeldung, Navigation, Dark Mode, Fremdzugriff und Logout. Kein automatischer Aufruf einer produktiven CHASE-Seite und keine externen Browseranfragen.
+
+## Historie der Erstversion
+
+Die nachfolgenden 77 Tests dokumentieren den früheren Entwicklungsstand und sind Bestandteil der erweiterten aktuellen Prüfung.
+
+
 ## Automatisierte Abschlussprüfung
 
 Ausgeführt im Projektverzeichnis `/workspace/chase`:

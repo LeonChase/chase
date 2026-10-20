@@ -1,0 +1,151 @@
+#!/usr/bin/env python3
+"""Rebuild the checked-in local lexicon from the supplied CHASE PDF.
+
+Build-time prerequisites only: Python 3, PyMuPDF (`import fitz`) and Poppler's
+`pdftotext`. The running Symfony application only reads data/lexicon.json and
+does not need these tools. No network request or external upload takes place.
+
+Usage: python3 scripts/build-lexicon [source.pdf] [output.json]
+The source is read, never altered. This parser checks the PDF's declared count,
+all definition text against pdftotext, stable identifiers, and page provenance.
+Unexpected font/layout changes fail rather than silently losing definitions.
+"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+from pathlib import Path
+import re
+import subprocess
+import sys
+import unicodedata
+
+try:
+    import fitz
+except ImportError as error:
+    raise SystemExit("Build requires PyMuPDF (Python module fitz). Runtime does not.") from error
+
+
+ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_SOURCE = ROOT / "var/materials/source/9 - Wissen & Rechtliches/CHASE_Immobilienlexikon_A-Z.pdf"
+
+
+def join_lines(lines: list[str]) -> str:
+    """Remove layout breaks while preserving written hyphens and source wording."""
+    text = ""
+    for line in lines:
+        line = re.sub(r"\s+", " ", line).strip()
+        if not line:
+            continue
+        # A terminal WEG- is a wrapped compound, whereas Nutz-/oder is a
+        # suspended hyphen and retains the separating space.
+        separator = "" if text.endswith("-") and not re.match(r"^(und|oder)\b", line) else " "
+        text += (separator if text else "") + line
+    return text
+
+
+def slug(term: str) -> str:
+    replacements = str.maketrans({"ä": "ae", "ö": "oe", "ü": "ue", "ß": "ss"})
+    normalized = unicodedata.normalize("NFKD", term.lower().translate(replacements))
+    ascii_term = normalized.encode("ascii", "ignore").decode("ascii")
+    return re.sub(r"[^a-z0-9]+", "-", ascii_term).strip("-")
+
+
+def build(source_path: Path, output_path: Path) -> dict:
+    pdf_bytes = source_path.read_bytes()
+    # Independent text extraction verifies that no wording has been supplied
+    # by the parser. This command is local and preserves PDF verification.
+    raw_text = subprocess.check_output(
+        ["pdftotext", "-raw", str(source_path), "-"], text=True, encoding="utf-8"
+    )
+    raw_pages = raw_text.split("\f")
+    declared = re.search(r"\b(\d+)\s+Begriffe\b", raw_pages[0])
+    if not declared:
+        raise ValueError("The PDF cover does not declare its number of terms.")
+    entries = []
+    current = None
+    usage_lines = []
+    with fitz.open(stream=pdf_bytes, filetype="pdf") as pdf:
+        page_count = len(pdf)
+        for page_number, page in enumerate(pdf, start=1):
+            if page_number == 1:
+                continue
+            # The source stream reads the complete left column, then the right
+            # column. Sorting globally by y would mix unrelated definitions.
+            for block in page.get_text("dict")["blocks"]:
+                for line in block.get("lines", []):
+                    for span in line["spans"]:
+                        size = round(span["size"], 2)
+                        text = span["text"].strip()
+                        if not text:
+                            continue
+                        if span["font"] == "Inter-Bold" and size == 10.35:
+                            if current is not None and not current["lines"]:
+                                current["term"] += " " + text
+                            else:
+                                if current is not None:
+                                    entries.append(current)
+                                current = {"term": text, "page": page_number, "lines": []}
+                        elif span["font"] == "Inter" and size == 9.8:
+                            if current is None:
+                                raise ValueError(f"Definition without a heading on page {page_number}.")
+                            current["lines"].append(text)
+                        elif size == 27.0 and re.fullmatch(r"[A-Z]", text):
+                            continue  # Alphabetical section heading.
+                        elif size == 8.0 and text == "CHASE IMMOBILIEN / IMMOBILIENLEXIKON":
+                            continue  # Repeated page heading.
+                        elif size == 8.3 and text == str(page_number):
+                            continue  # Printed page number.
+                        elif size == 7.5 and page_number == page_count:
+                            usage_lines.append(text)
+                        else:
+                            raise ValueError(f"Unexpected text style on page {page_number}: {text!r}")
+        if current is not None:
+            entries.append(current)
+
+    if len(entries) != int(declared.group(1)):
+        raise ValueError(f"Extracted {len(entries)} terms; PDF declares {declared.group(1)}.")
+    identifiers = set()
+    terms = set()
+    result_entries = []
+    for item in entries:
+        definition = join_lines(item.pop("lines"))
+        term = item["term"]
+        identifier = slug(term)
+        if not definition or not identifier or identifier in identifiers or term in terms:
+            raise ValueError(f"Empty or duplicate lexicon entry: {term!r}")
+        # Compare non-whitespace characters to tolerate PDF line/column breaks.
+        page_text = re.sub(r"\s+", "", raw_pages[item["page"] - 1])
+        if re.sub(r"\s+", "", term) not in page_text:
+            raise ValueError(f"Heading is absent from its stated page: {term}")
+        if re.sub(r"\s+", "", definition) not in page_text:
+            raise ValueError(f"Definition differs from source text: {term}")
+        identifiers.add(identifier)
+        terms.add(term)
+        result_entries.append({"id": identifier, "term": term, "definition": definition, "page": item["page"]})
+
+    source = {
+        "title": "CHASE Immobilienlexikon A–Z",
+        "filename": source_path.name,
+        "sha256": hashlib.sha256(pdf_bytes).hexdigest(),
+        "pageCount": page_count,
+        "entryCount": len(result_entries),
+        "contentPages": sorted({entry["page"] for entry in result_entries}),
+        "knowledgeAsOf": "Oktober 2026",
+        "notice": "Angaben zu Recht, Steuern und Finanzierung sind allgemeine Erläuterungen und ersetzen keine Prüfung des Einzelfalls.",
+        "usageNotice": join_lines(usage_lines),
+        "extraction": "Vollständige lokale PDF-Textextraktion; nur Layout-Zeilenumbrüche und Wortabstände zusammengeführt. Keine Definitionen ergänzt.",
+    }
+    result = {"source": source, "entries": result_entries}
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return result
+
+
+if __name__ == "__main__":
+    source_path = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else DEFAULT_SOURCE
+    output_path = Path(sys.argv[2]).resolve() if len(sys.argv) > 2 else ROOT / "data/lexicon.json"
+    result = build(source_path, output_path)
+    print(f"Extracted {len(result['entries'])} terms from {result['source']['pageCount']} source pages into {output_path}.")
+    print("SHA-256: " + result["source"]["sha256"])

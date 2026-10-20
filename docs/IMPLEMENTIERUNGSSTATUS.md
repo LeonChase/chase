@@ -1,5 +1,7 @@
 # Implementierungsstand · 20. Oktober 2026
 
+**Aktuelle Überarbeitung:** [Revision 2.1](REVISION_2_1.md) beschreibt die neue Objektzentrale, Navigation, Originalbibliothek, Bewertung und Tagesplanung. Die folgende Tabelle dokumentiert die vorherige Erstversion; frühere Studio-/Marketingrouten bleiben nur zur Kompatibilität bestehen. Die aktuelle Prüfung umfasst **161 erfolgreiche Tests mit 4.546 Assertions** und wird im Testprotokoll separat ausgewiesen.
+
 Eigenständige Symfony-7.4-LTS-Anwendung. Sämtliche P0-Kernabläufe sind lokal implementiert und getestet. Zusätzlich sind ausgewählte P1-Erweiterungen umgesetzt. Keine Produktivanbindung oder öffentliche Bereitstellung durchgeführt.
 
 ## Meilensteine

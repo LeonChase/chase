@@ -1,0 +1,342 @@
+{
+  "source": "6 - Marketing/Werbekatalog.pdf",
+  "notice": "Produktnamen und Seitenzuordnung aus dem bereitgestellten Originalkatalog. Keine Bestellpreise für Werbemittel angegeben.",
+  "products": [
+    {
+      "id": "page-03-design-01",
+      "title": "Feed-Posts",
+      "category": "Social Media",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 3. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Design",
+      "catalogPage": 3
+    },
+    {
+      "id": "page-03-design-02",
+      "title": "Story-Posts",
+      "category": "Social Media",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 3. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Design",
+      "catalogPage": 3
+    },
+    {
+      "id": "page-04-design-01",
+      "title": "Flyer A5 – Neues Angebot",
+      "category": "Flyer",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 4. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 4
+    },
+    {
+      "id": "page-04-design-02",
+      "title": "Flyer Lang – Maklervorstellung",
+      "category": "Flyer",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 4. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 4
+    },
+    {
+      "id": "page-05-design-01",
+      "title": "Türhänger – Maklervorstellung",
+      "category": "Flyer",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 5. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 5
+    },
+    {
+      "id": "page-05-design-02",
+      "title": "Flyer A6 – Verkaufsbenachrichtigung",
+      "category": "Flyer",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 5. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 5
+    },
+    {
+      "id": "page-05-design-03",
+      "title": "Flyer – Tippgeber",
+      "category": "Flyer",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 5. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 5
+    },
+    {
+      "id": "page-06-design-01",
+      "title": "Gutschein – Allgemein",
+      "category": "Gutscheine",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 6. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 6
+    },
+    {
+      "id": "page-06-design-02",
+      "title": "Gutschein – Ostern",
+      "category": "Gutscheine",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 6. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 6
+    },
+    {
+      "id": "page-06-design-03",
+      "title": "Gutschein – Sommer",
+      "category": "Gutscheine",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 6. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 6
+    },
+    {
+      "id": "page-06-design-04",
+      "title": "Gutschein – Weihnachten",
+      "category": "Gutscheine",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 6. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 6
+    },
+    {
+      "id": "page-07-design-01",
+      "title": "Visitenkarten",
+      "category": "Ausstattung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 7. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 7
+    },
+    {
+      "id": "page-07-design-02",
+      "title": "Dokumentenmappe A4",
+      "category": "Ausstattung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 7. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 7
+    },
+    {
+      "id": "page-07-design-03",
+      "title": "Kugelschreiber – SlimLine",
+      "category": "Ausstattung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 7. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 7
+    },
+    {
+      "id": "page-07-design-04",
+      "title": "Papiertragetasche",
+      "category": "Ausstattung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 7. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 7
+    },
+    {
+      "id": "page-08-design-01",
+      "title": "Bauzaunplane – Makler",
+      "category": "Außenwerbung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 8. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 8
+    },
+    {
+      "id": "page-08-design-02",
+      "title": "Zaun-/Gitterplane – Verkauf",
+      "category": "Außenwerbung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 8. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 8
+    },
+    {
+      "id": "page-08-design-03",
+      "title": "Maklergalgen – Verkauf",
+      "category": "Außenwerbung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 8. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 8
+    },
+    {
+      "id": "page-09-design-01",
+      "title": "Schild – Immobilie Verkaufen",
+      "category": "Werbeschilder",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 9. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 9
+    },
+    {
+      "id": "page-09-design-02",
+      "title": "Schild – Wohnung Verkaufen",
+      "category": "Werbeschilder",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 9. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 9
+    },
+    {
+      "id": "page-09-design-03",
+      "title": "Schild – Haus Vermieten",
+      "category": "Werbeschilder",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 9. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 9
+    },
+    {
+      "id": "page-09-design-04",
+      "title": "Schild – Wohnung Vermieten",
+      "category": "Werbeschilder",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 9. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 9
+    },
+    {
+      "id": "page-09-design-05",
+      "title": "Schild – Gewerbe Vermieten",
+      "category": "Werbeschilder",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 9. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 9
+    },
+    {
+      "id": "page-10-design-01",
+      "title": "Nasenschild – Immobilie Verkaufen",
+      "category": "Nasenschilder",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 10. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 10
+    },
+    {
+      "id": "page-10-design-02",
+      "title": "Nasenschild – Wohnung Verkaufen",
+      "category": "Nasenschilder",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 10. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 10
+    },
+    {
+      "id": "page-10-design-03",
+      "title": "Nasenschild – Haus Vermieten",
+      "category": "Nasenschilder",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 10. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 10
+    },
+    {
+      "id": "page-10-design-04",
+      "title": "Nasenschild – Wohnung Vermieten",
+      "category": "Nasenschilder",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 10. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 10
+    },
+    {
+      "id": "page-10-design-05",
+      "title": "Nasenschild – Gewerbe Vermieten",
+      "category": "Nasenschilder",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 10. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 10
+    },
+    {
+      "id": "page-11-design-01",
+      "title": "Gummibärchen – Häuser",
+      "category": "Werbeartikel",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 11. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 11
+    },
+    {
+      "id": "page-11-design-02",
+      "title": "Zollstock",
+      "category": "Werbeartikel",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 11. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 11
+    },
+    {
+      "id": "page-11-design-03",
+      "title": "Bierdeckel – Quadratisch",
+      "category": "Werbeartikel",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 11. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 11
+    },
+    {
+      "id": "page-11-design-04",
+      "title": "Regenschirm mit Holzgriff",
+      "category": "Werbeartikel",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 11. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 11
+    },
+    {
+      "id": "page-12-design-01",
+      "title": "Sonnenbrille",
+      "category": "Werbeartikel",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 12. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 12
+    },
+    {
+      "id": "page-12-design-02",
+      "title": "Schlüsselanhänger",
+      "category": "Werbeartikel",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 12. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 12
+    },
+    {
+      "id": "page-12-design-03",
+      "title": "Samentüte – Blumenwiese",
+      "category": "Werbeartikel",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 12. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 12
+    },
+    {
+      "id": "page-12-design-04",
+      "title": "Tassen",
+      "category": "Werbeartikel",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 12. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 12
+    },
+    {
+      "id": "page-13-design-01",
+      "title": "Daunenjacke",
+      "category": "Kleidung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 13. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 13
+    },
+    {
+      "id": "page-13-design-02",
+      "title": "Pullover",
+      "category": "Kleidung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 13. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 13
+    },
+    {
+      "id": "page-13-design-03",
+      "title": "Sweatshirt",
+      "category": "Kleidung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 13. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 13
+    },
+    {
+      "id": "page-13-design-04",
+      "title": "Poloshirt",
+      "category": "Kleidung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 13. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 13
+    },
+    {
+      "id": "page-13-design-05",
+      "title": "T-Shirt",
+      "category": "Kleidung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 13. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 13
+    },
+    {
+      "id": "page-13-design-06",
+      "title": "Beanies",
+      "category": "Kleidung",
+      "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 13. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
+      "unit": "Stück",
+      "catalogPage": 13
+    }
+  ]
+}

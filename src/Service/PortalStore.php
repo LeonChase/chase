@@ -1,6 +1,6 @@
 <?php
 namespace App\Service;
-use App\Entity\{Record,User,Document,AcademyArticle,AdvertisingProduct,NewsPost,PartnerProfile,TeamMembership,UserPreference,UsageEvent,CreditLedger};
+use App\Entity\{Record,User,Document,AcademyArticle,AdvertisingProduct,NewsPost,PartnerProfile,TeamMembership,UserPreference,UsageEvent,CreditLedger,Message,TaskInvitation};
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class PortalStore {
@@ -17,6 +17,7 @@ class PortalStore {
  }
  public function canAccess(Record $record,User $user):bool {
   if(!$user->active||$record->tenantId!==$user->tenantId)return false;
+  if($record instanceof Message||$record instanceof TaskInvitation)return $record->ownerId===$user->id||$record->recipientId===$user->id;
   if($record instanceof UserPreference||$record instanceof UsageEvent||$record instanceof CreditLedger)return $record->ownerId===$user->id;
   if($record instanceof Document){
    $audience=$record->data['audience']??'Alle Makler';
@@ -30,6 +31,8 @@ class PortalStore {
   return $record->ownerId!==null&&in_array($record->ownerId,$this->visibleOwnerIds($user),true);
  }
  public function visible(string $class,User $user):array {
+  if(!$user->active)return [];
+  if(in_array($class,[Message::class,TaskInvitation::class],true))return $this->entityManager->getRepository($class)->createQueryBuilder('r')->where('r.tenantId = :tenant')->andWhere('r.ownerId = :uid OR r.recipientId = :uid')->setParameter('tenant',$user->tenantId)->setParameter('uid',$user->id)->orderBy('r.createdAt','DESC')->getQuery()->getResult();
   $shared=in_array($class,[Document::class,AcademyArticle::class,AdvertisingProduct::class,NewsPost::class,PartnerProfile::class],true);
   $criteria=['tenantId'=>$user->tenantId];if(!$shared)$criteria['ownerId']=in_array($class,[UserPreference::class,UsageEvent::class,CreditLedger::class],true)?[$user->id]:$this->visibleOwnerIds($user);
   return array_values(array_filter($this->entityManager->getRepository($class)->findBy($criteria,['createdAt'=>'DESC']),fn(Record $r)=>$this->canAccess($r,$user)));

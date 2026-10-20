@@ -1,0 +1,24 @@
+{% macro render(name, field, data) %}
+{% set value = attribute(data,name)|default('') %}
+{% if value is iterable %}{% set value = value|join('\n') %}{% endif %}
+<div class="field property-field {{ field.type == 'textarea' ? 'property-field-wide' }}">
+{% if field.type == 'checkbox' %}
+    <input type="hidden" form="property-data-form" name="{{ name }}" value="0">
+    <label class="property-check"><input type="checkbox" form="property-data-form" id="property-{{ name }}" name="{{ name }}" value="1" {{ value ? 'checked' }}>{{ field.label }}</label>
+{% else %}
+    <label for="property-{{ name }}">{{ field.label }}{% if field.required|default(false) %} <span class="accent" aria-label="Pflichtfeld">*</span>{% endif %}</label>
+    {% if field.type == 'select' %}
+        <select form="property-data-form" id="property-{{ name }}" name="{{ name }}" {{ field.required|default(false) ? 'required' }}>
+            <option value="">{{ field.required|default(false) ? 'Bitte wählen' : 'Noch nicht erfasst' }}</option>
+            {% if value != '' and value not in field.options|default([]) %}<option selected value="{{ value }}">{{ value }} (bestehende Angabe)</option>{% endif %}
+            {% for option in field.options|default([]) %}<option value="{{ option }}" {{ value == option ? 'selected' }}>{{ option }}</option>{% endfor %}
+        </select>
+    {% elseif field.type == 'textarea' %}
+        <textarea form="property-data-form" id="property-{{ name }}" name="{{ name }}" rows="{{ name == 'features' ? 3 : 3 }}" maxlength="{{ field.maxlength|default(5000) }}" {{ field.required|default(false) ? 'required' }}>{{ value }}</textarea>
+    {% else %}
+        <input form="property-data-form" id="property-{{ name }}" name="{{ name }}" type="{{ field.type }}" value="{{ value }}" {{ field.required|default(false) ? 'required' }} {% if field.type == 'number' %}min="{{ field.min|default(0) }}" max="{{ field.max|default(1000000000) }}" step="{{ field.step|default('0.01') }}"{% elseif field.type not in ['date','checkbox'] %}maxlength="{{ field.maxlength|default(250) }}"{% endif %} autocomplete="off">
+    {% endif %}
+{% endif %}
+{% if field.help|default('') %}<small class="help">{{ field.help }}</small>{% endif %}
+</div>
+{% endmacro %}

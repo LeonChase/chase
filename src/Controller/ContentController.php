@@ -10,6 +10,9 @@ use App\Entity\PartnerProfile;
 use App\Entity\Property;
 use App\Entity\Record;
 use App\Entity\UserPreference;
+use App\Service\MaterialsImporter;
+use App\Service\Lexicon;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +26,45 @@ final class ContentController extends PortalController
     #[Route('/documents', name: 'app_documents', methods: ['GET'])]
     public function documents(Request $request): Response
     {
-        return $this->catalog($request, Document::class, 'documents');
+        $documents = $this->store->visible(Document::class, $this->user());
+        $hasProvided = (bool) array_filter($documents, static fn (Record $d): bool => (bool) ($d->data['provided'] ?? false));
+        $showDemo = $request->query->getBoolean('demo');
+        if ($hasProvided && !$showDemo) $documents = array_values(array_filter($documents, static fn (Record $d): bool => (bool) ($d->data['provided'] ?? false)));
+        $q = mb_substr(trim((string) $request->query->get('q', '')), 0, 200);
+        $category = (string) $request->query->get('category', '');
+        $subfolder = (string) $request->query->get('folder', '');
+        $format = strtoupper((string) $request->query->get('format', ''));
+        $sort = (string) $request->query->get('sort', 'uploaded_desc');
+        $favoriteOnly = $request->query->getBoolean('favorites');
+        $favorites = $this->preferenceTargets('favorite');
+        $folders = []; $formats = []; $counts = array_fill_keys(MaterialsImporter::CATEGORIES, 0); $lastUpload = '';
+        foreach ($documents as $document) {
+            $cat = $document->data['category'] ?? 'Vorlagen'; $counts[$cat] = ($counts[$cat] ?? 0) + 1;
+            $formats[] = (string) ($document->data['format'] ?? 'TXT-DEMO');
+            if (($category === '' || $category === $cat) && !empty($document->data['subfolder'])) $folders[] = $document->data['subfolder'];
+            $lastUpload = max($lastUpload, (string) ($document->data['uploadedAt'] ?? $document->createdAt->format(DATE_ATOM)));
+        }
+        $formats = array_values(array_unique($formats)); sort($formats); $folders = array_values(array_unique($folders)); sort($folders);
+        $items = array_values(array_filter($documents, static function (Record $document) use ($q, $category, $subfolder, $format, $favoriteOnly, $favorites): bool {
+            $search = $document->title.' '.($document->data['sourcePath'] ?? '').' '.($document->data['searchText'] ?? $document->data['description'] ?? '');
+            return ($q === '' || str_contains(mb_strtolower($search), mb_strtolower($q)))
+                && ($category === '' || ($document->data['category'] ?? '') === $category)
+                && ($subfolder === '' || ($document->data['subfolder'] ?? '') === $subfolder)
+                && ($format === '' || ($document->data['format'] ?? 'TXT-DEMO') === $format)
+                && (!$favoriteOnly || in_array($document->id, $favorites, true));
+        }));
+        usort($items, static function (Record $a, Record $b) use ($sort): int {
+            return match ($sort) {
+                'title_asc' => strnatcasecmp($a->title, $b->title),
+                'title_desc' => strnatcasecmp($b->title, $a->title),
+                'type' => strcmp((string) ($a->data['format'] ?? ''), (string) ($b->data['format'] ?? '')) ?: strnatcasecmp($a->title, $b->title),
+                'uploaded_asc' => strcmp((string) ($a->data['uploadedAt'] ?? $a->createdAt->format(DATE_ATOM)), (string) ($b->data['uploadedAt'] ?? $b->createdAt->format(DATE_ATOM))),
+                default => strcmp((string) ($b->data['uploadedAt'] ?? $b->createdAt->format(DATE_ATOM)), (string) ($a->data['uploadedAt'] ?? $a->createdAt->format(DATE_ATOM))) ?: strnatcasecmp($a->title, $b->title),
+            };
+        });
+        $total = count($items); $page = max(1, $request->query->getInt('page', 1)); $pages = max(1, (int) ceil($total / 24)); $page = min($page, $pages);
+        $items = array_slice($items, ($page - 1) * 24, 24);
+        return $this->page('content/documents.html.twig', compact('items', 'q', 'category', 'subfolder', 'format', 'sort', 'favoriteOnly', 'favorites', 'folders', 'formats', 'counts', 'lastUpload', 'total', 'page', 'pages', 'hasProvided', 'showDemo') + ['categories' => MaterialsImporter::CATEGORIES]);
     }
 
     #[Route('/documents/{id}', name: 'app_document', methods: ['GET'])]
@@ -36,9 +77,24 @@ final class ContentController extends PortalController
     }
 
     #[Route('/documents/{id}/download', name: 'app_document_download', methods: ['GET'])]
-    public function download(string $id): Response
+    public function download(string $id, MaterialsImporter $materials): Response
     {
         $document = $this->visible(Document::class, $id);
+        if (!empty($document->data['filePath'])) {
+            $path = $materials->filePath($document);
+            if ($path === null) throw $this->createNotFoundException('Die Originaldatei ist nicht verfügbar oder ihre Integritätsprüfung ist fehlgeschlagen.');
+            $name = (string) ($document->data['fileName'] ?? basename($path));
+            $fallback = 'CHASE-Unterlage-'.$document->id.'.'.pathinfo($name, PATHINFO_EXTENSION);
+            $response = new BinaryFileResponse($path);
+            // Even uploaded HTML, SVG and EML are downloads, never same-origin executable previews.
+            $response->setContentDisposition('attachment', $name, $fallback);
+            $response->headers->set('Content-Type', 'application/octet-stream');
+            $response->headers->set('X-Content-Type-Options', 'nosniff');
+            $response->headers->set('Content-Security-Policy', "default-src 'none'; sandbox");
+            $response->headers->set('Cache-Control', 'private, no-store');
+            $this->audit('material.download', $document->id);
+            return $response;
+        }
         // Generated text only: there is no path parameter or public file storage to bypass ACLs.
         $text = "UNVERBINDLICHES DEMO-MUSTER · NICHT RECHTSVERBINDLICH\n\n";
         $text .= $document->title."\n\n".(string) ($document->data['content'] ?? $document->data['description'] ?? 'Demo-Inhalt');
@@ -53,9 +109,63 @@ final class ContentController extends PortalController
     }
 
     #[Route('/academy', name: 'app_academy', methods: ['GET'])]
-    public function academy(Request $request): Response
+    public function academy(Request $request, Lexicon $lexicon): Response
     {
-        return $this->catalog($request, AcademyArticle::class, 'academy');
+        return $this->catalog($request, AcademyArticle::class, 'academy', ['lexiconCount' => count($lexicon->all())]);
+    }
+
+    #[Route('/academy/lexicon', name: 'app_lexicon', methods: ['GET'], priority: 20)]
+    public function lexicon(Request $request, Lexicon $lexicon): Response
+    {
+        $q = mb_substr(trim((string) $request->query->get('q', '')), 0, 150);
+        $letter = mb_strtoupper(mb_substr((string) $request->query->get('letter', ''), 0, 1));
+        $all = $lexicon->all(); $entries = $q === '' ? $all : $lexicon->search($q);
+        $letters = array_values(array_unique(array_map(static fn (array $entry): string => mb_strtoupper(mb_substr($entry['term'], 0, 1)), $all)));
+        if ($letter !== '') $entries = array_values(array_filter($entries, static fn (array $entry): bool => mb_strtoupper(mb_substr($entry['term'], 0, 1)) === $letter));
+        return $this->page('content/lexicon.html.twig', compact('q', 'letter', 'entries', 'letters') + ['source' => $lexicon->source(), 'sourceDocument' => $this->lexiconDocument(), 'lexiconCount' => count($all)]);
+    }
+
+    #[Route('/academy/lexicon/{id}', name: 'app_lexicon_term', methods: ['GET'], priority: 20)]
+    public function lexiconTerm(string $id, Lexicon $lexicon): Response
+    {
+        $entry = $lexicon->find($id);
+        if (!$entry) throw $this->createNotFoundException('Dieser Begriff ist nicht im bereitgestellten Lexikon enthalten.');
+        return $this->page('content/lexicon_term.html.twig', ['entry' => $entry, 'source' => $lexicon->source(), 'sourceDocument' => $this->lexiconDocument()]);
+    }
+
+    #[Route('/academy/video-upload', name: 'app_academy_video_upload', methods: ['POST'], priority: 20)]
+    public function academyVideoUpload(Request $request, MaterialsImporter $materials): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN'); $this->token($request);
+        $file = $request->files->get('video');
+        $title = trim((string) $request->request->get('title', ''));
+        $mimeMap = ['video/mp4' => 'mp4', 'video/webm' => 'webm'];
+        if (!$file instanceof \Symfony\Component\HttpFoundation\File\UploadedFile || !$file->isValid() || $file->getSize() > 12582912 || !isset($mimeMap[$file->getMimeType()]) || mb_strlen($title) < 3 || mb_strlen($title) > 180) {
+            $this->addFlash('error', 'Bitte laden Sie ein gültiges MP4-/WebM-Lernvideo bis 12 MiB mit einem Titel (3–180 Zeichen) hoch.');
+            return $this->redirectToRoute('app_academy');
+        }
+        $storage = $materials->storeUploadedFile($file->getPathname(), $mimeMap[$file->getMimeType()], $this->user()->tenantId);
+        $video = new AcademyArticle(array_merge($storage, [
+            'title' => $title, 'category' => 'Lernvideos', 'kind' => 'video', 'provided' => true, 'isDemo' => false,
+            'content' => [], 'teaser' => 'Intern bereitgestelltes Lernvideo.', 'mimeType' => $file->getMimeType(),
+            'uploadedAt' => (new \DateTimeImmutable())->format(DATE_ATOM), 'fileName' => $file->getClientOriginalName(),
+        ]), null, $this->user()->tenantId);
+        $this->save($video); $this->audit('academy.video.uploaded', $video->id);
+        $this->addFlash('success', 'Das Lernvideo wurde privat gespeichert und ist in der Academy abspielbar.');
+        return $this->redirectToRoute('app_academy_article', ['id' => $video->id]);
+    }
+
+    #[Route('/academy/{id}/video', name: 'app_academy_video', methods: ['GET'])]
+    public function academyVideo(string $id, MaterialsImporter $materials): Response
+    {
+        $video = $this->visible(AcademyArticle::class, $id);
+        $mime = $video->data['mimeType'] ?? '';
+        $path = $materials->filePath($video);
+        if (($video->data['kind'] ?? '') !== 'video' || !in_array($mime, ['video/mp4', 'video/webm'], true) || !$path) throw $this->createNotFoundException();
+        $response = new BinaryFileResponse($path);
+        $response->headers->set('Content-Type', $mime); $response->headers->set('X-Content-Type-Options', 'nosniff');
+        $response->headers->set('Cache-Control', 'private, no-store');
+        return $response;
     }
 
     #[Route('/academy/{id}', name: 'app_academy_article', methods: ['GET'])]
@@ -66,77 +176,6 @@ final class ContentController extends PortalController
             'favorites' => $this->preferenceTargets('favorite'),
             'learned' => $this->preferenceTargets('progress'),
         ]);
-    }
-
-    #[Route('/advertising', name: 'app_advertising', methods: ['GET'])]
-    public function advertising(Request $request): Response
-    {
-        return $this->catalog($request, AdvertisingProduct::class, 'advertising');
-    }
-
-    #[Route('/advertising/request', name: 'app_advertising_request', methods: ['POST'])]
-    public function advertisingRequest(Request $request): Response
-    {
-        $this->token($request);
-        $quantities = $request->request->all('quantities');
-        $items = [];
-        foreach ($this->store->visible(AdvertisingProduct::class, $this->user()) as $product) {
-            $raw = $quantities[$product->id] ?? '0';
-            if (!is_scalar($raw) || !preg_match('/^\d{1,4}$/D', (string) $raw)) {
-                $this->addFlash('error', 'Bitte geben Sie ganze Mengen zwischen 0 und 9999 an.');
-                return $this->redirectToRoute('app_advertising');
-            }
-            $quantity = (int) $raw;
-            if ($quantity > 0) {
-                $items[] = ['id' => $product->id, 'title' => $product->title, 'quantity' => $quantity, 'unit' => $product->data['unit'] ?? 'Einheit'];
-            }
-        }
-        $note = trim((string) $request->request->get('note', ''));
-        if (!$items || mb_strlen($note) > 2000) {
-            $this->addFlash('error', $items ? 'Die Notiz darf höchstens 2000 Zeichen enthalten.' : 'Wählen Sie mindestens ein Werbemittel mit einer Menge aus.');
-            return $this->redirectToRoute('app_advertising');
-        }
-        $draft = new UserPreference([
-            'title' => 'Werbemittel-Anfrage vom '.(new \DateTimeImmutable('now', new \DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i'),
-            'kind' => 'advertising_request', 'items' => $items, 'note' => $note,
-            'status' => 'Lokaler Entwurf', 'sent' => false,
-        ], $this->user()->id, $this->user()->tenantId);
-        $this->save($draft);
-        $this->audit('advertising.draft.created', $draft->id);
-        $this->addFlash('success', 'Die Anfrage ist lokal gespeichert. Es wurde nichts bestellt oder versendet.');
-        return $this->redirectToRoute('app_advertising', ['tab' => 'requests']);
-    }
-
-    #[Route('/advertising/request/{id}/download', name: 'app_advertising_request_download', methods: ['GET'])]
-    public function requestDownload(string $id): Response
-    {
-        $draft = $this->owned(UserPreference::class, $id);
-        if ($draft->ownerId !== $this->user()->id || ($draft->data['kind'] ?? '') !== 'advertising_request') {
-            throw $this->createNotFoundException();
-        }
-        $text = "CHASE · LOKALER ANFRAGEENTWURF\nKeine Bestellung · nicht versendet\n\n";
-        foreach ($draft->data['items'] ?? [] as $item) {
-            $text .= $item['quantity'].' × '.$item['title'].' ('.$item['unit'].")\n";
-        }
-        $text .= "\nNotiz: ".($draft->data['note'] ?? '')."\n\nAlle Preise auf Anfrage. Dieser lokale Export löst keine Bestellung aus.\n";
-        return new Response($text, 200, [
-            'Content-Type' => 'text/plain; charset=UTF-8',
-            'Content-Disposition' => HeaderUtils::makeDisposition('attachment', 'CHASE-Anfrageentwurf-'.$draft->id.'.txt'),
-            'Cache-Control' => 'private, no-store', 'X-Content-Type-Options' => 'nosniff',
-        ]);
-    }
-
-    #[Route('/advertising/request/{id}/delete', name: 'app_advertising_request_delete', methods: ['POST'])]
-    public function deleteRequest(Request $request, string $id): Response
-    {
-        $this->token($request);
-        $draft = $this->owned(UserPreference::class, $id);
-        if ($draft->ownerId !== $this->user()->id || ($draft->data['kind'] ?? '') !== 'advertising_request') {
-            throw $this->createNotFoundException();
-        }
-        $this->store->remove($draft);
-        $this->addFlash('success', 'Der lokale Anfrageentwurf wurde gelöscht.');
-        return $this->redirectToRoute('app_advertising');
     }
 
     #[Route('/news', name: 'app_news', methods: ['GET'])]
@@ -283,7 +322,7 @@ final class ContentController extends PortalController
     }
 
     #[Route('/search', name: 'app_search', methods: ['GET'])]
-    public function search(Request $request): Response
+    public function search(Request $request, Lexicon $lexicon): Response
     {
         $query = mb_substr(trim((string) $request->query->get('q', '')), 0, 200);
         $needle = mb_strtolower($query);
@@ -291,7 +330,7 @@ final class ContentController extends PortalController
         if ($needle !== '') {
             $definitions = [
                 'Meine Immobilien' => [Property::class, 'property', ['city', 'location', 'region', 'internalId', 'externalId', 'type']],
-                'Dokumente' => [Document::class, 'document', ['description', 'category', 'content']],
+                'Dokumente' => [Document::class, 'document', ['description', 'category', 'content', 'sourcePath', 'searchText']],
                 'Wissen / Academy' => [AcademyArticle::class, 'academy', ['teaser', 'category', 'content']],
                 'News' => [NewsPost::class, 'news', ['summary', 'body', 'category']],
             ];
@@ -310,7 +349,8 @@ final class ContentController extends PortalController
                 $groups[$label] = $matches;
             }
         }
-        return $this->page('search/index.html.twig', ['q' => $query, 'groups' => $groups, 'total' => array_sum(array_map('count', $groups))]);
+        $lexiconResults = $needle !== '' ? $lexicon->search($query) : [];
+        return $this->page('search/index.html.twig', ['q' => $query, 'groups' => $groups, 'lexiconResults' => $lexiconResults, 'total' => array_sum(array_map('count', $groups)) + count($lexiconResults)]);
     }
 
     #[Route('/help', name: 'app_help', methods: ['GET'])]
@@ -319,7 +359,7 @@ final class ContentController extends PortalController
         return $this->page('help/index.html.twig');
     }
 
-    private function catalog(Request $request, string $class, string $section): Response
+    private function catalog(Request $request, string $class, string $section, array $extra = []): Response
     {
         $all = $this->store->visible($class, $this->user());
         $q = mb_substr(trim((string) $request->query->get('q', '')), 0, 200);
@@ -346,7 +386,13 @@ final class ContentController extends PortalController
         }
         $currentUserId = $this->user()->id;
         $requests = array_values(array_filter($this->store->visible(UserPreference::class, $this->user()), static fn (Record $pref): bool => $pref->ownerId === $currentUserId && ($pref->data['kind'] ?? '') === 'advertising_request'));
-        return $this->page('content/'.$section.'.html.twig', compact('items', 'all', 'q', 'category', 'categories', 'favorites', 'read', 'learned', 'favoriteOnly', 'unreadOnly', 'requests'));
+        return $this->page('content/'.$section.'.html.twig', compact('items', 'all', 'q', 'category', 'categories', 'favorites', 'read', 'learned', 'favoriteOnly', 'unreadOnly', 'requests') + $extra);
+    }
+
+    private function lexiconDocument(): ?Record
+    {
+        foreach ($this->store->visible(Document::class, $this->user()) as $document) if (!empty($document->data['lexiconOriginal'])) return $document;
+        return null;
     }
 
     private function visible(string $class, string $id): Record

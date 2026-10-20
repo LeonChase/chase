@@ -163,27 +163,6 @@ final class StudioController extends PortalController
         return $this->page('studio/visuals.html.twig', ['tool' => $tool, 'property' => $property, 'checks' => $checks]);
     }
 
-    #[Route('/valuation', name: 'valuation', methods: ['GET', 'POST'])]
-    public function valuation(Request $request, DemoValuationProvider $calculator): Response
-    {
-        $error = null; $result = null;
-        if ($request->isMethod('POST')) {
-            $this->token($request);
-            $propertyId = $request->request->getString('propertyId');
-            $property = $propertyId ? $this->owned(Property::class, $propertyId) : null;
-            try {
-                $result = $calculator->calculate(['monthlyRent' => str_replace(',', '.', $request->request->getString('monthlyRent')), 'factor' => str_replace(',', '.', $request->request->getString('factor'))]);
-                $record = new Valuation($result + ['propertyId' => $property?->id, 'isDemo' => true], $this->user()->id, $this->user()->tenantId);
-                $record->title = $property?->title ?? 'Demo-Rechenbeispiel';
-                $this->save($record); $this->audit('valuation.demo_created', $record->id);
-                $this->addFlash('success', 'Mathematisches Demo-Rechenbeispiel gespeichert.');
-                return $this->redirectToRoute('valuation', ['result' => $record->id]);
-            } catch (\InvalidArgumentException $exception) { $error = $exception->getMessage(); }
-        }
-        if ($request->query->getString('result')) { $result = $this->owned(Valuation::class, $request->query->getString('result'))->data; }
-        return $this->page('valuation/index.html.twig', ['error' => $error, 'result' => $result, 'properties' => $this->store->visible(Property::class, $this->user()), 'valuations' => array_reverse($this->store->visible(Valuation::class, $this->user()))]);
-    }
-
     #[Route('/usage', name: 'usage', methods: ['GET'])]
     public function usage(): Response
     {

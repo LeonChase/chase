@@ -13,4 +13,14 @@ class PortalContext {
   $read=array_merge($read,$u->preferences['readNews']??[]);
   return count(array_filter($this->store->visible(NewsPost::class,$u),fn($n)=>($n->data['status']??'')==='Veröffentlicht'&&!in_array($n->id,$read,true)));
  }
+
+ public function getUnreadMessages():int {
+  $u=$this->security->getUser();if(!$u instanceof User)return 0;
+  return count(array_filter($this->store->visible(\App\Entity\Message::class,$u),fn($m)=>$m->recipientId===$u->id&&empty($m->data['readAt'])));
+ }
+ public function getRecentNews():array {
+  $u=$this->security->getUser();if(!$u instanceof User)return [];
+  $items=array_values(array_filter($this->store->visible(NewsPost::class,$u),fn($n)=>($n->data['status']??'')==='Veröffentlicht'));
+  usort($items,fn($a,$b)=>strcmp($b->data['publishedAt']??'',$a->data['publishedAt']??''));return array_slice($items,0,3);
+ }
 }
