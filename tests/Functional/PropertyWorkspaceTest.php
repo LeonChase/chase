@@ -56,7 +56,7 @@ final class PropertyWorkspaceTest extends WebTestCase
         return $items;
     }
 
-    public function testWorkspaceHasOneDataFormNineAnchoredSectionsAndLegacyEntry(): void
+    public function testWorkspaceHasOneDataFormLegacyAnchorsAndCompleteWizardFields(): void
     {
         $crawler=$this->client->request('GET','/properties/work-own');self::assertResponseIsSuccessful();
         self::assertCount(1,$crawler->filter('form#property-data-form'));
@@ -69,6 +69,31 @@ final class PropertyWorkspaceTest extends WebTestCase
         self::assertSelectorExists('select[name="modernisations[0][component]"]');
         $this->client->request('GET','/properties/work-own?tab=documents');self::assertResponseIsSuccessful();self::assertSelectorExists('[data-initial-section="documents"]');
         $this->client->request('GET','/properties?focus=texts');self::assertResponseIsSuccessful();self::assertSelectorExists('a[href="/properties/work-own#texts"]');
+    }
+
+    public function testShortPagesKeepContactsSeparateAndRouteErrorsToTheirActualField(): void
+    {
+        $crawler=$this->client->request('GET','/properties/work-own?step=owners');
+        self::assertResponseIsSuccessful();
+        self::assertSelectorExists('#owners:not([hidden]) input[name="ownerName"]');
+        self::assertSelectorNotExists('#start input[name="ownerName"]');
+        self::assertSelectorExists('#management input[name="managementName"]');
+        self::assertSelectorExists('#contacts input[name="contactName"]');
+        self::assertSelectorNotExists('.property-subsection');
+        self::assertSelectorNotExists('.property-modernisation table');
+        self::assertSelectorCount(8,'.property-stepper [data-workspace-chapter]');
+        foreach(\App\Service\PropertyFormSchema::fields() as $name=>$field) {
+            self::assertCount(1,$crawler->filter('[form="property-data-form"][name="'.$name.'"]:not([type="hidden"])'),$name.' must remain editable exactly once');
+        }
+        $token=$crawler->filter('meta[name="portal-csrf"]')->attr('content');
+        $this->client->request('POST','/properties/work-own/edit',$this->valid(['_token'=>$token,'_activeStep'=>'management','managementName'=>'Synthetische Hausverwaltung']));
+        self::assertResponseRedirects('/properties/work-own#management');
+        self::assertSame('Synthetische Hausverwaltung',$this->fresh(Property::class,'work-own')->data['managementName']);
+        $this->client->request('POST','/properties/work-own/edit',$this->valid(['_token'=>$token,'_activeStep'=>'start','ownerEmail'=>'invalid-email']));
+        self::assertResponseIsSuccessful();
+        self::assertSelectorExists('[data-initial-section="owners"]');
+        self::assertSelectorExists('#owners:not([hidden])');
+        self::assertSelectorExists('#start[hidden]');
     }
 
     public function testSingleSelectedStepAndSaveReturnToCurrentPanel(): void

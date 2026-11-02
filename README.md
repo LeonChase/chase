@@ -4,7 +4,7 @@ Ein eigenständiger, lokal lauffähiger Symfony-Prototyp für das CHASE-Partnern
 
 **Windows 10:** [Schritt-für-Schritt-Anleitung mit Ubuntu/WSL](docs/WINDOWS_10_START.md).
 
-**Aktuell: Update 2.2 vom 02.11.2026** – [Kompakte Oberfläche, Chat, Benachrichtigungen und Update-Anleitung](docs/REVISION_2_2.md).
+**Aktuell: Update 2.3 vom 02.11.2026** – [Geführte Immobilienmasken, KI-Werkzeugkasten, bebilderter Katalog und Update-Anleitung](docs/REVISION_2_3.md).
 
 Vorheriger Stand: [Revision 2.1](docs/REVISION_2_1.md).
 
@@ -46,13 +46,15 @@ Dieser lädt ausschließlich die exakten in `composer.lock` festgelegten GitHub-
 ## Ein erster Rundgang
 
 - **Dashboard `/`**: Tagesfokus, Wochenplanung, eigene Kennzahlen und die sechs bekannten Werkzeugkacheln.
-- **Meine Immobilien `/properties`**: Objekt anlegen und in einer gegliederten Maske auf einer Seite bearbeiten. Bilder, Unterlagen, Preis/Provision, Exposé-Texte und Vermarktung gehören direkt zur Objektakte.
+- **Immobilien `/properties`**: Objekt in kurzen geführten Maskenseiten anlegen und bearbeiten. Bilder, Unterlagen, Preis/Provision, Exposé-Texte und Vermarktung gehören direkt zur Objektakte.
 - **Exposé und Medien im Objekt**: drei Textabschnitte mit jeweils maximal 2.000 Zeichen, Bestätigung der Faktenquelle, Versionen, Freigabe sowie Markdown-/PDF-Musterexport. Bilder lassen sich sortieren und beschriften; Bild-KI bleibt ohne Anbieter unverbunden.
-- **Bewertung `/valuation`** (auch unter Meine Immobilien): Sachwert, Ertragswert und Vergleichswert gemäß dem gelieferten Rechner, Objektübernahme und dokumentierte Faktorquellen. Kein behaupteter automatischer Marktdatenabruf.
+- **Bewertung `/valuation`** (auch aus der Objektakte): Sachwert, Ertragswert und Vergleichswert gemäß dem gelieferten Rechner, Objektübernahme und dokumentierte Faktorquellen. Kein behaupteter automatischer Marktdatenabruf.
 - **Leads `/leads`**, **Aufgaben `/tasks`**: lokale Pipeline sowie Aufgabenliste neben einem Kalender, Checklisten und interne Aufgabenangebote. Kalenderdateien sind lokal importier-/exportierbar; kein Live-Abgleich mit Google/Outlook.
 - **Dokumente `/documents`**: neun Arbeitsbereiche mit Unterordnern, Suche, Sortierung, Uploaddatum und privaten Originaldownloads.
 - **Academy `/academy`** und **Lexikon `/academy/lexicon`**: Lernpfad, private Lernvideos und 441 Begriffe aus dem bereitgestellten Immobilienlexikon.
-- **Werbekatalog `/advertising`**: durch Originalseiten blättern, Designs suchen, Mengen in die persönliche Auswahl legen und einen lokalen Anfrageentwurf für ein Angebot zusammenstellen.
+- **Werbekatalog `/advertising`**: 42 mitgelieferte Produktbilder, Kategorien, freie Mengen mit Plus/Minus und persönliche Auswahl und einen lokalen Anfrageentwurf für ein Angebot zusammenstellen.
+- **KI-Tools `/tools`**: eigener Werkzeugkasten; lokale Bildbearbeitung mit PNG-Download, Textdemo und private Dokumentenprüfliste.
+- **Partnernetzwerk `/network`**, **Links & Tools `/links`**, **Ansprechpartner `/help`**: Regionenkarte, Linkfavoriten und kompakte Kontaktkarte.
 - **Nachrichten `/messages`**, **News `/news`**, **Hilfe `/help/assistant`**: Kontakt und Unternehmensmeldungen über den Kopfbereich; lokaler Hilfewegweiser und Lexikon. Interne Nachrichten sind kein E-Mail-Versand.
 - **Profil `/profile`**: eigenes Bild, Name, Passwort und Darstellung. Das Profilbild erscheint auch in der privaten Landingpage-Vorschau.
 - **Admin-Center `/admin`**: Benutzer, Rollen, Regionen, explizite Teamfreigaben, Inhalte, Budgets und Auditprotokoll. Unter **Unterlagen importieren** das Original-ZIP einmal lokal übernehmen.

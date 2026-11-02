@@ -1,7 +1,7 @@
 # Entwicklungsregeln – CHASE Partnerportal 2.0 (Codex)
 
 - Lies `CODEX_MASTERPROMPT.md` zuerst. Projektziel ist **ausführbarer Code**, nicht nur Planung.
-- Beachte `design/dashboard_referenz.png` und das Branding unter `data/brand.json`. Bestehende sechs Dashboard-Kacheln beibehalten. Zusätzliche Bereiche in eine Sidebar.
+- Beachte `design/dashboard_referenz.png` und das Branding unter `data/brand.json`. Nutzerstand 2.3 geht der alten Referenzreihenfolge vor: sechs gleichwertige Kacheln Immobilien, Immobilienbewertung, KI-Tools / Dokumente, Wissen / Academy, Werbekatalog. Navigation standardmäßig automatisch ausklappbar und optional fixierbar. Zusätzliche Bereiche in die Sidebar.
 - Lokal isolierter Symfony-PoC, KEIN Zugriff auf die produktive Website, KEIN unautorisierter API-Aufruf, KEIN kostenpflichtiger Dienst.
 - Deutschsprachige Anwendung, de-DE-Zahlen/Datumsformate; EUR ohne erfundene Produktivkosten. Responsive, modern, gut zugänglich.
 - Keine erfundenen echten Kontakte, Telefonnummern, Mailadressen, Leads, Rechtstatsachen oder Marktdaten. Synthese-Datensätze nur mit „Demo“/Fixture-Kennzeichnung.

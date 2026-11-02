@@ -87,6 +87,34 @@ final class MaterialsImporter
         } finally { $zip->close(); }
     }
 
+    /** A separately supplied PDF supersedes the catalogue embedded in a ZIP without duplicating its products. */
+    public function importCatalog(string $path, string $tenant = 'chase-demo'): array
+    {
+        if (!preg_match('/^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$/D', $tenant) || !is_file($path) || is_link($path) || filesize($path) > self::MAX_FILE || (new \finfo(FILEINFO_MIME_TYPE))->file($path) !== 'application/pdf') throw new \InvalidArgumentException('Bitte einen gültigen lokalen Werbekatalog als PDF bis 20 MiB verwenden.');
+        $source = '6 - Marketing/Werbekatalog.pdf'; $id = self::documentId($tenant, $source);
+        $stored = $this->storeUploadedFile($path, 'pdf', $tenant); $document = $this->em->find(Document::class, $id);
+        $this->importCatalogProducts($tenant, $id, $source, $stored['sourceHash']);
+        if ($document && ($document->data['sourceHash'] ?? '') === $stored['sourceHash'] && $this->filePath($document)) { $this->em->flush(); return ['id'=>$id,'changed'=>false]; }
+        $now = (new \DateTimeImmutable('now', new \DateTimeZone('Europe/Berlin')))->format(DATE_ATOM);
+        $data = $stored + ['title'=>'Werbekatalog','category'=>'Marketing','subfolder'=>'','description'=>'Bereitgestellter CHASE-Werbekatalog.','format'=>'PDF','fileName'=>'Werbekatalog.pdf','mimeType'=>'application/pdf','sourcePath'=>$source,'sourceArchive'=>basename($path),'directCatalog'=>true,'importedAt'=>$document?->data['importedAt']??$now,'uploadedAt'=>$now,'lastUpdated'=>substr($now,0,10),'audience'=>'Alle Makler','provided'=>true,'isDemo'=>false,'catalogOriginal'=>true,'lexiconOriginal'=>false,'searchText'=>$this->extractText($path,'pdf','')];
+        if (!$document) { $document = new Document($data, null, $tenant); $document->id = $id; }
+        else { $document->data = $data; $document->title = 'Werbekatalog'; $document->updatedAt = new \DateTimeImmutable(); }
+        $this->em->persist($document); $this->em->flush(); return ['id'=>$id,'changed'=>true];
+    }
+
+    /** Product motifs shipped with the app are real supplied designs, not synthetic starter products. */
+    public function registerBundledCatalog(string $tenant = 'chase-demo'): void
+    {
+        $manifest = $this->projectDir.'/resources/catalog/previews/manifest.json';
+        if (!is_file($manifest)) return;
+        $data = json_decode((string) file_get_contents($manifest), true);
+        if (!is_array($data) || !preg_match('/^[a-f0-9]{64}$/D', $data['sourceHash'] ?? '')) return;
+        $source = '6 - Marketing/Werbekatalog.pdf'; $id = self::documentId($tenant, $source);
+        $document = $this->em->find(Document::class, $id);
+        $this->importCatalogProducts($tenant, $id, $source, $document?->data['sourceHash'] ?? $data['sourceHash']);
+        $this->em->flush();
+    }
+
     public static function documentId(string $tenant, string $sourcePath): string
     {
         return 'material-'.substr(hash('sha256', $tenant."\0".$sourcePath), 0, 40);
@@ -186,7 +214,7 @@ final class MaterialsImporter
             $id = 'catalog-'.substr(hash('sha256', $tenant."\0".$source."\0".($row['id'] ?? $row['title'])), 0, 40);
             $data = array_merge($row, [
                 'title' => $row['title'], 'sourceDocumentId' => $documentId, 'sourcePath' => $source, 'sourceHash' => $hash,
-                'provided' => true, 'isDemo' => false, 'priceLabel' => $row['priceLabel'] ?? 'Preis auf Anfrage',
+                'provided' => true, 'isDemo' => false,
                 'status' => 'Lokaler Anfrageentwurf · nicht bestellt', 'catalogPage' => (int) $row['catalogPage'],
             ]);
             $record = $this->em->find(AdvertisingProduct::class, $id);

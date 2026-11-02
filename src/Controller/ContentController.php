@@ -29,7 +29,7 @@ final class ContentController extends PortalController
         $documents = $this->store->visible(Document::class, $this->user());
         $hasProvided = (bool) array_filter($documents, static fn (Record $d): bool => (bool) ($d->data['provided'] ?? false));
         $showDemo = $request->query->getBoolean('demo');
-        if ($hasProvided && !$showDemo) $documents = array_values(array_filter($documents, static fn (Record $d): bool => (bool) ($d->data['provided'] ?? false)));
+        if ($hasProvided && !$showDemo) $documents = array_values(array_filter($documents, static fn (Record $d): bool => !empty($d->data['provided']) || empty($d->data['isDemo'])));
         $q = mb_substr(trim((string) $request->query->get('q', '')), 0, 200);
         $category = (string) $request->query->get('category', '');
         $subfolder = (string) $request->query->get('folder', '');
@@ -201,14 +201,17 @@ final class ContentController extends PortalController
     }
 
     #[Route('/network', name: 'app_network', methods: ['GET'])]
-    public function network(Request $request): Response
+    public function network(Request $request, \App\Service\PartnerMap $map, \App\Service\ContactDirectory $directory): Response
     {
         $query = mb_strtolower(trim((string) $request->query->get('q', '')));
         $partners = array_values(array_filter(
             $this->store->visible(PartnerProfile::class, $this->user()),
             static fn (Record $p): bool => !empty($p->data['visibleToPartners']) && ($query === '' || str_contains(mb_strtolower($p->title.' '.($p->data['region'] ?? '')), $query))
         ));
-        return $this->page('content/network.html.twig', ['partners' => $partners, 'q' => $query]);
+        $locations=[];$names=[];$contacts=array_column($directory->contacts($this->user()),null,'id');
+        $partners=array_values(array_filter($partners,function($p){$id=$p->data['userId']??null;if(!$id)return true;$u=$this->store->em()->find(\App\Entity\User::class,$id);return $u&&$u->active&&$u->tenantId===$this->user()->tenantId;}));
+        foreach($partners as $partner){$location=$map->location($partner);if($location)$locations[$partner->id]=$location;}
+        return $this->page('content/network.html.twig', ['partners' => $partners, 'locations'=>$locations,'contacts'=>$contacts,'q' => $query]);
     }
 
     #[Route('/preferences/{kind}/{type}/{id}', name: 'app_content_preference', methods: ['POST'])]

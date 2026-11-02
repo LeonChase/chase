@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}KI-Tools{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="/assets/toolbox.css">{% endblock %}
+{% block body %}<section class="toolbox-home">
+<header class="toolbox-heading"><h1>KI-Tools</h1><span class="toolbox-mode">Werkzeugkasten</span></header>
+<div class="toolbox-grid">
+{% for card in [
+ ['texts','file-text','Exposé & Texte','Aus deinen Fakten einen bearbeitbaren Textentwurf erstellen.','Textdemo'],
+ ['images','images','Bilder bearbeiten','Helligkeit, Kontrast und Farben ändern; als PNG herunterladen.','Lokal verfügbar'],
+ ['documents','check-square','Unterlagen prüfen','Originaldatei, eigene Prüfliste und Notizen zusammenhalten.','Manuelle Prüfung'],
+ ['workflow/social','megaphone','Social Media','Objektdaten und vorhandene Bilder für einen Beitrag nutzen.','Textdemo'],
+ ['workflow/staging','home','Home Staging','Einrichtungswünsche mit Objektfotos vorbereiten.','Anbieter fehlt'],
+ ['workflow/floorplan','layers','Grundrisse','Originalgrundrisse und Änderungswünsche zusammenstellen.','Anbieter fehlt'],
+ ['workflow/redaction','shield','Dokumentenschwärzung','Sensible Stellen und nötige Schwärzungen dokumentieren.','Anbieter fehlt'],
+ ['workflow/video','images','Bild zu Video','Bilder auswählen und ein Storyboard vorbereiten.','Anbieter fehlt']
+] %}<a href="/tools/{{ card[0] }}" class="toolbox-card"><span class="toolbox-card-icon">{{ icon(card[1]) }}</span><span class="toolbox-card-status">{{ card[4] }}</span><h2>{{ card[2] }}</h2><p>{{ card[3] }}</p><span class="toolbox-card-arrow">{{ icon('arrow-up-right') }}</span></a>{% endfor %}
+</div>
+<div class="toolbox-footnote">Objektbezogene Werkzeuge findest du auch direkt in der <a href="/properties">Immobilienakte {{ icon('arrow-right') }}</a>.</div>
+</section>{% endblock %}

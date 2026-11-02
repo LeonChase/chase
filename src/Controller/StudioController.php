@@ -30,9 +30,11 @@ final class StudioController extends PortalController
     }
 
     #[Route('/studio/generate', name: 'studio_generate', methods: ['POST'])]
+    #[Route('/tools/texts/generate', name: 'toolbox_generate', methods: ['POST'])]
     public function generate(Request $request): Response
     {
         $this->token($request);
+        $entryRoute=$request->attributes->get('_route')==='toolbox_generate'?'toolbox_texts':'studio';
         $tool = $request->request->getString('tool', 'expose');
         $tone = $request->request->getString('tone', 'sachlich');
         if (!isset(DemoTextProvider::TOOLS[$tool], DemoTextProvider::TONES[$tone])) { throw $this->createNotFoundException('Unbekanntes Werkzeug.'); }
@@ -45,7 +47,7 @@ final class StudioController extends PortalController
                 $value = str_replace(',', '.', trim($request->request->getString($key)));
                 if ($value !== '' && (!is_numeric($value) || !is_finite((float) $value) || (float) $value <= 0 || (float) $value > 1000000000 || ($key === 'yearBuilt' && ((float) $value < 1000 || (float) $value > 2200 || floor((float)$value) != (float)$value)))) {
                     $this->addFlash('error', 'Bitte die Zahlenangaben prüfen. Es sind nur positive, plausible Werte erlaubt.');
-                    return $this->redirectToRoute('studio', ['tool' => $tool]);
+                    return $this->redirectToRoute($entryRoute, ['tool' => $tool]);
                 }
                 $facts[$key] = $value === '' ? null : (float) $value;
             }
@@ -68,13 +70,14 @@ final class StudioController extends PortalController
             });
         } catch (\DomainException $exception) {
             $this->addFlash('error', $exception->getMessage());
-            return $this->redirectToRoute('studio', ['tool' => $tool]);
+            return $this->redirectToRoute($entryRoute, ['tool' => $tool]);
         }
         $this->addFlash('success', 'Ihr Demo-Text wurde erstellt und als bearbeitbarer Entwurf gespeichert. Ein Demo-Credit wurde verwendet; tatsächliche Kosten: 0,00 €.');
-        return $this->redirectToRoute($tool === 'social' ? 'marketing_edit' : 'studio_edit', ['id' => $post->id]);
+        return $this->redirectToRoute($entryRoute==='toolbox_texts'?'toolbox_text_edit':($tool === 'social' ? 'marketing_edit' : 'studio_edit'), ['id' => $post->id]);
     }
 
     #[Route('/studio/content/{id}', name: 'studio_edit', methods: ['GET', 'POST'])]
+    #[Route('/tools/texts/{id}/edit', name:'toolbox_text_edit',methods:['GET','POST'])]
     #[Route('/marketing/{id}/edit', name: 'marketing_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, string $id): Response
     {
@@ -104,7 +107,7 @@ final class StudioController extends PortalController
                 $this->save($post);
                 $this->audit('content.updated', $post->id);
                 $this->addFlash('success', 'Version '.$version.' gespeichert. Eine Planung bleibt ausschließlich intern.');
-                return $this->redirectToRoute($this->isMarketing($post) ? 'marketing_edit' : 'studio_edit', ['id' => $id]);
+                return $this->redirectToRoute($request->attributes->get('_route')==='toolbox_text_edit'?'toolbox_text_edit':($this->isMarketing($post) ? 'marketing_edit' : 'studio_edit'), ['id' => $id]);
             }
         }
         $sourceProperty = null;
@@ -112,7 +115,7 @@ final class StudioController extends PortalController
             try { $sourceProperty = $this->store->findVisible(Property::class, $post->data['propertyId'], $this->user()); }
             catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException) { /* The saved text remains usable if its source is removed or no longer shared. */ }
         }
-        return $this->page('studio/edit.html.twig', ['post' => $post, 'error' => $error, 'sourceProperty' => $sourceProperty, 'isMarketing' => $this->isMarketing($post)]);
+        return $this->page($request->attributes->get('_route')==='toolbox_text_edit'?'toolbox/text_edit.html.twig':'studio/edit.html.twig', ['post' => $post, 'error' => $error, 'sourceProperty' => $sourceProperty, 'isMarketing' => $this->isMarketing($post)]);
     }
 
     #[Route('/studio/content/{id}/export', name: 'studio_export', methods: ['GET'])]

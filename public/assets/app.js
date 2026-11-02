@@ -28,9 +28,23 @@
     document.querySelector('[data-open-sidebar]')?.addEventListener('click', () => sidebarState(!document.body.classList.contains('nav-open')));
     document.querySelectorAll('[data-close-sidebar]').forEach(button => button.addEventListener('click', () => sidebarState(false)));
     document.querySelectorAll('.sidebar a').forEach(link => link.addEventListener('click', () => { if (window.innerWidth <= 800) sidebarState(false); }));
-    const collapse = document.querySelector('[data-toggle-sidebar]');
-    const updateCollapse = () => { const collapsed = root.classList.contains('sidebar-collapsed'); collapse?.setAttribute('aria-expanded', String(!collapsed)); collapse?.setAttribute('aria-label', collapsed ? 'Seitenleiste ausklappen' : 'Seitenleiste einklappen'); };
-    updateCollapse(); collapse?.addEventListener('click', () => { root.classList.toggle('sidebar-collapsed'); storage.set('chase-sidebar', root.classList.contains('sidebar-collapsed') ? 'collapsed' : 'expanded'); updateCollapse(); });
+    const pin = document.querySelector('[data-pin-sidebar]');
+    const pinned = () => storage.get('chase-sidebar-pinned') === 'true';
+    const updatePin = () => {
+        root.classList.toggle('sidebar-collapsed', !pinned());
+        pin?.setAttribute('aria-pressed', String(pinned()));
+        pin?.setAttribute('aria-label', pinned() ? 'Fixierung lösen' : 'Seitenleiste fixieren');
+        pin?.setAttribute('title', pinned() ? 'Fixierung lösen' : 'Seitenleiste fixieren');
+        if (pin?.querySelector('span')) pin.querySelector('span').textContent = pinned() ? 'Fixierung lösen' : 'Fixieren';
+    };
+    const peek = open => root.classList.toggle('sidebar-peek', open && !pinned() && innerWidth > 800);
+    updatePin();
+    pin?.addEventListener('click', () => { storage.set('chase-sidebar-pinned', pinned() ? 'false' : 'true'); updatePin(); peek(sidebar?.matches(':hover') || sidebar?.contains(document.activeElement)); });
+    sidebar?.addEventListener('pointerenter', () => peek(true));
+    sidebar?.addEventListener('pointerleave', () => peek(Boolean(sidebar.querySelector(':focus-visible'))));
+    sidebar?.addEventListener('focusin', () => peek(true));
+    sidebar?.addEventListener('focusout', event => { if (!sidebar.contains(event.relatedTarget)) peek(sidebar.matches(':hover')); });
+    window.addEventListener('resize', () => { if(innerWidth<=800)peek(false); });
     const profileButton = document.querySelector('[data-profile-toggle]'); const profileMenu = document.querySelector('#profile-menu');
     const closeProfile = () => { if (profileMenu) profileMenu.hidden = true; profileButton?.setAttribute('aria-expanded', 'false'); };
     profileButton?.addEventListener('click', () => { if (!profileMenu) return; const open = profileMenu.hidden; profileMenu.hidden = !open; profileButton.setAttribute('aria-expanded', String(open)); });

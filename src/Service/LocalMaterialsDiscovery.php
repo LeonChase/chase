@@ -12,15 +12,26 @@ final class LocalMaterialsDiscovery
     {
         $explicit = getenv('CHASE_MATERIALS_ZIP');
         if (is_string($explicit) && $explicit !== '' && $this->allowed($explicit)) return realpath($explicit) ?: $explicit;
-        foreach ([$this->projectDir.'/var/materials', $this->projectDir.'/var/materials/incoming', $this->projectDir.'/var/materials/source'] as $directory) {
-            $found = $this->inDirectory($directory);
-            if ($found !== null) return $found;
+        return $this->newest($downloads, '/^Unterlagen(?:_Co)?(?:\s*\(\d+\))?\.zip$/iD');
+    }
+
+    public function findCatalog(?array $downloads = null): ?string
+    {
+        $explicit = getenv('CHASE_CATALOG_PDF');
+        if (is_string($explicit) && $explicit !== '' && $this->allowed($explicit)) return realpath($explicit) ?: $explicit;
+        return $this->newest($downloads, '/^Werbekatalog(?:\s*\(\d+\))?\.pdf$/iD');
+    }
+
+    private function newest(?array $downloads, string $pattern): ?string
+    {
+        $directories = [$this->projectDir.'/var/materials', $this->projectDir.'/var/materials/incoming', $this->projectDir.'/var/materials/source'];
+        $matches = [];
+        foreach (array_unique([...$directories, ...($downloads ?? $this->currentDownloads())]) as $directory) {
+            if (!is_dir($directory) || !is_readable($directory)) continue;
+            foreach (new \DirectoryIterator($directory) as $file) if (preg_match($pattern, $file->getFilename()) && $this->allowed($file->getPathname())) $matches[] = $file->getPathname();
         }
-        foreach ($downloads ?? $this->currentDownloads() as $directory) {
-            $found = $this->inDirectory($directory);
-            if ($found !== null) return $found;
-        }
-        return null;
+        usort($matches, static fn (string $a, string $b): int => filemtime($b) <=> filemtime($a));
+        return $matches[0] ?? null;
     }
 
     /** Convert an existing private extraction into a temporary private ZIP; no arbitrary directories. */
@@ -58,17 +69,6 @@ final class LocalMaterialsDiscovery
         if (is_file($archive) && hash_file('sha256', $archive) === hash_file('sha256', $temporary)) { unlink($temporary); return $archive; }
         if (!rename($temporary, $archive)) { @unlink($temporary); throw new \RuntimeException('Das private Archiv konnte nicht gespeichert werden.'); }
         return $archive;
-    }
-
-    private function inDirectory(string $directory): ?string
-    {
-        if (!is_dir($directory) || !is_readable($directory)) return null;
-        $matches = [];
-        foreach (new \DirectoryIterator($directory) as $file) {
-            if (preg_match('/^Unterlagen_Co(?:\s*\(\d+\))?\.zip$/iD', $file->getFilename()) && $this->allowed($file->getPathname())) $matches[] = $file->getPathname();
-        }
-        usort($matches, static fn (string $a, string $b): int => filemtime($b) <=> filemtime($a));
-        return $matches[0] ?? null;
     }
 
     private function allowed(string $path): bool { return is_file($path) && is_readable($path) && !is_link($path) && filesize($path) <= 128 * 1024 * 1024; }

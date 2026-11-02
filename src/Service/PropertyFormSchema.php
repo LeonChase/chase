@@ -120,6 +120,62 @@ final class PropertyFormSchema
         ];
     }
 
+    /** Small, explicit pages keep the intake form usable without expanding long field groups. */
+    public static function wizardPages(): array
+    {
+        $all = self::fields();
+        $definitions = [
+            'start' => ['Start', 'start', ['title','propertyType','marketingType','status','city','region']],
+            'address' => ['Anschrift', 'start', ['street','houseNumber','postalCode','district','country','address']],
+            'contacts' => ['Ansprechpartner', 'contacts', ['contactName','contactEmail','contactPhone']],
+            'owners' => ['Eigentümer', 'contacts', ['ownerName','ownerEmail','ownerPhone','ownerAddress']],
+            'second-owner' => ['Weitere Eigentümer', 'contacts', ['secondOwnerName','secondOwnerEmail','secondOwnerPhone']],
+            'management' => ['Hausverwaltung', 'contacts', ['managementName','managementEmail','managementPhone']],
+            'contact-notes' => ['Vertrauliche Angaben', 'contacts', ['sellingReason','privacyNotes']],
+            'base' => ['Flächen & Zimmer', 'base', ['internalId','usageType','yearBuilt','areaSqm','usableAreaSqm','plotSqm','rooms']],
+            'layout' => ['Aufteilung', 'base', ['bgfSqm','bedrooms','bathrooms','floor','buildingFloors','units','totalUnits']],
+            'usage' => ['Nutzung & Übergabe', 'base', ['propertySubtype','availability','availableFrom','occupancy','parkingSpaces','parkingType']],
+            'leasehold' => ['Erbbaurecht', 'base', ['leasehold','leaseholdUntil','annualGroundRentEur']],
+            'equipment' => ['Ausstattung', 'equipment', ['features']],
+            'heating' => ['Heizung', 'equipment', ['heatingType','energyCarrier','heatingYear','warmWater']],
+            'energy' => ['Energieausweis', 'equipment', ['energyType','energyValue','energyClass','energyCreatedAt','energyValidUntil','energyYearBuilt']],
+            'energy-notes' => ['Energieangaben', 'equipment', ['energyData']],
+            'construction' => ['Gebäude', 'equipment', ['constructionType','roofType','roofCovering','facade','insulation','basement','listedMonument']],
+            'fittings' => ['Innenausbau', 'equipment', ['windows','glazing','shutters','floorCoverings','kitchen','sanitary']],
+            'technology' => ['Technik', 'equipment', ['internet','photovoltaics']],
+            'condition' => ['Zustand', 'condition', ['condition','lastModernisationYear','defects']],
+            'modernisations' => ['Modernisierungen', 'condition', []],
+            'notes' => ['Interne Notizen', 'condition', ['notes']],
+            'images' => ['Bilder', 'files', []],
+            'documents' => ['Unterlagen', 'files', []],
+            'pricing' => ['Preis & Kosten', 'pricing', ['priceEur','rentEur','serviceChargeEur','annualNetRentEur','hoaFeeEur','maintenanceReserveEur','negotiable']],
+            'commission' => ['Provision', 'pricing', ['insideCommissionPercent','outsideCommissionPercent','commissionVatIncluded','insideCommissionNote','outsideCommissionNote']],
+            'release' => ['Quelle & Freigabe', 'pricing', ['dataSharing','source']],
+            'texts' => ['Exposé-Texte', 'tools', []],
+            'marketing' => ['Social & Vermarktung', 'tools', []],
+            'review' => ['Prüfung & Aufgaben', 'tools', []],
+        ];
+        $pages = [];
+        foreach ($definitions as $id => [$title, $chapter, $names]) {
+            $pages[$id] = ['title'=>$title, 'chapter'=>$chapter, 'fields'=>array_intersect_key($all, array_flip($names))];
+        }
+        return $pages;
+    }
+
+    public static function chapters(): array
+    {
+        return [
+            'start'=>['title'=>'Start', 'icon'=>'house', 'first'=>'start'],
+            'contacts'=>['title'=>'Ansprechpartner', 'icon'=>'users', 'first'=>'contacts'],
+            'base'=>['title'=>'Grunddaten', 'icon'=>'building', 'first'=>'base'],
+            'equipment'=>['title'=>'Ausstattung', 'icon'=>'layers', 'first'=>'equipment'],
+            'condition'=>['title'=>'Zustand', 'icon'=>'check-square', 'first'=>'condition'],
+            'files'=>['title'=>'Bilder & Unterlagen', 'icon'=>'images', 'first'=>'images'],
+            'pricing'=>['title'=>'Preis & Provision', 'icon'=>'wallet', 'first'=>'pricing'],
+            'tools'=>['title'=>'KI & Vermarktung', 'icon'=>'sparkles', 'first'=>'texts'],
+        ];
+    }
+
     public static function fields(): array
     {
         $fields = [];

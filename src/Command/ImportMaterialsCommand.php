@@ -17,14 +17,20 @@ final class ImportMaterialsCommand extends Command
 
     protected function configure(): void
     {
-        $this->addArgument('zip', InputArgument::REQUIRED, 'Absoluter oder relativer Pfad zum lokalen ZIP-Archiv.');
+        $this->addArgument('zip', InputArgument::REQUIRED, 'Absoluter oder relativer Pfad zum lokalen Unterlagen-ZIP oder Werbekatalog-PDF.');
         $this->addOption('tenant', null, InputOption::VALUE_REQUIRED, 'Zielmandant; nur durch berechtigte lokale Administration ausführen.', 'chase-demo');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
-            $result = $this->importer->import((string) $input->getArgument('zip'), (string) $input->getOption('tenant'));
+            $path = (string) $input->getArgument('zip');
+            if (strtolower(pathinfo($path, PATHINFO_EXTENSION)) === 'pdf') {
+                $result = $this->importer->importCatalog($path, (string) $input->getOption('tenant'));
+                $output->writeln($result['changed'] ? 'Werbekatalog übernommen.' : 'Werbekatalog unverändert.');
+                return Command::SUCCESS;
+            }
+            $result = $this->importer->import($path, (string) $input->getOption('tenant'));
             $output->writeln(sprintf('Unterlagen: %d neu, %d aktualisiert, %d unverändert, %d übersprungen.', $result['created'], $result['updated'], $result['unchanged'], $result['skipped']));
             if ($result['catalogId']) $output->writeln('Original-Werbekatalog: '.$result['catalogId']);
             if ($result['lexiconId']) $output->writeln('Original-Immobilienlexikon: '.$result['lexiconId']);

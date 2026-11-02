@@ -20,11 +20,12 @@ final class CatalogController extends PortalController
         $all=$this->products();$cart=$this->cartSelection($all);$favorites=$this->preferenceTargets('favorite');$document=$this->catalogDocument();$catalog=$this->catalogStatus($document);
         $q=mb_substr(trim($request->query->getString('q')),0,200);$category=$request->query->getString('category');$favoriteOnly=$request->query->getBoolean('favorites');$page=max(1,min($catalog['pages'],$request->query->getInt('page',1)));
         $categoryRecords=$this->store->visible(CatalogCategory::class,$this->user());$categories=$this->categoryNames($all,$categoryRecords);$metadata=[];
-        foreach($all as $product){$data=$this->assets->details($product);$data['defaultQuantity']=max(1,min(9999,(int)($data['defaultQuantity']??1)));$data['hasImage']=$this->imagePath($product)!==null;$metadata[$product->id]=$data;}
+        foreach($all as $product){$data=$this->assets->details($product);$data['defaultQuantity']=1;$data['hasImage']=$this->imagePath($product)!==null;$metadata[$product->id]=$data;}
         $items=array_values(array_filter($all,fn(Record $p):bool=>($q===''||str_contains(mb_strtolower($p->title.' '.($p->data['category']??'')),mb_strtolower($q)))&&($category===''||($p->data['category']??'')===$category)&&(!$favoriteOnly||in_array($p->id,$favorites,true))));
-        usort($items,fn($a,$b)=>strcasecmp($a->data['category']??'',$b->data['category']??'')?:strcasecmp($a->title,$b->title));
+        $sort=in_array($request->query->getString('sort'),['name','category','newest'],true)?$request->query->getString('sort'):'category';
+        usort($items,fn($a,$b)=>match($sort){'newest'=>$b->createdAt<=>$a->createdAt,'name'=>strcasecmp($a->title,$b->title),default=>strcasecmp($a->data['category']??'',$b->data['category']??'')?:strcasecmp($a->title,$b->title)});
         $requests=$this->preferences('advertising_request');$cartCount=count($cart);$cartQuantity=array_sum(array_column($cart,'quantity'));$isSearch=$q!==''||$category!==''||$favoriteOnly;
-        return $this->page('content/advertising.html.twig',compact('all','items','metadata','cart','cartCount','cartQuantity','favorites','document','catalog','q','category','categories','favoriteOnly','page','isSearch','requests'));
+        return $this->page('content/advertising.html.twig',compact('all','items','metadata','cart','cartCount','cartQuantity','favorites','document','catalog','q','category','categories','favoriteOnly','page','isSearch','requests','sort'));
     }
 
     #[Route('/advertising/original',name:'app_advertising_original',methods:['GET'])]
@@ -59,7 +60,7 @@ final class CatalogController extends PortalController
         $all=$this->products();$cart=$this->cartSelection($all);
         if($request->isMethod('POST')){
             $this->token($request);$raw=$request->request->all('quantities');$valid=[];
-            foreach($raw as $id=>$quantity){$this->productFrom($all,(string)$id);if(!$this->validQuantity($quantity,true)){$this->addFlash('error','Bitte ganze Mengen zwischen 0 und 9999 angeben. Ihre Auswahl wurde nicht verändert.');return $this->redirectToRoute('app_advertising_cart');}if((int)$quantity>0)$valid[(string)$id]=(int)$quantity;}
+            foreach($raw as $id=>$quantity){$this->productFrom($all,(string)$id);if(!$this->validQuantity($quantity,true)){$this->addFlash('error','Bitte ganze Mengen zwischen 0 und 999999999 angeben. Ihre Auswahl wurde nicht verändert.');return $this->redirectToRoute('app_advertising_cart');}if((int)$quantity>0)$valid[(string)$id]=(int)$quantity;}
             $this->saveCart($valid);$this->addFlash('success','Ihre Auswahl wurde gespeichert.');return $this->redirectToRoute('app_advertising_cart');
         }
         $cartCount=count($cart);$cartQuantity=array_sum(array_column($cart,'quantity'));$requests=$this->preferences('advertising_request');
@@ -70,9 +71,9 @@ final class CatalogController extends PortalController
     public function cartItem(Request $request,string $id):Response
     {
         $this->token($request);$all=$this->products();$this->productFrom($all,$id);$quantity=$request->request->get('quantity','1');$replace=$request->request->getString('mode')==='replace';
-        if(!$this->validQuantity($quantity,$replace)){$this->addFlash('error','Bitte eine ganze Menge zwischen '.($replace?'0':'1').' und 9999 angeben.');return $this->redirectToRoute('app_advertising_cart');}
+        if(!$this->validQuantity($quantity,$replace)){$this->addFlash('error','Bitte eine ganze Menge zwischen '.($replace?'0':'1').' und 999999999 angeben.');return $this->redirectToRoute('app_advertising_cart');}
         $selection=[];foreach($this->cartSelection($all) as $entry)$selection[$entry['product']->id]=$entry['quantity'];$total=$replace?(int)$quantity:($selection[$id]??0)+(int)$quantity;
-        if($total>9999){$this->addFlash('error','Pro Design sind höchstens 9999 Stück möglich. Die Auswahl bleibt unverändert.');return $this->redirectToRoute('app_advertising_cart');}
+        if($total>999999999){$this->addFlash('error','Pro Design sind höchstens 999999999 Stück möglich. Die Auswahl bleibt unverändert.');return $this->redirectToRoute('app_advertising_cart');}
         if($total===0)unset($selection[$id]);else $selection[$id]=$total;$this->saveCart($selection);$this->addFlash('success',$total===0?'Design aus Ihrer Auswahl entfernt.':'Das Design liegt jetzt in Ihrer Auswahl.');
         return $request->request->getString('back')==='cart'?$this->redirectToRoute('app_advertising_cart'):$this->catalogReturn($request);
     }
@@ -94,7 +95,7 @@ final class CatalogController extends PortalController
     {
         $this->token($request);$all=$this->products();$items=[];$fromCart=!$request->request->has('quantities');$quantities=$fromCart?[]:$request->request->all('quantities');
         if($fromCart)foreach($this->cartSelection($all) as $entry)$quantities[$entry['product']->id]=$entry['quantity'];
-        foreach($quantities as $id=>$raw){$product=$this->productFrom($all,(string)$id);if(!$this->validQuantity($raw,true)){$this->addFlash('error','Bitte geben Sie ganze Mengen zwischen 0 und 9999 an.');return $this->redirectToRoute($fromCart?'app_advertising_cart':'app_advertising');}if((int)$raw>0)$items[]=['id'=>$product->id,'title'=>$product->title,'quantity'=>(int)$raw,'unit'=>$product->data['unit']??'Stück','catalogPage'=>$product->data['catalogPage']??null,'sourceDocumentId'=>$product->data['sourceDocumentId']??null];}
+        foreach($quantities as $id=>$raw){$product=$this->productFrom($all,(string)$id);if(!$this->validQuantity($raw,true)){$this->addFlash('error','Bitte geben Sie ganze Mengen zwischen 0 und 999999999 an.');return $this->redirectToRoute($fromCart?'app_advertising_cart':'app_advertising');}if((int)$raw>0)$items[]=['id'=>$product->id,'title'=>$product->title,'quantity'=>(int)$raw,'unit'=>$product->data['unit']??'Stück','catalogPage'=>$product->data['catalogPage']??null,'sourceDocumentId'=>$product->data['sourceDocumentId']??null];}
         $note=trim($request->request->getString('note'));if(!$items||mb_strlen($note)>2000){$this->addFlash('error',$items?'Die Notiz darf höchstens 2000 Zeichen enthalten.':'Wählen Sie zuerst mindestens ein Design mit einer Menge aus.');return $this->redirectToRoute($fromCart?'app_advertising_cart':'app_advertising');}
         $user=$this->user();$draft=new UserPreference(['title'=>'Werbemittel-Anfrage vom '.(new \DateTimeImmutable('now',new \DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i'),'kind'=>'advertising_request','items'=>$items,'note'=>$note,'status'=>'Lokaler Entwurf','sent'=>false,'personalizationPreview'=>$request->request->getBoolean('personalize'),'partnerName'=>$user->name,'partnerRegion'=>$user->region],$user->id,$user->tenantId);
         $this->save($draft);$this->audit('advertising.draft.created',$draft->id);$this->addFlash('success','Ihre Angebotsanfrage ist lokal gespeichert. Sie können sie für die Abstimmung herunterladen. Es wurde nichts bestellt oder versendet.');return $this->redirectToRoute('app_advertising',['tab'=>'requests']);
@@ -106,7 +107,7 @@ final class CatalogController extends PortalController
         $draft=$this->owned(UserPreference::class,$id);if($draft->ownerId!==$this->user()->id||($draft->data['kind']??'')!=='advertising_request')throw $this->createNotFoundException();
         $text="CHASE · LOKALER ANFRAGEENTWURF\nKeine Bestellung · nicht versendet\n\n";
         foreach($draft->data['items']??[] as $item)$text.=$item['quantity'].' × '.$item['title'].' ('.$item['unit'].')'.(!empty($item['catalogPage'])?' · Katalogseite '.$item['catalogPage']:'')."\n";
-        $text.="\nPartner: ".($draft->data['partnerName']??'')."\nRegion: ".($draft->data['partnerRegion']??'')."\nNotiz: ".($draft->data['note']??'')."\n\nAlle Preise auf Anfrage. Für Werbemittel sind im Katalog keine Bestellpreise angegeben. Flyeralarm und ein automatischer Angebotsversand sind nicht verbunden. Dieser Export löst keine Bestellung aus.\n";
+        $text.="\nPartner: ".($draft->data['partnerName']??'')."\nRegion: ".($draft->data['partnerRegion']??'')."\nNotiz: ".($draft->data['note']??'')."\n\nFür Werbemittel sind im Katalog keine Bestellpreise angegeben. Flyeralarm und ein automatischer Angebotsversand sind nicht verbunden. Dieser Export löst keine Bestellung aus.\n";
         return new Response($text,200,['Content-Type'=>'text/plain; charset=UTF-8','Content-Disposition'=>HeaderUtils::makeDisposition('attachment','CHASE-Anfrageentwurf-'.$draft->id.'.txt'),'Cache-Control'=>'private, no-store','X-Content-Type-Options'=>'nosniff']);
     }
 
@@ -142,7 +143,7 @@ final class CatalogController extends PortalController
         if($request->isMethod('POST')){
             $this->token($request);$title=trim($request->request->getString('title'));$category=$request->request->getString('category');$quantity=$request->request->get('defaultQuantity',1);$unit=trim($request->request->getString('unit','Stück'));
             $data=array_merge($data,['title'=>$title,'category'=>$category,'defaultQuantity'=>$quantity,'unit'=>$unit,'active'=>$request->request->getBoolean('active')]);
-            if($title===''||mb_strlen($title)>150||!in_array($category,$categories,true)||!$this->validQuantity($quantity,false)||$unit===''||mb_strlen($unit)>30)$error='Bitte Titel, Kategorie, Einheit und eine Menge von 1–9999 prüfen.';
+            if($title===''||mb_strlen($title)>150||!in_array($category,$categories,true)||!$this->validQuantity($quantity,false)||$unit===''||mb_strlen($unit)>30)$error='Bitte Titel, Kategorie, Einheit und eine Menge von 1–999999999 prüfen.';
             $quote=['provider'=>trim($request->request->getString('quoteProvider')),'url'=>trim($request->request->getString('quoteUrl')),'date'=>$request->request->getString('quoteDate'),'quantity'=>$request->request->getString('quoteQuantity'),'amount'=>str_replace(',','.',$request->request->getString('quoteAmount')),'taxMode'=>$request->request->getString('quoteTaxMode','gross')];
             if($quote['amount']!==''){
                 $date=\DateTimeImmutable::createFromFormat('!Y-m-d',$quote['date']);
@@ -163,6 +164,7 @@ final class CatalogController extends PortalController
     private function imagePath(Record $product):?string
     {
         if(!empty($product->data['imageFilePath'])&&!empty($product->data['imageHash'])){$image=new Document(['filePath'=>$product->data['imageFilePath'],'sourceHash'=>$product->data['imageHash']],null,$product->tenantId);return $this->materials->filePath($image);}
+        if($bundled=$this->assets->bundledPath($product))return $bundled;
         $source=$product->data['sourceDocumentId']??'';if($source==='')return null;$document=$this->store->em()->find(Document::class,$source);if(!$document||!$this->store->canAccess($document,$this->user())||!$this->materials->filePath($document)||($product->data['sourceHash']??'')!==($document->data['sourceHash']??''))return null;return $this->assets->renderedPath($product);
     }
 
@@ -172,8 +174,8 @@ final class CatalogController extends PortalController
     private function preferenceTargets(string $kind):array{return array_values(array_unique(array_filter(array_map(fn($p)=>$p->data['targetId']??null,$this->preferences($kind)))));}
     private function cartSelection(array $products):array{$record=$this->preferences('advertising_cart')[0]??null;$selection=$record?->data['items']??[];$result=[];foreach($products as $product){$qty=$selection[$product->id]??0;if($this->validQuantity($qty,false))$result[]=['product'=>$product,'quantity'=>(int)$qty];}return $result;}
     private function saveCart(array $selection):void{$record=$this->preferences('advertising_cart')[0]??new UserPreference(['title'=>'Meine Werbemittelauswahl','kind'=>'advertising_cart','items'=>[]],$this->user()->id,$this->user()->tenantId);$record->data['items']=$selection;$this->save($record);}
-    private function validQuantity(mixed $raw,bool $zero):bool{return is_scalar($raw)&&preg_match('/^\d{1,4}$/D',(string)$raw)&&($zero?(int)$raw>=0:(int)$raw>0)&&(int)$raw<=9999;}
-    private function catalogReturn(Request $request):Response{$parameters=['page'=>max(1,min(100,$request->request->getInt('page',1)))];foreach(['q','category'] as $field){$value=mb_substr(trim($request->request->getString($field)),0,200);if($value!=='')$parameters[$field]=$value;}if($request->request->getBoolean('favorites'))$parameters['favorites']=1;return $this->redirectToRoute('app_advertising',$parameters);}
+    private function validQuantity(mixed $raw,bool $zero):bool{return is_scalar($raw)&&preg_match('/^\d{1,9}$/D',(string)$raw)&&($zero?(int)$raw>=0:(int)$raw>0)&&(int)$raw<=999999999;}
+    private function catalogReturn(Request $request):Response{$parameters=['page'=>max(1,min(100,$request->request->getInt('page',1)))];foreach(['q','category','sort'] as $field){$value=mb_substr(trim($request->request->getString($field)),0,200);if($value!=='')$parameters[$field]=$value;}if($request->request->getBoolean('favorites'))$parameters['favorites']=1;return $this->redirectToRoute('app_advertising',$parameters);}
     private function catalogDocument():?Record{foreach($this->store->visible(Document::class,$this->user()) as $record)if(($record->data['catalogOriginal']??false)&&($record->data['provided']??false))return $record;return null;}
     private function previewDirectory(Record $document):string{return $this->projectDir.'/var/materials/catalog/'.substr(hash('sha256',$this->user()->tenantId),0,16).'/'.$document->data['sourceHash'];}
     private function catalogStatus(?Record $document):array

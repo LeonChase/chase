@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}{% block title %}Bilder bearbeiten{% endblock %}
+{% block stylesheets %}<link rel="stylesheet" href="/assets/toolbox.css">{% endblock %}
+{% block body %}<section class="toolbox-workspace image-tool" data-image-editor>
+{% include 'toolbox/_head.html.twig' with {heading:'Bilder bearbeiten',mode:'Lokal im Browser · kein Upload'} %}
+<div class="toolbox-image-layout"><aside class="toolbox-controls">
+<button class="btn btn-primary toolbox-upload-label" type="button" data-image-select>{{ icon('plus') }} Bild auswählen</button><input hidden aria-label="Bilddatei auswählen" id="toolbox-image-input" type="file" accept="image/jpeg,image/png,image/webp"><p class="toolbox-small">JPG, PNG oder WebP · bis 15 MB</p>
+<div class="image-adjustments" data-image-settings inert>
+{% for range in [['brightness','Helligkeit',40,180],['contrast','Kontrast',40,180],['saturate','Sättigung',0,180]] %}{% set field=range[0] %}{% set label=range[1] %}<label class="toolbox-range" for="image-{{ field }}"><span>{{ label }} <output data-image-output="{{ field }}">100 %</output></span><input id="image-{{ field }}" type="range" min="{{ range[2] }}" max="{{ range[3] }}" value="100" data-image-filter="{{ field }}"></label>{% endfor %}
+<div class="image-tool-actions"><button class="btn btn-secondary" type="button" data-image-rotate>{{ icon('refresh-cw') }} Drehen</button><button class="btn btn-secondary" type="button" data-image-reset>Zurücksetzen</button></div>
+</div><button class="btn btn-primary" type="button" data-image-download disabled>{{ icon('download') }} PNG herunterladen</button><p class="toolbox-small" data-image-name></p><p class="toolbox-image-status" data-image-status role="status">Original bleibt unverändert.</p><noscript>Für die lokale Bildbearbeitung bitte JavaScript aktivieren.</noscript>
+</aside><div class="image-canvas-stage"><div class="image-canvas-empty" data-image-empty>{{ icon('images') }}<h2>Dein Bild, dein Feinschliff.</h2><span>Bild auswählen und direkt bearbeiten.</span></div><canvas id="toolbox-canvas" hidden aria-label="Bearbeitete Bildvorschau"></canvas></div></div>
+</section>{% endblock %}{% block javascripts %}<script src="/assets/toolbox.js" defer></script>{% endblock %}

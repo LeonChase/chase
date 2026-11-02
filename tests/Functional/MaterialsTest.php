@@ -78,6 +78,20 @@ final class MaterialsTest extends WebTestCase
         foreach (MaterialsImporter::CATEGORIES as $category) self::assertStringContainsString(htmlspecialchars($category, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'), $this->browser->getResponse()->getContent());
     }
 
+    public function testSeparateCatalogPdfSupersedesZipWithoutDuplicatingDesignsOrLosingAdminEdits(): void
+    {
+        $first = "%PDF-1.4\n% synthetic catalogue one\n%%EOF\n";
+        $second = "%PDF-1.4\n% synthetic catalogue two\n%%EOF\n";
+        $this->importer()->import($this->zip(['6 - Marketing/Werbekatalog.pdf'=>$first]), $this->tenant);
+        $products=$this->em()->getRepository(\App\Entity\AdvertisingProduct::class)->findBy(['tenantId'=>$this->tenant]);self::assertCount(42,$products);
+        $product=$products[0];$id=$product->id;$product->data['adminOverrides']=['title'=>'Eigener Testtitel'];$this->em()->flush();
+        $path=$this->temporary.'/Werbekatalog.pdf';file_put_contents($path,$second);
+        $result=$this->importer()->importCatalog($path,$this->tenant);self::assertTrue($result['changed']);self::assertSame(1,$this->em()->getRepository(Document::class)->count(['tenantId'=>$this->tenant]));self::assertSame(42,$this->em()->getRepository(\App\Entity\AdvertisingProduct::class)->count(['tenantId'=>$this->tenant]));
+        $document=$this->em()->find(Document::class,$result['id']);self::assertSame(hash('sha256',$second),$document->data['sourceHash']);self::assertSame($second,file_get_contents($this->importer()->filePath($document)));self::assertSame('Eigener Testtitel',$this->em()->find(\App\Entity\AdvertisingProduct::class,$id)->title);
+        self::assertFalse($this->importer()->importCatalog($path,$this->tenant)['changed']);
+        file_put_contents($path,'Not a PDF');try{$this->importer()->importCatalog($path,$this->tenant);self::fail('Disguised PDF must fail');}catch(\InvalidArgumentException){self::assertSame(hash('sha256',$second),$document->data['sourceHash']);}
+    }
+
     public function testOriginalHtmlIsAnAttachmentAndForeignTenantAndCorruptedFilesAreDenied(): void
     {
         $source = '1 - Start/Signatur.html'; $bytes = '<!doctype html><script>window.untrustedOriginal=true</script><p>Synthetischer HTML-Test.</p>';

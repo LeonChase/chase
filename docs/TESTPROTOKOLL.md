@@ -1,5 +1,20 @@
 # Testprotokoll · 2. November 2026
 
+## Aktuell: Usability-Update 2.3
+
+Abschließender Gesamtlauf: **199 Tests, 5.043 Assertions erfolgreich**, keine übersprungenen Tests, PHP 8.4.26, 17,4 Sekunden. Alle 81 Twig-Vorlagen und die Service-Konfiguration gültig, Doctrine-Schema synchron, Composer-Konfiguration gültig.
+
+Neue wesentliche Nachweise: Erhalt aller 95 Objektfelder und geführte Maskenseiten; Speichern und Wiederöffnen; alte Leadphase ohne Datenverlust; vereinfachte Aufgaben erhalten ausgelassene Altwerte; unabhängige Texte/Dokumente mit Owner-/Mandanten-/CSRF-Prüfung; 42 authentifizierte Katalogbilder auch ohne private Original-PDF oder Poppler; große freie Mengen; Originalkatalog-Upsert ohne Dubletten und ohne Verlust manueller Produktangaben; aktive opt-in Partnerprofile/Kartengrenzen; persönliche Linkfavoriten; eigene Dokumente werden nicht mit alten Demo-Mustern versteckt.
+
+Chromium: alle 29 Immobilien-Maskenseiten bei 1440×900 und 1280×720 ohne äußeren oder Eingabepanel-Überlauf; alle Bewertungsverfahren einschließlich Rechen-/Einstellungsdialogen und echtem PDF-Download; Aufgaben-/Lead-Anlage und Speicherung; Katalogbilder, Plus/Minus, Menge 12.000 und Sortierung. Standalone-Bildbearbeitung: Helligkeit verändert tatsächliche Pixelwerte von 64 auf 96, Rotation vertauscht 20×10 zu 10×20, erzeugter Download besitzt PNG-Kennung, Reset stellt Original wieder her. Keine Bildübertragung an Server oder KI-Anbieter.
+
+Der allgemeine Browser-Smoke-Test prüft jetzt **24 Modulrouten bei 390 Pixeln**, Anmeldung/Abmeldung, Theme, Rechte und sechs Kacheln in neuer Reihenfolge. Zusätzlicher Nav-/Netzwerktest prüft Maus-Hover, Einklappen beim Verlassen, Fixieren nach Reload, Partnerauswahl, Zoom und Listenwechsel. Keine JavaScript-Fehler oder externen Browseranfragen in diesen Abläufen. Kartenpositionen sind bei Demo-Profilen ausdrücklich ungefähre Regionen, keine echten Bürostandorte.
+
+Upgradeprobe über `scripts/setup`: 0 neue Demodatensätze; vorhandene Datensatzanzahlen, Passwort-Hashes und Zugangsdaten-Datei unverändert. Neuer Starthelfer auf separatem Port gestartet: Login und CSS HTTP 200, kein unbekannter Importbefehl, kein Runtime-Startfehler.
+
+Die folgenden Abschnitte sind historische Prüfläufe.
+
+
 ## Startkorrektur für Ubuntu/WSL · 2. November 2026
 
 Den gemeldeten Fehler `Invalid return value: callable object expected, "int" returned from "public/router.php"` mit `SCRIPT_FILENAME` auf dem Router in einem frischen PHP-Prozess nachgestellt. Der Router setzt jetzt vor der Übergabe ausdrücklich `public/index.php` als Startdatei und gibt deren Anwendung zurück. Keine Änderungen an Composer-Abhängigkeiten oder Nutzerdaten.

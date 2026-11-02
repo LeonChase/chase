@@ -1,6 +1,6 @@
 # Implementierungsstand · 2. November 2026
 
-**Aktuell: [Revision 2.2](REVISION_2_2.md).** Kompakte Arbeitsbereiche, einzelne Objektschritte, Live-Bewertung mit PDF, bildbetonter Katalog mit Kategorien-/Produktpflege, Inline-Aufgaben, Gesprächsansicht und Benachrichtigungsleiste. **180 Tests / 4.697 Assertions erfolgreich.** Details und Grenzen stehen im aktuellen Revisions- und Testprotokoll. Die folgende Meilensteintabelle dokumentiert die Erstversion; ältere Routen bleiben teilweise zur Kompatibilität erhalten.
+**Aktuell: [Revision 2.3](REVISION_2_3.md).** Geführte Immobilienmasken, neue Bewertungsoberfläche, selbstständiger KI-Werkzeugkasten, 42 mitgelieferte Katalogbilder, vereinfachte Aufgaben und Leadphasen, automatisch ausklappbare Navigation, Regionenkarte und Link-Katalog. **199 Tests / 5.043 Assertions erfolgreich.** Websiteabgleich, persönliches Ansprechpartnerfoto und echte Standortdaten bleiben mangels abrufbarer Quelle offen. Die folgende Meilensteintabelle beschreibt die Erstversion; aktuelle Abläufe und Grenzen stehen im Revisionsbericht.
 
 Eigenständige Symfony-7.4-LTS-Anwendung. Sämtliche P0-Kernabläufe sind lokal implementiert und getestet. Zusätzlich sind ausgewählte P1-Erweiterungen umgesetzt. Keine Produktivanbindung oder öffentliche Bereitstellung durchgeführt.
 

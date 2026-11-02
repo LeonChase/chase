@@ -17,19 +17,18 @@
   },
   "modules": [
     {
-      "slug": "dokumente",
-      "title": "Dokumente",
-      "icon": "file-text",
-      "description": "Verträge, Vorlagen und wichtige Unterlagen – zentral an einem Ort.",
-      "cta": "Dokumente ansehen"
+      "slug": "immobilien",
+      "title": "Immobilien",
+      "icon": "building",
+      "description": "Objekte aufnehmen und vermarkten.",
+      "cta": "Immobilien öffnen"
     },
     {
       "slug": "immobilienbewertung",
       "title": "Immobilienbewertung",
       "icon": "house",
       "description": "Objektdaten erfassen und Bewertungen strukturiert vorbereiten.",
-      "cta": "Bewertung starten",
-      "highlight": true
+      "cta": "Bewertung starten"
     },
     {
       "slug": "ki-tools",
@@ -37,6 +36,13 @@
       "icon": "brain-circuit",
       "description": "Exposés, Lagebeschreibungen, Marketingtexte und Prüfhilfen.",
       "cta": "KI-Tools öffnen"
+    },
+    {
+      "slug": "dokumente",
+      "title": "Dokumente",
+      "icon": "file-text",
+      "description": "Verträge, Vorlagen und wichtige Unterlagen – zentral an einem Ort.",
+      "cta": "Dokumente ansehen"
     },
     {
       "slug": "academy",
@@ -51,30 +57,23 @@
       "icon": "megaphone",
       "description": "Werbemittel für die professionelle regionale Vermarktung.",
       "cta": "Werbemittel ansehen"
-    },
-    {
-      "slug": "visualisierung",
-      "title": "Visualisierung",
-      "icon": "images",
-      "description": "Bildoptimierung, virtuelles Home Staging und Grundrisse.",
-      "cta": "Visualisierung öffnen"
     }
   ],
   "appSections": [
     "Dashboard",
-    "Meine Immobilien",
-    "KI-Studio",
-    "Marketing & Social Media",
-    "Akquise & Leads",
+    "Immobilien",
     "Immobilienbewertung",
+    "KI-Tools",
+    "Akquise & Leads",
     "Dokumente",
     "Wissen / Academy",
     "Werbekatalog",
-    "News & Netzwerk",
-    "Aufgaben & Checklisten",
-    "Administration"
+    "Aufgaben",
+    "Partnernetzwerk",
+    "Links & Tools",
+    "Admin-Center"
   ],
-  "designVersion": "2.0",
+  "designVersion": "2.3",
   "demoMode": true,
   "externalApisEnabledByDefault": false
 }

@@ -1,0 +1,220 @@
+{
+  "source": "Vom Nutzer bereitgestellter CHASE Werbekatalog, Seiten 3–13; ausschließlich Produktmotive. Original-PDF bleibt privat.",
+  "sourceHash": "58f9c9ad417ac40a7c0c42a2f98010ead7af7b31aca23ce728b32c4b1dbde596",
+  "compatibleSourceHashes": [
+    "58f9c9ad417ac40a7c0c42a2f98010ead7af7b31aca23ce728b32c4b1dbde596",
+    "79cc089219fac2d6be5e7bb849efb4562ab45c37150689d16594c2fc0911f31a"
+  ],
+  "products": {
+    "page-03-design-01": {
+      "file": "product-page-03-design-01-578c516d.jpg",
+      "sha256": "4b9c061243e0a41bceab13f8befdc777b1af8355b6ae943b10b5d1ebe534e3ec",
+      "page": 3
+    },
+    "page-03-design-02": {
+      "file": "product-page-03-design-02-6a04d3d0.jpg",
+      "sha256": "b6ebf1edcedf9327b76f52fd51970f2007eb8ca6b1b8c7d2ef529726e5177744",
+      "page": 3
+    },
+    "page-04-design-01": {
+      "file": "product-page-04-design-01-e98c9a37.jpg",
+      "sha256": "e2c3e4db6d43974c85e58b7ed4dc423fa11debf815b1137e2c4148fc18318840",
+      "page": 4
+    },
+    "page-04-design-02": {
+      "file": "product-page-04-design-02-4b142e3e.jpg",
+      "sha256": "09676eaa1f7d14e4e45ebf91657219024b81b417ad50beb50d18e1b652a58766",
+      "page": 4
+    },
+    "page-05-design-01": {
+      "file": "product-page-05-design-01-b0cecf16.jpg",
+      "sha256": "f37d5edfb50a8dd0010674c907c5393b1c1758afea5babc46e3a6727d4564e16",
+      "page": 5
+    },
+    "page-05-design-02": {
+      "file": "product-page-05-design-02-5280b418.jpg",
+      "sha256": "ae71d4a43baeacf524fca3372821bc230a832dcd12600b1435580149f8d70c4a",
+      "page": 5
+    },
+    "page-05-design-03": {
+      "file": "product-page-05-design-03-9b45d108.jpg",
+      "sha256": "2c9292ecfc631eda219b97263dc016d98f88647830349341a04c796578f9ce96",
+      "page": 5
+    },
+    "page-06-design-01": {
+      "file": "product-page-06-design-01-45cc6fd9.jpg",
+      "sha256": "413224ca4188fea3b489fecabf808b4e00097ac63853a31f5374a3b32c71c72e",
+      "page": 6
+    },
+    "page-06-design-02": {
+      "file": "product-page-06-design-02-eeb98f84.jpg",
+      "sha256": "017a122e4f856e9c3c4fb476aa8336ececd4ec0a0fa025279f1f4ead36c29c56",
+      "page": 6
+    },
+    "page-06-design-03": {
+      "file": "product-page-06-design-03-129e3d63.jpg",
+      "sha256": "0fbb43df49c45c8513c95ca11f662552e23e14c3070ac2782ca00b78c6e0385a",
+      "page": 6
+    },
+    "page-06-design-04": {
+      "file": "product-page-06-design-04-3a373c89.jpg",
+      "sha256": "9c0c2de88f11dada4da268bbf835e058d053c9de67edd4e6963a91fbffb0bb90",
+      "page": 6
+    },
+    "page-07-design-01": {
+      "file": "product-page-07-design-01-c17fafbc.jpg",
+      "sha256": "3d12e5670e4ca64107ad2aaaa622c0221fbd13f7dfc42497ae68631e47c4ef7a",
+      "page": 7
+    },
+    "page-07-design-02": {
+      "file": "product-page-07-design-02-14dc4e0f.jpg",
+      "sha256": "46a9584ff6885266a86addd315d0ffca47788dae73c3c1586063aa1be2790e7e",
+      "page": 7
+    },
+    "page-07-design-03": {
+      "file": "product-page-07-design-03-e6a2560d.jpg",
+      "sha256": "95c86afcfe2ee6eb7ac6b203b30c6558cef8aea28d6e541fb44da5930ab193ab",
+      "page": 7
+    },
+    "page-07-design-04": {
+      "file": "product-page-07-design-04-5efa4061.jpg",
+      "sha256": "028837998f46c2d6c249701679f1cff176725bd7a4b032d28692a5f39db1fd01",
+      "page": 7
+    },
+    "page-08-design-01": {
+      "file": "product-page-08-design-01-9ef33504.jpg",
+      "sha256": "8129abc2b0f67b3567ffddebc57ca352750a4a6517752c0c636245f1fe1dc796",
+      "page": 8
+    },
+    "page-08-design-02": {
+      "file": "product-page-08-design-02-11c2b0dc.jpg",
+      "sha256": "23d3dd83979c1fe07d82d359a99e366e86d098038ab87b7d817901c88cebe623",
+      "page": 8
+    },
+    "page-08-design-03": {
+      "file": "product-page-08-design-03-160d1fb5.jpg",
+      "sha256": "97180b4b0d4cdba44d0058922ff9f379c64d38ff19e5af94c414910f365ee457",
+      "page": 8
+    },
+    "page-09-design-01": {
+      "file": "product-page-09-design-01-7cfa4761.jpg",
+      "sha256": "58d690b08179a2b2f725deb37519c164fba1505cc80560f503a65462e4adc146",
+      "page": 9
+    },
+    "page-09-design-02": {
+      "file": "product-page-09-design-02-3fc8b791.jpg",
+      "sha256": "c57db935787e4f3acc6a4205bc4a2a818a7defd0f22e9eff18cbc9df9dd8089e",
+      "page": 9
+    },
+    "page-09-design-03": {
+      "file": "product-page-09-design-03-9425aef1.jpg",
+      "sha256": "3d2ae1a8d6c0af37de558d4699989424ffde74daff6476a945701c218f890241",
+      "page": 9
+    },
+    "page-09-design-04": {
+      "file": "product-page-09-design-04-0977080d.jpg",
+      "sha256": "35cd08ed5fc4042c396474a6310b378a83ed3d9871da7274746c89396dedb347",
+      "page": 9
+    },
+    "page-09-design-05": {
+      "file": "product-page-09-design-05-38d90b35.jpg",
+      "sha256": "43bf7d14999883fdc68905945137fe60ed289f3ca91595284b7a2ef665e9e542",
+      "page": 9
+    },
+    "page-10-design-01": {
+      "file": "product-page-10-design-01-57ea73e5.jpg",
+      "sha256": "c6f2e03a2b422005899a087b28469b5b96a37f355b4cc0cd3936a92834a2af8d",
+      "page": 10
+    },
+    "page-10-design-02": {
+      "file": "product-page-10-design-02-8e08b416.jpg",
+      "sha256": "12543f5027b3605d07bef1521dd9a80266fe37d08230c40457f82094c638a7b1",
+      "page": 10
+    },
+    "page-10-design-03": {
+      "file": "product-page-10-design-03-e4ae0920.jpg",
+      "sha256": "4d20b0a766c877670464270a4e303c1c0e95decd3ae25ac62c14099793bf7b9e",
+      "page": 10
+    },
+    "page-10-design-04": {
+      "file": "product-page-10-design-04-bba6b21c.jpg",
+      "sha256": "b9641e8bd7e37a821a970dcf260b3af62773282b4d1d95074743c92d260b513e",
+      "page": 10
+    },
+    "page-10-design-05": {
+      "file": "product-page-10-design-05-a01ad863.jpg",
+      "sha256": "a5b2ba546faa8592819712c1777383cb5385f49984f3ce71a76f6aa3dd5ed0ec",
+      "page": 10
+    },
+    "page-11-design-01": {
+      "file": "product-page-11-design-01-5bfc499c.jpg",
+      "sha256": "f710970670d6e4a09c524efee79ee21d0f29947e87c672201e5838ea68ffa4c2",
+      "page": 11
+    },
+    "page-11-design-02": {
+      "file": "product-page-11-design-02-269b40a5.jpg",
+      "sha256": "76186869615a129b43b0a6c991e61add0a179f5b9044fd9685427912ebed5eaf",
+      "page": 11
+    },
+    "page-11-design-03": {
+      "file": "product-page-11-design-03-b3e28e9f.jpg",
+      "sha256": "4e4fba22c2dc8f64cf7d5fb247435275ff9aae1fae235a5392643cb1564c8da7",
+      "page": 11
+    },
+    "page-11-design-04": {
+      "file": "product-page-11-design-04-3354a600.jpg",
+      "sha256": "5ebec92fdcc825afa38496cecf6a25cc8000db6b4fa4710d12bcaa12c2e6c01f",
+      "page": 11
+    },
+    "page-12-design-01": {
+      "file": "product-page-12-design-01-05c17ecd.jpg",
+      "sha256": "e12b5c048594ab88a6f939b9c648fab432e7172fe94836cb5c5f4fdfc6761331",
+      "page": 12
+    },
+    "page-12-design-02": {
+      "file": "product-page-12-design-02-d3bbe126.jpg",
+      "sha256": "723bca57cd02c9289be7c9802dc843898e9a2ecf3ebf0302b1c9c96111b008b9",
+      "page": 12
+    },
+    "page-12-design-03": {
+      "file": "product-page-12-design-03-ab7d2195.jpg",
+      "sha256": "14803d66b90a564d650a5d5d679f08b70d65842720ff92598b53475aa811b272",
+      "page": 12
+    },
+    "page-12-design-04": {
+      "file": "product-page-12-design-04-443ea669.jpg",
+      "sha256": "b32ad056607ee4918e3fdc7d4957d0ffede267c4544f3ca06d008aae5d92c59f",
+      "page": 12
+    },
+    "page-13-design-01": {
+      "file": "product-page-13-design-01-5b674b8c.jpg",
+      "sha256": "2dca93c8357e90f3c02a5382c36b69ff020d155352f76b27f493aef45d250dee",
+      "page": 13
+    },
+    "page-13-design-02": {
+      "file": "product-page-13-design-02-9f34cfac.jpg",
+      "sha256": "109fe78637d4be4cbb05b411747b3c6ff0d3494d83d9c758d76f257f79bd19e6",
+      "page": 13
+    },
+    "page-13-design-03": {
+      "file": "product-page-13-design-03-31a9c486.jpg",
+      "sha256": "b965aee0f75351c84bb5400c0985208381febeb28f651dbbcd088c2cc60a2dc2",
+      "page": 13
+    },
+    "page-13-design-04": {
+      "file": "product-page-13-design-04-8de5b5c3.jpg",
+      "sha256": "dcd4ce1721578f9087a298d4d897e2a500cbe2093154006e9a34b28ededa05ad",
+      "page": 13
+    },
+    "page-13-design-05": {
+      "file": "product-page-13-design-05-0ae7a576.jpg",
+      "sha256": "45543edf46665db99691180fe9bd5f28ff3e35d5b123d087d8d15f4251cbbe13",
+      "page": 13
+    },
+    "page-13-design-06": {
+      "file": "product-page-13-design-06-6e8e06f1.jpg",
+      "sha256": "7db7cefbfed87957caf0d0079368193b3276aeff9c3498a7f30bb715dfad7209",
+      "page": 13
+    }
+  }
+}

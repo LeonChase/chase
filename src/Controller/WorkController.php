@@ -11,7 +11,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class WorkController extends PortalController
 {
     private const TASK_STATUSES = ['Offen','In Arbeit','Erledigt'];
-    private const LEAD_STATUSES = ['Neu','Kontaktiert','Qualifiziert','Termin','Auftrag','Verloren'];
+    private const LEAD_STATUSES = ['Neu','Kontaktiert','Termin','Auftrag','Verloren'];
 
     #[Route('/tasks', name: 'tasks', methods: ['GET'])]
     public function tasks(Request $request,ContactDirectory $directory): Response
@@ -74,6 +74,9 @@ final class WorkController extends PortalController
         if ($request->isMethod('POST')) {
             $this->token($request);
             $data=$this->fields($request,['title','status','priority','dueDate','notes','propertyId','leadId']);
+            // The compact editor omits advanced fields. An omitted field must never erase stored data.
+            foreach(['status'=>'Offen','priority'=>'Mittel','dueDate'=>'','notes'=>'','propertyId'=>null,'leadId'=>null] as $field=>$default)
+                if(!$request->request->has($field))$data[$field]=$item->data[$field]??$default;
             $data['recurrence']=$request->request->getString('recurrence',$item->data['recurrence']??'none');
             $checklistText=$request->request->getString('checklistText',implode("\n",array_column($item->data['checklist']??[],'title')));
             $this->required($data,['title'=>'Titel'],$errors);
@@ -148,13 +151,14 @@ final class WorkController extends PortalController
     public function leads(Request $request): Response
     {
         $items=$this->filter($this->store->visible(Lead::class,$this->user()),$request,['title','name','email','interest','source']);
-        if ($status=$request->query->get('status')) $items=array_values(array_filter($items,fn($l)=>($l->data['status']??'')===$status));
+        $filters=$request->query->all();
+        if ($status=$request->query->getString('status')) {$status=$this->leadStage($status);$filters['status']=$status;$items=array_values(array_filter($items,fn($l)=>$this->leadStage($l->data['status']??'Neu')===$status));}
         $nextTasks=[];
         $tasks=array_values(array_filter($this->store->visible(Task::class,$this->user()),fn($t)=>($t->data['status']??'')!=='Erledigt'));
         usort($tasks,fn($a,$b)=>strcmp(($a->data['dueDate']??'')?:'9999',($b->data['dueDate']??'')?:'9999'));
         foreach($tasks as $task) if(($leadId=$task->data['leadId']??null)&&!isset($nextTasks[$leadId])) $nextTasks[$leadId]=$task;
-        $lanes=array_fill_keys(self::LEAD_STATUSES,[]);foreach($items as $lead)$lanes[$lead->data['status']??'Neu'][]=$lead;
-        return $this->page('leads/index.html.twig',['items'=>$items,'statuses'=>self::LEAD_STATUSES,'filters'=>$request->query->all(),'nextTasks'=>$nextTasks,'lanes'=>$lanes]);
+        $lanes=array_fill_keys(self::LEAD_STATUSES,[]);$leadStages=[];foreach($items as $lead){$stage=$this->leadStage($lead->data['status']??'Neu');if(!isset($lanes[$stage]))$stage='Neu';$leadStages[$lead->id]=$stage;$lanes[$stage][]=$lead;}
+        return $this->page('leads/index.html.twig',['items'=>$items,'statuses'=>self::LEAD_STATUSES,'filters'=>$filters,'nextTasks'=>$nextTasks,'lanes'=>$lanes,'leadStages'=>$leadStages]);
     }
 
     #[Route('/leads/new', name: 'lead_new', methods: ['GET','POST'], priority: 20)]
@@ -163,15 +167,17 @@ final class WorkController extends PortalController
     public function leadForm(Request $request, ?string $id=null): Response
     {
         $item=$id?$this->owned(Lead::class,$id):new Lead(['status'=>'Neu'], $this->user()->id,$this->user()->tenantId);
-        $data=array_merge($item->data,['name'=>$item->data['name']??$item->title]);$errors=[];
+        $data=array_merge($item->data,['name'=>$item->data['name']??$item->title,'status'=>$this->leadStage($item->data['status']??'Neu')]);$errors=[];
         if ($request->isMethod('POST')) {
             $this->token($request);$data=$this->fields($request,['name','email','phone','interest','source','status','propertyId','nextFollowUp','notes','activityNote']);
+            $data['status']=$this->leadStage($request->request->getString('status',$item->data['status']??'Neu'));
             $this->required($data,['name'=>'Name','interest'=>'Interesse'],$errors);
             $this->oneOf($data,'status',self::LEAD_STATUSES,$errors);
             $this->date($data,'nextFollowUp',$errors);$this->relation($data,'propertyId',Property::class);$this->lengths($data,$errors);
             if ($data['email'] && (!filter_var($data['email'],FILTER_VALIDATE_EMAIL) || !str_ends_with(strtolower($data['email']),'.test'))) $errors[]='Für diese Demo bitte eine erfundene E-Mail-Adresse mit .test verwenden.';
             if (!$errors) {
                 $note=$data['activityNote'];unset($data['activityNote']);
+                if(($item->data['status']??'')==='Qualifiziert')$item->data['legacyStatus']='Qualifiziert';
                 $item->data=array_merge($item->data,$data,['isDemo'=>true]);$item->title=$data['name'];
                 if(!$id)$item->data['sourceProvenance']=['method'=>'manual','source'=>$data['source']?:'Manuelle Demo-Erfassung','recordedAt'=>(new \DateTimeImmutable())->format(DATE_ATOM)];
                 if ($note) $item->data['activities'][]=['date'=>(new \DateTimeImmutable())->format(DATE_ATOM),'note'=>$note];
@@ -191,7 +197,7 @@ final class WorkController extends PortalController
     #[Route('/leads/{id}/status', name: 'lead_status', methods: ['POST'])]
     public function leadStatus(string $id, Request $request): Response
     {
-        $this->token($request);$lead=$this->owned(Lead::class,$id);$status=$request->request->getString('status');
+        $this->token($request);$lead=$this->owned(Lead::class,$id);$status=$request->request->getString('status');if($status==='Qualifiziert')$status='Kontaktiert';
         if(!in_array($status,self::LEAD_STATUSES,true))throw $this->createNotFoundException();
         if(($lead->data['status']??'Neu')!==$status){
             $lead->data['activities'][]=['date'=>(new \DateTimeImmutable())->format(DATE_ATOM),'note'=>'Pipeline: '.($lead->data['status']??'Neu').' → '.$status];
@@ -257,6 +263,12 @@ final class WorkController extends PortalController
     {
         $date=\DateTimeImmutable::createFromFormat('!Y-m-d',$value);
         return $date&&$date->format('Y-m-d')===$value;
+    }
+    /** Legacy records remain intact until explicitly edited, but keep their place in the simplified board. */
+    private function leadStage(string $status): string
+    {
+        if($status==='Qualifiziert')return 'Kontaktiert';
+        return $status;
     }
     private function saveTaskAndSuccessor(Task $item,bool $wasDone): void
     {

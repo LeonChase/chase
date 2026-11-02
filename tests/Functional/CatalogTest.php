@@ -106,4 +106,20 @@ final class CatalogTest extends WebTestCase
         } finally {if(is_file($path))unlink($path);if($stored&&is_file($stored))unlink($stored);}
     }
 
+    public function testSuppliedProductMotifsWorkWithoutPdfOrPopplerAndAdminControlsStayPrivate():void
+    {
+        $importer=self::getContainer()->get(MaterialsImporter::class);$importer->registerBundledCatalog('catalog-test');
+        $this->browser->request('GET','/advertising?sort=name');self::assertResponseIsSuccessful();self::assertSelectorCount(42,'.catalog-product-card');self::assertSelectorCount(42,'.catalog-visual-image img');self::assertSelectorCount(84,'[data-quantity-change]');self::assertSelectorNotExists('.catalog-image-edit');self::assertSelectorNotExists('a[href="/advertising/manage"]');self::assertStringNotContainsString('Preis auf Anfrage',$this->browser->getResponse()->getContent());
+        $crawler=$this->browser->getCrawler();foreach($crawler->filter('.catalog-card-buy input[name="quantity"]') as $input)self::assertSame('1',$input->getAttribute('value'));
+        $image=$crawler->filter('.catalog-visual-image img')->first()->attr('src');$this->browser->request('GET',$image);self::assertResponseIsSuccessful();self::assertResponseHeaderSame('Content-Type','image/jpeg');self::assertStringContainsString('private',$this->browser->getResponse()->headers->get('Cache-Control'));
+        foreach(['/advertising/manage','/advertising/products/new','/advertising/products/'.$this->product->id.'/edit'] as $path){$this->browser->request('GET',$path);self::assertResponseStatusCodeSame(403);}
+        $count=$this->em()->getRepository(AdvertisingProduct::class)->count([]);$importer=self::getContainer()->get(MaterialsImporter::class);$importer->registerBundledCatalog('catalog-test');self::assertSame($count,$this->em()->getRepository(AdvertisingProduct::class)->count([]));
+        $this->login('catalog-foreign');$this->browser->request('GET',$image);self::assertResponseStatusCodeSame(404);
+    }
+
+    public function testQuantitiesAreFreelyEnteredBeyondFormerBatchLimits():void
+    {
+        $this->browser->request('POST','/advertising/cart/item/'.$this->product->id,['_token'=>$this->token(),'quantity'=>'12000']);self::assertResponseRedirects();$this->em()->clear();self::assertSame(12000,$this->cartRecord()->data['items'][$this->product->id]);
+    }
+
 }

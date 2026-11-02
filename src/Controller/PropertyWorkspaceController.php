@@ -78,10 +78,11 @@ final class PropertyWorkspaceController extends PortalController
         $images = array_values(array_filter($media, fn ($m) => ($m->data['kind'] ?? '') !== 'document' && str_starts_with($m->data['mime'] ?? '', 'image/')));
         $documents = array_values(array_filter($media, fn ($m) => ($m->data['kind'] ?? '') === 'document' || !str_starts_with($m->data['mime'] ?? '', 'image/')));
         $tab = $request->query->get('tab', '');
-        $initialSection = $this->section($request->isMethod('POST') ? $request->request->get('_activeStep','') : $request->query->get('step','')) ?: (['overview'=>'start','media'=>'images','documents'=>'documents','texts'=>'texts','marketing'=>'marketing','checklist'=>'marketing','activity'=>'activity'][$tab] ?? 'start');
+        $initialSection = $this->section($request->isMethod('POST') ? $request->request->get('_activeStep','') : $request->query->get('step','')) ?: (['overview'=>'start','media'=>'images','documents'=>'documents','texts'=>'texts','marketing'=>'marketing','checklist'=>'review','activity'=>'activity'][$tab] ?? 'start');
+        if ($errors && count(array_filter($errors,fn($error)=>str_contains($error,'Modernisierung')))) $initialSection='modernisations';
         if ($errors) {
             foreach ($errors as $error) {
-                foreach (PropertyFormSchema::sections() as $key=>$definition) {
+                foreach (PropertyFormSchema::wizardPages() as $key=>$definition) {
                     foreach ($definition['fields'] as $field) {
                         if (str_contains($error,$field['label'])) { $initialSection=$key; break 3; }
                     }
@@ -91,7 +92,7 @@ final class PropertyWorkspaceController extends PortalController
         $activities = $saved ? array_values(array_filter($this->store->visible(AuditEvent::class, $this->user()), fn ($a) => ($a->data['entityId'] ?? '') === $id)) : [];
         return $this->page('properties/form.html.twig', [
             'item'=>$property, 'data'=>$data ?? array_merge($property->data,['title'=>$property->title]), 'saved'=>$saved,
-            'errors'=>$errors, 'sections'=>PropertyFormSchema::sections(), 'statuses'=>PropertyFormSchema::STATUSES,
+            'errors'=>$errors, 'sections'=>PropertyFormSchema::sections(), 'wizardPages'=>PropertyFormSchema::wizardPages(), 'chapters'=>PropertyFormSchema::chapters(), 'statuses'=>PropertyFormSchema::STATUSES,
             'types'=>PropertyFormSchema::TYPES, 'modernisationComponents'=>PropertyFormSchema::MODERNISATION_COMPONENTS,
             'media'=>$media, 'images'=>$images, 'documents'=>$documents, 'tasks'=>$related(Task::class), 'posts'=>$related(ContentPost::class),
             'activities'=>$activities, 'checklist'=>self::CHECKLIST, 'initialSection'=>$initialSection,
@@ -137,7 +138,7 @@ final class PropertyWorkspaceController extends PortalController
         $this->save($item);
         $this->audit('Objektcheckliste aktualisiert', $id);
         $this->addFlash('success', 'Checkliste gespeichert.');
-        return $this->redirect('/properties/'.$id.($request->request->get('_workspace') === '1' ? '#marketing' : '?tab=checklist'));
+        return $this->redirect('/properties/'.$id.($request->request->get('_workspace') === '1' ? '#review' : '?tab=checklist'));
     }
 
     #[Route('/properties/{id}/media', name: 'property_upload', methods: ['POST'])]
@@ -312,7 +313,7 @@ final class PropertyWorkspaceController extends PortalController
     }
     private function section(mixed $value): string
     {
-        return is_string($value) && in_array($value,['start','base','equipment','condition','images','documents','pricing','texts','marketing','activity'],true) ? $value : '';
+        return is_string($value) && (isset(PropertyFormSchema::wizardPages()[$value]) || $value === 'activity') ? $value : '';
     }
     private function shortString(Request $request,string $field,int $max): ?string
     {

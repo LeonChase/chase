@@ -8,6 +8,12 @@
     let timer, active, sequence = 0, lastFocus;
     const showDialog = dialog => { if (!dialog) return; lastFocus = document.activeElement; dialog.showModal(); dialog.querySelector('[data-valuation-close]')?.focus(); };
     document.addEventListener('click', event => {
+        const breakdown = event.target.closest('.valuation-steps > summary');
+        if (breakdown) {
+            const dialog = document.getElementById('valuation-breakdown');
+            const rows = breakdown.parentElement.querySelector('dl');
+            if (dialog && rows) { event.preventDefault(); dialog.querySelector('[data-valuation-breakdown-title]').textContent = 'Rechenweg · ' + breakdown.closest('.valuation-result').querySelector('h2').textContent; dialog.querySelector('[data-valuation-breakdown-body]').replaceChildren(rows.cloneNode(true)); showDialog(dialog); }
+        }
         const help = event.target.closest('[data-valuation-info]');
         if (help && info) {
             const template = document.getElementById('valuation-help-' + help.dataset.valuationInfo);
@@ -25,6 +31,29 @@
         dialog.addEventListener('close', () => lastFocus?.focus());
         dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
     });
+    const tabs = [...form.querySelectorAll('[data-valuation-method]')];
+    const panelKey = 'chase-valuation-method:' + (form.querySelector('[name="propertyId"]')?.value || 'free');
+    function chooseMethod(method, focus = false) {
+        if (!tabs.some(tab => tab.dataset.valuationMethod === method)) method = 'sw';
+        tabs.forEach(tab => { const selected = tab.dataset.valuationMethod === method; tab.setAttribute('aria-selected', String(selected)); tab.tabIndex = selected ? 0 : -1; if (selected && focus) tab.focus(); });
+        form.querySelectorAll('[data-valuation-panel]').forEach(panel => panel.hidden = panel.dataset.valuationPanel !== method);
+        form.querySelectorAll('[data-valuation-basis]').forEach(field => field.hidden = !field.dataset.valuationBasis.split(' ').includes(method));
+        try { sessionStorage.setItem(panelKey, method); } catch (_) {}
+    }
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => chooseMethod(tab.dataset.valuationMethod));
+        tab.addEventListener('keydown', event => {
+            let next;
+            if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+            if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+            if (event.key === 'Home') next = 0;
+            if (event.key === 'End') next = tabs.length - 1;
+            if (next !== undefined) { event.preventDefault(); chooseMethod(tabs[next].dataset.valuationMethod, true); }
+        });
+    });
+    let selectedMethod = 'sw';
+    try { selectedMethod = sessionStorage.getItem(panelKey) || 'sw'; } catch (_) {}
+    chooseMethod(selectedMethod);
     const parse = value => Number(String(value).replace(/\s/g, '').includes(',') ? String(value).replace(/\s/g, '').replace(/\./g, '').replace(',', '.') : String(value).replace(/\s/g, ''));
     form.querySelectorAll('[data-source-for]').forEach(select => {
         const input = document.getElementById(select.dataset.sourceFor);

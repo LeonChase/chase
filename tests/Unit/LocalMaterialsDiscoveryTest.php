@@ -35,6 +35,17 @@ final class LocalMaterialsDiscoveryTest extends TestCase
         self::assertSame($private, $discovery->find([$this->base.'/current/Downloads']));
     }
 
+    public function testNewArchiveNameAndStandaloneCatalogAreDetectedInCurrentDownloads(): void
+    {
+        $old = $this->base.'/current/Downloads/Unterlagen_Co.zip'; $new = $this->base.'/current/Downloads/Unterlagen.zip';
+        file_put_contents($old, 'older'); touch($old, 1000000000); file_put_contents($new, 'newer'); touch($new, 1000000020);
+        $catalog = $this->base.'/current/Downloads/Werbekatalog.pdf'; file_put_contents($catalog, 'synthetic');
+        $discovery = new LocalMaterialsDiscovery($this->base.'/project');
+        self::assertSame($new, $discovery->find([$this->base.'/current/Downloads']));
+        self::assertSame($catalog, $discovery->findCatalog([$this->base.'/current/Downloads']));
+        self::assertNull($discovery->findCatalog([$this->base.'/other/Downloads']));
+    }
+
     public function testUnrelatedArchiveAndSymlinkAreIgnored(): void
     {
         file_put_contents($this->base.'/current/Downloads/Other.zip', 'other');

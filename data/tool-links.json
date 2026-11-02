@@ -1,0 +1,16 @@
+[
+ {"id":"onoffice","title":"onOffice","category":"Immobilien","url":"https://onoffice.com/","description":"CRM und Objektvermarktung."},
+ {"id":"scout","title":"ImmoScout24","category":"Immobilien","url":"https://www.immobilienscout24.de/","description":"Immobiliensuche und Vermarktung."},
+ {"id":"immowelt","title":"immowelt","category":"Immobilien","url":"https://www.immowelt.de/","description":"Immobiliensuche und Inserate."},
+ {"id":"kleinanzeigen","title":"Kleinanzeigen Immobilien","category":"Immobilien","url":"https://www.kleinanzeigen.de/s-immobilien/c195","description":"Regionale Immobilienanzeigen."},
+ {"id":"boris","title":"BORIS-D","category":"Bewertung & Recht","url":"https://www.bodenrichtwerte-boris.de/","description":"Zugang zu Bodenrichtwertinformationen."},
+ {"id":"akoga","title":"AK OGA","category":"Bewertung & Recht","url":"https://redaktion-akoga.niedersachsen.de/startseite/","description":"Informationen der Gutachterausschüsse."},
+ {"id":"gesetze","title":"Gesetze im Internet","category":"Bewertung & Recht","url":"https://www.gesetze-im-internet.de/","description":"Gesetzestexte des Bundes."},
+ {"id":"energieausweis","title":"Energieausweis.de","category":"Bewertung & Recht","url":"https://energieausweis.de/","description":"Informationen und Angebote zum Energieausweis."},
+ {"id":"flyeralarm","title":"Flyeralarm","category":"Marketing","url":"https://www.flyeralarm.com/de/","description":"Druckprodukte und Werbemittel."},
+ {"id":"canva","title":"Canva","category":"Marketing","url":"https://www.canva.com/de_de/","description":"Gestaltung von Marketingmaterialien."},
+ {"id":"chatgpt","title":"ChatGPT","category":"Arbeitsalltag","url":"https://chatgpt.com/","description":"Text- und Ideenarbeit im externen Dienst."},
+ {"id":"maps","title":"Google Maps","category":"Arbeitsalltag","url":"https://www.google.com/maps/","description":"Orte, Anfahrt und Routen."},
+ {"id":"todo","title":"Microsoft To Do","category":"Arbeitsalltag","url":"https://to-do.office.com/","description":"Externe Aufgabenplanung."},
+ {"id":"wetransfer","title":"WeTransfer","category":"Arbeitsalltag","url":"https://wetransfer.com/","description":"Externer Dateiaustausch."}
+]
