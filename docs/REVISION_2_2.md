@@ -15,6 +15,10 @@ Die Oberfläche konzentriert sich auf die Arbeit im jeweiligen Bereich. Am Deskt
 | Chat | Gesprächsliste und Unterhaltung auf einer Seite. Senden ohne Betreff oder Bestätigungsseite, Wiedereinstieg in bestehende Gespräche, lokale Aktualisierung etwa alle 15 Sekunden. |
 | Glocke | Benachrichtigungsleiste mit tatsächlich sichtbaren Aufgaben, heutigen Fälligkeiten, neuen Leads, internen Nachrichten, Aufgabenangeboten und veröffentlichten News; persönliche Gelesen-Markierungen. News öffnen innerhalb der Leiste. |
 
+## Startkorrektur für Ubuntu/WSL
+
+Die ergänzende Korrektur vom 2. November behebt den Startfehler mit `callable object expected` im lokalen PHP-Router. Falls Update 2.2 schon eingerichtet ist, genügen nach **Strg+C** die Befehle `git pull --ff-only` und `./scripts/start` im Projektordner.
+
 ## Auf dem eigenen Rechner aktualisieren
 
 Ubuntu öffnen. Einen laufenden Server mit **Strg+C** anhalten und eingeben:

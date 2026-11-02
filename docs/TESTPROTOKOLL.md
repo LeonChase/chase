@@ -1,5 +1,11 @@
 # Testprotokoll · 2. November 2026
 
+## Startkorrektur für Ubuntu/WSL · 2. November 2026
+
+Den gemeldeten Fehler `Invalid return value: callable object expected, "int" returned from "public/router.php"` mit `SCRIPT_FILENAME` auf dem Router in einem frischen PHP-Prozess nachgestellt. Der Router setzt jetzt vor der Übergabe ausdrücklich `public/index.php` als Startdatei und gibt deren Anwendung zurück. Keine Änderungen an Composer-Abhängigkeiten oder Nutzerdaten.
+
+Zwei zusätzliche Prozess-Tests prüfen den zuvor fehlschlagenden Start bis zur echten Anmeldeseite und die unveränderte direkte Auslieferung öffentlicher CSS-Dateien. Abschließender Gesamtlauf: **182 Tests, 4.704 Assertions erfolgreich**. Der bestehende Chromium-Browserlauf mit Anmeldung, 17 Modulrouten, Theme und Abmeldung ebenfalls erfolgreich.
+
 ## Aktuell: Revision 2.2
 
 Gesamtlauf unter PHP 8.4.26: **180 Tests, 4.697 Assertions, erfolgreich, keine übersprungenen Tests** (16,0 Sekunden). Der Test-Cache wurde vor dem Gesamtlauf erneuert. Isolierte Testdatenbank `var/phpunit.db`.
