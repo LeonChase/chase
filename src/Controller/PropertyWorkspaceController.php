@@ -56,7 +56,7 @@ final class PropertyWorkspaceController extends PortalController
                 $this->save($property);
                 $this->audit($id ? 'Objektarbeitsplatz gespeichert' : 'Objekt erstellt', $property->id);
                 $this->addFlash('success', 'Objektdaten gespeichert. Du kannst direkt im nächsten Abschnitt weiterarbeiten.');
-                $section = $this->section($request->request->get('returnSection', ''));
+                $section = $this->section($request->request->get('returnSection', $request->request->get('_activeStep', '')));
                 return $this->redirect('/properties/'.$property->id.($section ? '#'.$section : ''));
             }
         }
@@ -78,7 +78,16 @@ final class PropertyWorkspaceController extends PortalController
         $images = array_values(array_filter($media, fn ($m) => ($m->data['kind'] ?? '') !== 'document' && str_starts_with($m->data['mime'] ?? '', 'image/')));
         $documents = array_values(array_filter($media, fn ($m) => ($m->data['kind'] ?? '') === 'document' || !str_starts_with($m->data['mime'] ?? '', 'image/')));
         $tab = $request->query->get('tab', '');
-        $initialSection = ['overview'=>'start','media'=>'images','documents'=>'documents','texts'=>'texts','marketing'=>'marketing','checklist'=>'marketing','activity'=>'activity'][$tab] ?? 'start';
+        $initialSection = $this->section($request->isMethod('POST') ? $request->request->get('_activeStep','') : $request->query->get('step','')) ?: (['overview'=>'start','media'=>'images','documents'=>'documents','texts'=>'texts','marketing'=>'marketing','checklist'=>'marketing','activity'=>'activity'][$tab] ?? 'start');
+        if ($errors) {
+            foreach ($errors as $error) {
+                foreach (PropertyFormSchema::sections() as $key=>$definition) {
+                    foreach ($definition['fields'] as $field) {
+                        if (str_contains($error,$field['label'])) { $initialSection=$key; break 3; }
+                    }
+                }
+            }
+        }
         $activities = $saved ? array_values(array_filter($this->store->visible(AuditEvent::class, $this->user()), fn ($a) => ($a->data['entityId'] ?? '') === $id)) : [];
         return $this->page('properties/form.html.twig', [
             'item'=>$property, 'data'=>$data ?? array_merge($property->data,['title'=>$property->title]), 'saved'=>$saved,

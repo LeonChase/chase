@@ -16,9 +16,13 @@ class DemoSeedCommand extends Command {
   foreach($this->json('demo_users') as $row){
    if($this->em->find(User::class,$row['id']))continue;
    $u=new User();$u->id=$row['id'];$u->name=$row['name'];$u->email=$row['email'];$u->region=$row['region'];$u->roles=[match($row['role']){'ADMIN'=>'ROLE_ADMIN','REGIONALLEITUNG'=>'ROLE_REGION_MANAGER',default=>'ROLE_AGENT'}];
+   if($u->id==='u-admin'&&$u->email==='admin@example.test')$u->preferences['firstName']='Leon';
    $password=bin2hex(random_bytes(10));$u->password=$this->hasher->hashPassword($u,$password);$this->em->persist($u);$created++;
    $credentials[]=$u->name."\nE-Mail: ".$u->email."\nPasswort: ".$password."\n";
   }
+  // One known local fixture; preserve every existing personal name and all other accounts.
+  $leon=$this->em->getRepository(User::class)->findOneBy(['id'=>'u-admin','tenantId'=>'chase-demo','email'=>'admin@example.test']);
+  if($leon&&!array_key_exists('firstName',$leon->preferences)){$leon->preferences['firstName']='Leon';$this->em->persist($leon);}
   $mapping=['demo_properties'=>Property::class,'demo_leads'=>Lead::class,'demo_tasks'=>Task::class,'demo_documents'=>Document::class,'demo_academy'=>AcademyArticle::class,'demo_advertising'=>AdvertisingProduct::class,'demo_news'=>NewsPost::class,'demo_social_posts'=>ContentPost::class,'demo_usage'=>UsageEvent::class,'demo_activity'=>AuditEvent::class,'demo_partner_directory'=>PartnerProfile::class];
   foreach($mapping as $file=>$class){foreach($this->json($file) as $row){
    $id=$row['id']??('partner-'.$row['userId']);if($this->em->find($class,$id))continue;

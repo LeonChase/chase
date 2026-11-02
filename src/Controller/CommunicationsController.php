@@ -2,39 +2,50 @@
 namespace App\Controller;
 use App\Entity\{Message,User,Property,PartnerProfile,AcademyArticle};
 use App\Service\ContactDirectory;
-use Symfony\Component\HttpFoundation\{Request,Response,ResponseHeaderBag};
+use Symfony\Component\HttpFoundation\{Request,Response,ResponseHeaderBag,JsonResponse};
 use Symfony\Component\Routing\Attribute\Route;
 final class CommunicationsController extends PortalController {
  #[Route('/messages',name:'messages',methods:['GET','POST'])]
  public function messages(Request $request,ContactDirectory $directory):Response {
-  $user=$this->user();$contacts=$directory->contacts($user);$error=null;
+  $user=$this->user();$contacts=$directory->contacts($user);$error=null;$recipientId=$request->isMethod('POST')?$request->request->getString('recipientId'):$request->query->getString('recipientId');
   $property=null;$propertyId=$request->isMethod('POST')?$request->request->getString('propertyId'):$request->query->getString('property');
   if($propertyId)$property=$this->owned(Property::class,$propertyId);
   if($request->isMethod('POST')){
    $this->token($request);$recipient=$directory->recipient($request->request->getString('recipientId'),$user);
-   $title=trim($request->request->getString('title'));$body=trim($request->request->getString('body'));
+   $title=trim($request->request->getString('title'));$body=trim($request->request->getString('body'));if($title==='')$title=$property?mb_substr('Objekt: '.$property->title,0,180):'Nachricht';
    if(!$recipient)$error='Bitte einen verfügbaren internen Kontakt auswählen.';
    elseif(!$title||mb_strlen($title)>180||!$body||mb_strlen($body)>5000)$error='Bitte Betreff (maximal 180 Zeichen) und Nachricht (maximal 5.000 Zeichen) ausfüllen.';
    if(!$error){
     // Link a property only when recipient already has explicit access. Sending a message is not an ACL grant.
     if($property&&!$this->store->canAccess($property,$recipient)){$error='Der Empfänger hat keine Objektfreigabe. Bitte im Admin-Center eine ausdrückliche Teamfreigabe einrichten oder eine allgemeine Nachricht ohne Objektbezug schreiben.';}
-    else{$m=new Message(['title'=>$title,'body'=>$body,'recipientId'=>$recipient->id,'propertyId'=>$property?->id,'readAt'=>null],$user->id,$user->tenantId);$this->save($m);$this->audit('Interne Nachricht gesendet',$m->id);$this->addFlash('success','Interne Nachricht gespeichert. Es wurde keine E-Mail versendet.');return $this->redirect('/messages/'.$m->id);}
+    else{$m=new Message(['title'=>$title,'body'=>$body,'recipientId'=>$recipient->id,'propertyId'=>$property?->id,'readAt'=>null],$user->id,$user->tenantId);$this->save($m);$this->audit('Interne Nachricht gesendet',$m->id);$url='/messages?recipientId='.rawurlencode($recipient->id);if($request->isXmlHttpRequest())return new JsonResponse(['url'=>$url],201);return $this->redirect($url.'#chat-latest');}
    }
   }
-  $messages=$this->store->visible(Message::class,$user);$names=[];foreach($this->store->em()->getRepository(User::class)->findBy(['tenantId'=>$user->tenantId]) as $u)$names[$u->id]=$u->name;
-  return $this->page('messages/index.html.twig',compact('contacts','messages','names','property','error'));
+  $messages=$this->store->visible(Message::class,$user);$people=[];foreach($this->store->em()->getRepository(User::class)->findBy(['tenantId'=>$user->tenantId]) as $u)$people[$u->id]=$u;
+  $threads=[];foreach($messages as $m){$otherId=$m->ownerId===$user->id?$m->recipientId:$m->ownerId;if(!isset($people[$otherId]))continue;if(!isset($threads[$otherId]))$threads[$otherId]=['person'=>$people[$otherId],'last'=>$m,'unread'=>0,'inbox'=>false,'sent'=>false];$threads[$otherId][$m->ownerId===$user->id?'sent':'inbox']=true;if($m->createdAt>$threads[$otherId]['last']->createdAt)$threads[$otherId]['last']=$m;if($m->recipientId===$user->id&&empty($m->data['readAt']))++$threads[$otherId]['unread'];}
+  uasort($threads,fn($a,$b)=>$b['last']->createdAt<=>$a['last']->createdAt);
+  $selected=null;if($recipientId!==''){$selected=$directory->recipient($recipientId,$user);if(!$selected&&isset($threads[$recipientId]))$selected=$people[$recipientId];if(!$selected&&!$error)throw $this->createNotFoundException();}elseif($threads){$selected=reset($threads)['person'];$recipientId=$selected->id;}
+  $conversation=array_values(array_filter($messages,fn($m)=>$m->ownerId===$recipientId||$m->recipientId===$recipientId));usort($conversation,fn($a,$b)=>$a->createdAt<=>$b->createdAt?:strcmp($a->id,$b->id));
+  $canSend=$selected&&$directory->recipient($selected->id,$user)!==null;
+  $data=compact('contacts','threads','selected','conversation','property','error','canSend');
+  if($request->query->get('partial')==='thread')return $this->page('messages/_thread.html.twig',$data);
+  return $this->page($request->query->get('partial')==='workspace'?'messages/_workspace.html.twig':'messages/index.html.twig',$data);
  }
  #[Route('/messages/{id}',name:'message_show',methods:['GET'])]
  public function show(string $id):Response {
   $message=$this->owned(Message::class,$id);$user=$this->user();
   $otherId=$message->ownerId===$user->id?$message->recipientId:$message->ownerId;
-  $other=$this->store->em()->find(User::class,$otherId);
-  return $this->page('messages/show.html.twig',compact('message','other'));
+  return $this->redirect('/messages?recipientId='.rawurlencode($otherId).'#message-'.$message->id);
  }
  #[Route('/messages/{id}/read',name:'message_read',methods:['POST'])]
  public function read(string $id,Request $request):Response {
   $this->token($request);$m=$this->owned(Message::class,$id);if($m->recipientId!==$this->user()->id)throw $this->createAccessDeniedException();
-  $m->data['readAt']=(new \DateTimeImmutable())->format(DATE_ATOM);$this->save($m);return $this->redirect('/messages/'.$id);
+  $m->data['readAt']=(new \DateTimeImmutable())->format(DATE_ATOM);$this->save($m);return $this->redirect('/messages?recipientId='.rawurlencode($m->ownerId));
+ }
+ #[Route('/messages/thread/{recipientId}/read',name:'message_thread_read',methods:['POST'],priority:20)]
+ public function readThread(string $recipientId,Request $request):Response {
+  $this->token($request);$u=$this->user();$count=0;foreach($this->store->visible(Message::class,$u) as $m)if($m->ownerId===$recipientId&&$m->recipientId===$u->id&&empty($m->data['readAt'])){$m->data['readAt']=(new \DateTimeImmutable())->format(DATE_ATOM);$this->store->em()->persist($m);++$count;}
+  $this->store->em()->flush();if($request->isXmlHttpRequest())return new JsonResponse(['read'=>$count]);return $this->redirect('/messages?recipientId='.rawurlencode($recipientId));
  }
  #[Route('/profile/avatar',name:'profile_avatar_upload',methods:['POST'])]
  public function avatarUpload(Request $request):Response {

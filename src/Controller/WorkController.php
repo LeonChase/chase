@@ -14,8 +14,9 @@ final class WorkController extends PortalController
     private const LEAD_STATUSES = ['Neu','Kontaktiert','Qualifiziert','Termin','Auftrag','Verloren'];
 
     #[Route('/tasks', name: 'tasks', methods: ['GET'])]
-    public function tasks(Request $request): Response
+    public function tasks(Request $request,ContactDirectory $directory): Response
     {
+        if($request->query->getString('task'))$this->owned(Task::class,$request->query->getString('task'));
         $all = $this->store->visible(Task::class, $this->user());
         $items = $this->filter($all, $request, ['title','notes']);
         $today = new \DateTimeImmutable('today', new \DateTimeZone('Europe/Berlin'));
@@ -53,7 +54,9 @@ final class WorkController extends PortalController
         $invitations = $this->store->visible(TaskInvitation::class, $this->user());
         $names = [];
         foreach ($this->store->em()->getRepository(User::class)->findBy(['tenantId'=>$this->user()->tenantId]) as $u) $names[$u->id]=$u->name;
-        return $this->page('tasks/index.html.twig', ['items'=>$items,'statuses'=>self::TASK_STATUSES,'filters'=>$request->query->all(),'today'=>$today,'selected'=>$selected,'anchor'=>$anchor,'calendar'=>$calendar,'view'=>$view,'first'=>$first,'last'=>$last,'invitations'=>$invitations,'names'=>$names]);
+        $layout=$this->user()->preferences['taskLayout']??'split';
+        if(!in_array($layout,['list','split','calendar'],true))$layout='split';
+        return $this->page('tasks/index.html.twig', ['items'=>$items,'statuses'=>self::TASK_STATUSES,'filters'=>$request->query->all(),'today'=>$today,'selected'=>$selected,'anchor'=>$anchor,'calendar'=>$calendar,'view'=>$view,'first'=>$first,'last'=>$last,'invitations'=>$invitations,'names'=>$names,'layout'=>$layout,'properties'=>$this->store->visible(Property::class,$this->user()),'leads'=>$this->store->visible(Lead::class,$this->user()),'contacts'=>$directory->contacts($this->user())]);
     }
 
     #[Route('/tasks/new', name: 'task_new', methods: ['GET','POST'], priority: 20)]
@@ -89,11 +92,32 @@ final class WorkController extends PortalController
                 $wasDone=($item->data['status']??'')==='Erledigt';
                 $item->title=$data['title'];$item->data=array_merge($item->data,$data,['checklist'=>$checklist,'isDemo'=>true]);
                 $this->saveTaskAndSuccessor($item,$wasDone);$this->audit($id?'Aufgabe bearbeitet':'Aufgabe erstellt',$item->id);
+                if($request->getPreferredFormat()==='json')return $this->json(['saved'=>true,'id'=>$item->id]);
                 $this->addFlash('success','Aufgabe gespeichert.');
                 return $this->redirect('/tasks');
             }
         }
-        return $this->page('tasks/form.html.twig',['item'=>$item,'data'=>$data,'errors'=>$errors,'statuses'=>self::TASK_STATUSES,'properties'=>$this->store->visible(Property::class,$this->user()),'leads'=>$this->store->visible(Lead::class,$this->user()),'contacts'=>$directory->contacts($this->user()),'invitations'=>$id?array_values(array_filter($this->store->visible(TaskInvitation::class,$this->user()),fn($i)=>($i->data['taskId']??'')===$id)):[]]);
+        if($errors&&$request->getPreferredFormat()==='json')return $this->json(['errors'=>$errors],422);
+        $fragment=$request->query->getBoolean('fragment');
+        return $this->page($fragment?'tasks/_editor.html.twig':'tasks/form.html.twig',['item'=>$item,'data'=>$data,'errors'=>$errors,'statuses'=>self::TASK_STATUSES,'properties'=>$this->store->visible(Property::class,$this->user()),'leads'=>$this->store->visible(Lead::class,$this->user()),'contacts'=>$directory->contacts($this->user()),'fragment'=>$fragment,'invitations'=>$id?array_values(array_filter($this->store->visible(TaskInvitation::class,$this->user()),fn($i)=>($i->data['taskId']??'')===$id)):[]]);
+    }
+
+    #[Route('/tasks/layout',name:'task_layout',methods:['POST'],priority:30)]
+    public function taskLayout(Request $request): Response
+    {
+        $this->token($request);$layout=$request->request->getString('layout');
+        if(!in_array($layout,['list','split','calendar'],true))throw $this->createNotFoundException();
+        $user=$this->user();$user->preferences['taskLayout']=$layout;$this->save($user);
+        return $request->getPreferredFormat()==='json'?$this->json(['layout'=>$layout]):$this->redirect('/tasks');
+    }
+
+    #[Route('/tasks/{id}/priority',name:'task_priority',methods:['POST'])]
+    public function taskPriority(string $id,Request $request): Response
+    {
+        $this->token($request);$task=$this->owned(Task::class,$id);$priority=$request->request->getString('priority');
+        if(!in_array($priority,['Niedrig','Mittel','Hoch'],true))throw $this->createNotFoundException();
+        $task->data['priority']=$priority;$this->save($task);
+        return $request->getPreferredFormat()==='json'?$this->json(['saved'=>true]):$this->redirect('/tasks');
     }
 
     #[Route('/tasks/{id}/status', name: 'task_status', methods: ['POST'])]
@@ -152,6 +176,7 @@ final class WorkController extends PortalController
                 if(!$id)$item->data['sourceProvenance']=['method'=>'manual','source'=>$data['source']?:'Manuelle Demo-Erfassung','recordedAt'=>(new \DateTimeImmutable())->format(DATE_ATOM)];
                 if ($note) $item->data['activities'][]=['date'=>(new \DateTimeImmutable())->format(DATE_ATOM),'note'=>$note];
                 $this->save($item);$this->audit($id?'Lead bearbeitet':'Lead erstellt',$item->id);
+                if($request->getPreferredFormat()==='json')return $this->json(['saved'=>true,'id'=>$item->id]);
                 $this->addFlash('success','Synthetischer Demo-Lead gespeichert. Es wurde keine Nachricht versendet.');
                 return $this->redirect('/leads/'.$item->id);
             }
@@ -159,7 +184,8 @@ final class WorkController extends PortalController
         $tasks=$id?array_values(array_filter($this->store->visible(Task::class,$this->user()),fn($t)=>($t->data['leadId']??'')===$id)):[];
         usort($tasks,fn($a,$b)=>strcmp(($a->data['dueDate']??'')?:'9999',($b->data['dueDate']??'')?:'9999'));
         $drafts=$id?array_values(array_filter($this->store->visible(ContentPost::class,$this->user()),fn($p)=>($p->data['sourceLeadId']??'')===$id)):[];
-        return $this->page('leads/form.html.twig',['item'=>$item,'data'=>$data,'errors'=>$errors,'statuses'=>self::LEAD_STATUSES,'properties'=>$this->store->visible(Property::class,$this->user()),'tasks'=>$tasks,'drafts'=>$drafts]);
+        if($errors&&$request->getPreferredFormat()==='json')return $this->json(['errors'=>$errors],422);
+        return $this->page($request->query->getBoolean('fragment')?'leads/_editor.html.twig':'leads/form.html.twig',['item'=>$item,'data'=>$data,'errors'=>$errors,'statuses'=>self::LEAD_STATUSES,'properties'=>$this->store->visible(Property::class,$this->user()),'tasks'=>$tasks,'drafts'=>$drafts]);
     }
 
     #[Route('/leads/{id}/status', name: 'lead_status', methods: ['POST'])]
@@ -185,6 +211,7 @@ final class WorkController extends PortalController
         $title=mb_substr('Check-up: '.$lead->title,0,200);
         $draft=new ContentPost(['title'=>$title,'kind'=>'text','tool'=>'email','sourceLeadId'=>$lead->id,'source'=>['type'=>'lead','id'=>$lead->id,'facts'=>['name'=>$name,'interest'=>$interest]],'content'=>$text,'status'=>'Entwurf','approved'=>false,'isPublished'=>false,'sent'=>false,'mode'=>'Lokale Textvorlage · bekannte Leadangaben','checklist'=>['Kontaktgrund und Einwilligung vor einer Verwendung prüfen.','Name, Anlass und Wortlaut manuell prüfen.','Nur ein lokaler Entwurf; kein E-Mail-Dienst verbunden.'],'version'=>1,'versions'=>[['number'=>1,'title'=>$title,'text'=>$text,'time'=>$now,'approved'=>false]],'isDemo'=>true],$this->user()->id,$this->user()->tenantId);
         $this->save($draft);$lead->data['activities'][]=['date'=>$now,'note'=>'Check-up-Text als lokaler Entwurf erstellt. Kein Versand.'];$this->save($lead);$this->audit('Lokalen Lead-Textentwurf erstellt',$draft->id);
+        if($request->getPreferredFormat()==='json')return $this->json(['saved'=>true,'id'=>$draft->id]);
         $this->addFlash('success','Check-up-Entwurf gespeichert. Bitte prüfen, bei Bedarf bearbeiten und manuell kopieren. Es wurde keine E-Mail versendet.');
         return $this->redirect('/leads/'.$lead->id.'#followup-drafts');
     }

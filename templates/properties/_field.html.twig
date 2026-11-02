@@ -19,6 +19,6 @@
         <input form="property-data-form" id="property-{{ name }}" name="{{ name }}" type="{{ field.type }}" value="{{ value }}" {{ field.required|default(false) ? 'required' }} {% if field.type == 'number' %}min="{{ field.min|default(0) }}" max="{{ field.max|default(1000000000) }}" step="{{ field.step|default('0.01') }}"{% elseif field.type not in ['date','checkbox'] %}maxlength="{{ field.maxlength|default(250) }}"{% endif %} autocomplete="off">
     {% endif %}
 {% endif %}
-{% if field.help|default('') %}<small class="help">{{ field.help }}</small>{% endif %}
+{% if field.help|default('') %}<details class="property-field-help"><summary aria-label="Hinweis: {{ field.label }}" title="Hinweis">{{ icon('help-circle') }}</summary><p>{{ field.help }}</p></details>{% endif %}
 </div>
 {% endmacro %}

@@ -3,6 +3,7 @@ namespace App\Command;
 
 use App\Entity\Document;
 use App\Service\MaterialsImporter;
+use App\Service\CatalogAssets;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -13,7 +14,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 #[AsCommand(name:'app:catalog:preview',description:'Private Blättervorschau aus dem bereitgestellten Werbekatalog erzeugen (optional: Poppler).')]
 final class CatalogPreviewCommand extends Command
 {
-    public function __construct(private EntityManagerInterface $em,private MaterialsImporter $materials,private string $projectDir){parent::__construct();}
+    public function __construct(private EntityManagerInterface $em,private MaterialsImporter $materials,private string $projectDir,private CatalogAssets $assets){parent::__construct();}
     protected function configure():void{$this->addOption('tenant',null,InputOption::VALUE_REQUIRED,'Mandantenkennung','chase-demo');}
     protected function execute(InputInterface $input,OutputInterface $output):int
     {
@@ -22,7 +23,7 @@ final class CatalogPreviewCommand extends Command
         if(!$document||!($pdf=$this->materials->filePath($document))){$output->writeln('<comment>Kein intakter Originalkatalog importiert. Zuerst die bereitgestellten Materialien importieren. Die PDF-Ansicht bleibt verfügbar, sobald die Quelle vorliegt.</comment>');return Command::FAILURE;}
         $base=$this->projectDir.'/var/materials/catalog/'.substr(hash('sha256',$tenant),0,16).'/'.$document->data['sourceHash'];
         $manifest=$base.'/manifest.json';
-        if(is_file($manifest)){$existing=json_decode((string)file_get_contents($manifest),true);$ready=($existing['sourceHash']??'')===$document->data['sourceHash']&&($existing['pages']??0)>0;for($p=1;$p<=(int)($existing['pages']??0);$p++)$ready=$ready&&is_file($base.'/page-'.sprintf('%03d',$p).'.jpg');if($ready){$output->writeln('Die private Katalogvorschau ist aktuell ('.$existing['pages'].' Seiten).');return Command::SUCCESS;}}
+        if(is_file($manifest)){$existing=json_decode((string)file_get_contents($manifest),true);$ready=($existing['sourceHash']??'')===$document->data['sourceHash']&&($existing['pages']??0)>0;for($p=1;$p<=(int)($existing['pages']??0);$p++)$ready=$ready&&is_file($base.'/page-'.sprintf('%03d',$p).'.jpg');if($ready){$created=$this->renderProducts($pdf,$base);$output->writeln('Katalogvorschau aktuell; '.$created.' Produktbilder lokal vorbereitet.');return Command::SUCCESS;}}
         [$status,$info]=$this->runProcess(['pdfinfo',$pdf]);
         if($status!==0||!preg_match('/^Pages:\s+(\d+)/m',$info,$match)){$output->writeln('<comment>Die optionale Blättervorschau benötigt Poppler (pdfinfo und pdftoppm). Der geschützte Original-PDF-Download und die Produktauswahl funktionieren ohne diese Zusatzprogramme.</comment>');return Command::FAILURE;}
         $pages=(int)$match[1];if($pages<1||$pages>100){$output->writeln('<error>Die Seitenzahl liegt außerhalb des unterstützten Bereichs (1–100).</error>');return Command::FAILURE;}
@@ -35,8 +36,21 @@ final class CatalogPreviewCommand extends Command
             foreach($rendered as $file){if(preg_match('/page-(\d+)\.jpg$/',$file,$m)){chmod($file,0600);rename($file,$base.'/page-'.sprintf('%03d',(int)$m[1]).'.jpg');}}
             $data=['documentId'=>$document->id,'sourceHash'=>$document->data['sourceHash'],'pages'=>$pages,'renderedAt'=>(new \DateTimeImmutable())->format(DATE_ATOM),'width'=>1440];
             file_put_contents($manifest.'.tmp',json_encode($data,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_THROW_ON_ERROR));chmod($manifest.'.tmp',0600);rename($manifest.'.tmp',$manifest);
-            $output->writeln($pages.' Katalogseiten lokal gerendert und privat gespeichert. Keine Übertragung an Dritte.');return Command::SUCCESS;
+            $created=$this->renderProducts($pdf,$base);$output->writeln($pages.' Katalogseiten und '.$created.' Produktbilder lokal vorbereitet. Keine Übertragung an Dritte.');return Command::SUCCESS;
         } finally {foreach(glob($temporary.'/*')?:[] as $file)if(is_file($file))unlink($file);if(is_dir($temporary))rmdir($temporary);}
+    }
+    private function renderProducts(string $pdf,string $base):int
+    {
+        $count=0;
+        foreach($this->assets->definitions() as $row){
+            $name=$this->assets->filename($row);$crop=$row['previewCrop']??null;$page=(int)($row['catalogPage']??0);if(!$name||!is_array($crop)||count($crop)!==4||$page<1||$page>100)continue;
+            $target=$base.'/'.$name;if(is_file($target)&&!is_link($target)){++$count;continue;}
+            [$x,$y,$width,$height]=array_map(fn($n)=>(int)round((float)$n*1.5),$crop);if($x<0||$y<0||$width<1||$height<1||$x+$width>1440||$y+$height>810)continue;
+            $temporary=$base.'/.product-'.bin2hex(random_bytes(8));
+            [$status]=$this->runProcess(['pdftoppm','-jpeg','-jpegopt','quality=88','-singlefile','-f',(string)$page,'-l',(string)$page,'-scale-to-x','1440','-scale-to-y','-1','-x',(string)$x,'-y',(string)$y,'-W',(string)$width,'-H',(string)$height,$pdf,$temporary]);
+            if($status===0&&is_file($temporary.'.jpg')){chmod($temporary.'.jpg',0600);rename($temporary.'.jpg',$target);++$count;}elseif(is_file($temporary.'.jpg'))unlink($temporary.'.jpg');
+        }
+        return $count;
     }
     /** @return array{int,string} */
     private function runProcess(array $arguments):array

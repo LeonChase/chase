@@ -89,6 +89,39 @@ final class ValuationTest extends WebTestCase
             self::assertSame(1,$this->em()->getRepository(Valuation::class)->count([]));
         }finally{if(is_file($path))unlink($path);}
     }
+    public function testLiveCalculationReturnsFreshServerResultsWithoutSaving():void
+    {
+        $this->auth();$token=$this->token();
+        $headers=['HTTP_ACCEPT'=>'application/json','HTTP_X_REQUESTED_WITH'=>'XMLHttpRequest'];
+        $this->browser->request('POST','/properties/v-own/valuation',$this->inputs(['_token'=>$token,'action'=>'calculate']),[],$headers);
+        self::assertResponseIsSuccessful();self::assertResponseHeaderSame('Content-Type','application/json');
+        $payload=json_decode($this->browser->getResponse()->getContent(),true,512,JSON_THROW_ON_ERROR);
+        self::assertTrue($payload['calculated']);self::assertNull($payload['error']);self::assertStringContainsString('310.715',$payload['html']);
+        $this->browser->request('POST','/properties/v-own/valuation',$this->inputs(['_token'=>$token,'action'=>'calculate','compQmPrice'=>'3000']),[],$headers);
+        self::assertResponseIsSuccessful();self::assertStringContainsString('410.000',json_decode($this->browser->getResponse()->getContent(),true)['html']);
+        self::assertSame(0,$this->em()->getRepository(Valuation::class)->count([]));
+        $this->browser->request('POST','/properties/v-own/valuation',$this->inputs(['_token'=>$token,'action'=>'calculate','bgf'=>'invalid']),[],$headers);
+        self::assertResponseStatusCodeSame(422);self::assertFalse(json_decode($this->browser->getResponse()->getContent(),true)['calculated']);
+    }
+    public function testRealPdfUsesCurrentInputsAndDoesNotSaveOrExposeForeignObjects():void
+    {
+        $this->auth();$token=$this->token();
+        $this->browser->request('POST','/properties/v-own/valuation',$this->inputs(['_token'=>$token,'action'=>'pdf']));
+        self::assertResponseIsSuccessful();self::assertResponseHeaderSame('Content-Type','application/pdf');self::assertResponseHeaderSame('X-Content-Type-Options','nosniff');
+        self::assertStringContainsString('private',$this->browser->getResponse()->headers->get('Cache-Control'));
+        self::assertStringContainsString('CHASE-Bewertung-2026-10-20.pdf',$this->browser->getResponse()->headers->get('Content-Disposition'));
+        $bytes=$this->browser->getResponse()->getContent();self::assertStringStartsWith('%PDF-1.',$bytes);self::assertStringContainsString('%%EOF',$bytes);self::assertGreaterThan(4000,strlen($bytes));
+        self::assertSame(0,$this->em()->getRepository(Valuation::class)->count([]));
+        $this->browser->request('POST','/properties/v-foreign/valuation',$this->inputs(['_token'=>$token,'action'=>'pdf']));self::assertResponseStatusCodeSame(404);
+        $this->browser->request('POST','/properties/v-own/valuation',$this->inputs(['_token'=>'invalid','action'=>'pdf']));self::assertResponseStatusCodeSame(403);
+    }
+    public function testCompactFormPreservesEveryInputAndOffersKeyboardAccessibleHelp():void
+    {
+        $this->auth();$this->browser->request('GET','/properties/v-own/valuation');self::assertResponseIsSuccessful();
+        self::assertSelectorCount(19,'[data-valuation-number]');self::assertSelectorCount(19,'.valuation-field-label [data-valuation-info]');
+        self::assertSelectorExists('dialog#valuation-info');self::assertSelectorExists('button[name="action"][value="pdf"]');self::assertSelectorExists('button[name="action"][value="save"]');
+        self::assertSelectorCount(4,'.valuation-results .valuation-result');
+    }
     public function testRegistryRejectsUnsafeSourceUrlsAndShowsUnconnectedStatus():void
     {
         $this->auth();$token=$this->token('/valuation/sources');self::assertSelectorTextContains('main','Kein Live-Datenfeed verbunden');

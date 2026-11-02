@@ -3,7 +3,8 @@ namespace App\Service;
 use App\Entity\{User,NewsPost,UserPreference};
 use Symfony\Bundle\SecurityBundle\Security;
 class PortalContext {
- public function __construct(private Security $security,private PortalStore $store,private string $projectDir){}
+ public function __construct(private Security $security,private PortalStore $store,private string $projectDir,private PortalNotifications $notifications){}
+ public function getUnreadNotifications():int{$u=$this->security->getUser();return $u instanceof User?$this->notifications->unread($u):0;}
  public function getBrand():array{return json_decode(file_get_contents($this->projectDir.'/data/brand.json'),true,512,JSON_THROW_ON_ERROR);}
  public function getInitials():string{$u=$this->security->getUser();if(!$u instanceof User)return 'CH';$p=preg_split('/\s+/u',$u->name);return mb_strtoupper(mb_substr($p[0]??'',0,1).mb_substr($p[1]??'',0,1));}
  public function getUnreadNews():int{

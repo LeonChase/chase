@@ -58,23 +58,24 @@ final class ContentTest extends WebTestCase
         return (string) $this->browser->request('GET', $page)->filter('meta[name="portal-csrf"]')->attr('content');
     }
 
-    public function testNewsReadStateChangesTheBadgeAndRemainsPersonal(): void
+    public function testNewsReadStateRemainsPersonalAndOldLinksOpenTheNotificationsDrawer(): void
     {
         $first = new NewsPost(['title' => 'Synthetische Nachricht A', 'status' => 'Veröffentlicht', 'body' => 'Lokaler Test.'], null, 'content-test');
         $second = new NewsPost(['title' => 'Synthetische Nachricht B', 'status' => 'Veröffentlicht', 'body' => 'Lokaler Test.'], null, 'content-test');
         $unpublished = new NewsPost(['title' => 'Nicht veröffentlichter Testentwurf', 'status' => 'Entwurf'], null, 'content-test');
         $this->persist($first, $second, $unpublished);
-        $token = $this->token('/news');
-        self::assertSelectorTextContains('.nav-count', '2');
-        self::assertSelectorNotExists('a[href="/news/'.$unpublished->id.'"]');
+        $token = $this->token('/profile');
+        $this->browser->request('GET', '/news');
+        self::assertResponseRedirects('/?notifications=open');
         $this->browser->request('POST', '/preferences/read/news/'.$first->id, ['_token' => $token]);
         self::assertResponseRedirects('/news/'.$first->id);
         $this->browser->followRedirect();
-        self::assertSelectorTextContains('.nav-count', '1');
-        self::assertSelectorTextContains('article', 'Gelesen');
+        self::assertResponseRedirects('/?notifications=open&notice='.rawurlencode('news:'.$first->id));
+        self::assertSame(1, $this->em()->getRepository(UserPreference::class)->count(['ownerId'=>$this->userId]));
         $this->login('content-peer');
         $this->browser->request('GET', '/news');
-        self::assertSelectorTextContains('.nav-count', '2');
+        self::assertResponseRedirects('/?notifications=open');
+        self::assertSame(0, $this->em()->getRepository(UserPreference::class)->count(['ownerId'=>'content-peer']));
         $this->browser->request('GET', '/news/'.$unpublished->id);
         self::assertResponseStatusCodeSame(404);
     }

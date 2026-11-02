@@ -16,7 +16,8 @@ class DashboardController extends PortalController {
   $overdue=array_values(array_filter($tasks,fn($r)=>!empty($r->data['dueDate'])&&$r->data['dueDate']<$date));
   $weekStart=$today->modify('monday this week');$week=[];$weekNames=['Mo','Di','Mi','Do','Fr','Sa','So'];
   for($i=0;$i<7;$i++){$day=$weekStart->modify('+'.$i.' days');$key=$day->format('Y-m-d');$week[]=['date'=>$day,'label'=>$weekNames[$i],'today'=>$key===$date,'count'=>count(array_filter($tasks,fn($r)=>($r->data['dueDate']??'')===$key))];}
+  $firstName=trim((string)($user->preferences['firstName']??''));if($firstName===''){$candidate=preg_split('/\s+/u',trim($user->name))[0]??'';$firstName=mb_strtoupper($candidate)==='CHASE'?'':$candidate;}
   $stats=['properties'=>count(array_filter($properties,fn($r)=>!in_array($r->data['status']??'',['Archiviert','Verkauft'],true))),'tasks'=>count($tasks),'leads'=>count(array_filter($leads,fn($r)=>($r->data['status']??'')==='Neu'))];
-  return $this->page('dashboard/index.html.twig',compact('properties','tasks','leads','news','stats','today','dueToday','overdue','week'));
+  return $this->page('dashboard/index.html.twig',compact('properties','tasks','leads','news','stats','today','dueToday','overdue','week','firstName'));
  }
 }

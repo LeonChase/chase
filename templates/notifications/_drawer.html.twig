@@ -1,0 +1,9 @@
+{% if app.user %}
+<link rel="stylesheet" href="/assets/notifications.css">
+<dialog class="notifications-drawer" id="notifications-drawer" aria-labelledby="notifications-heading">
+ <header><h2 id="notifications-heading">Benachrichtigungen</h2><button type="button" class="icon-button" data-notifications-close aria-label="Benachrichtigungen schließen">{{ icon('x') }}</button></header>
+ <div class="notifications-toolbar"><span data-notifications-status role="status"></span><button class="text-link" type="button" data-notifications-read-all>Alle gelesen</button></div>
+ <div class="notifications-content" data-notifications-content aria-live="polite"></div>
+</dialog>
+<script src="/assets/notifications.js" defer></script>
+{% endif %}

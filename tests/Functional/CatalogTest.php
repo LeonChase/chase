@@ -35,7 +35,7 @@ final class CatalogTest extends WebTestCase
         $this->browser->request('POST','/advertising/cart/item/'.$this->product->id,['_token'=>$this->token(),'quantity'=>'5']);$this->em()->clear();self::assertSame(30,$this->cartRecord()->data['items'][$this->product->id]);
         $this->browser->request('GET','/advertising/cart');self::assertResponseIsSuccessful();self::assertSelectorExists('input[name="quantities['.$this->product->id.']"][value="30"]');
         $this->browser->request('POST','/advertising/favorite/'.$this->product->id,['_token'=>$this->token(),'page'=>4,'q'=>'Testdesign']);self::assertResponseRedirects('/advertising?page=4&q=Testdesign');
-        $this->browser->request('GET','/advertising?favorites=1');self::assertSelectorCount(1,'.catalog-product-card');self::assertSelectorTextContains('.catalog-product-card h3','Testdesign A');
+        $this->browser->request('GET','/advertising?favorites=1');self::assertSelectorCount(1,'.catalog-product-card');self::assertSelectorTextContains('.catalog-product-card h2','Testdesign A');
         $this->login('catalog-peer');$this->browser->request('GET','/advertising?favorites=1');self::assertSelectorNotExists('.catalog-product-card');$this->browser->request('GET','/advertising/cart');self::assertResponseIsSuccessful();self::assertSelectorNotExists('input[name="quantities['.$this->product->id.']"]');self::assertNull($this->cartRecord('catalog-peer'));
         $this->login();$this->browser->request('GET','/advertising/cart');self::assertSelectorExists('input[value="30"]');
     }
@@ -77,4 +77,33 @@ final class CatalogTest extends WebTestCase
             $this->login();file_put_contents($file,"\ncorrupted",FILE_APPEND);$this->browser->request('GET','/advertising/pages/1');self::assertResponseStatusCodeSame(404);$this->browser->request('GET','/advertising/original');self::assertResponseStatusCodeSame(404);
         }finally{foreach(glob($base.'/*')?:[] as $path)if(is_file($path))unlink($path);if(is_dir($base))rmdir($base);if(is_file($file))unlink($file);}
     }
+    public function testCategoryAdministrationRequiresAdminCsrfAndTenantScope():void
+    {
+        $this->browser->request('GET','/advertising/manage');self::assertResponseStatusCodeSame(403);
+        $admin=$this->em()->find(User::class,'catalog-agent');$admin->roles=['ROLE_ADMIN'];$this->em()->flush();$this->login();$token=$this->token('/advertising/manage');
+        $this->browser->request('POST','/advertising/manage',['_token'=>'bad','name'=>'Neue Testkategorie']);self::assertResponseStatusCodeSame(403);
+        $this->browser->request('POST','/advertising/manage',['_token'=>$token,'name'=>'Neue Testkategorie']);self::assertResponseRedirects('/advertising/manage');
+        $category=$this->em()->getRepository(\App\Entity\CatalogCategory::class)->findOneBy(['title'=>'Neue Testkategorie']);self::assertNotNull($category);self::assertSame('catalog-test',$category->tenantId);
+        $this->product=$this->em()->find(AdvertisingProduct::class,$this->product->id);$this->product->data['category']=$category->title;$this->em()->flush();
+        $this->browser->request('POST','/advertising/manage',['_token'=>$token,'id'=>$category->id,'name'=>'Umbenannte Testkategorie']);self::assertResponseRedirects('/advertising/manage');$this->em()->clear();self::assertSame('Umbenannte Testkategorie',$this->em()->find(AdvertisingProduct::class,$this->product->id)->data['category']);
+        $foreign=new \App\Entity\CatalogCategory(['title'=>'SECRET Kategorie'],null,'catalog-other');$this->em()->persist($foreign);$this->em()->flush();
+        $this->browser->request('POST','/advertising/manage',['_token'=>$token,'id'=>$foreign->id,'name'=>'Nicht erlaubt']);self::assertResponseStatusCodeSame(404);
+        $this->browser->request('GET','/advertising/manage');self::assertStringNotContainsString('SECRET Kategorie',$this->browser->getResponse()->getContent());
+    }
+
+    public function testAdminCanAddImageProductAndOnlySaveCompletePriceEvidence():void
+    {
+        $admin=$this->em()->find(User::class,'catalog-agent');$admin->roles=['ROLE_ADMIN'];$this->em()->flush();$this->login();$token=$this->token('/advertising/products/new');
+        $data=['_token'=>$token,'title'=>'Synthetisches neues Werbemittel','category'=>'Lokaler Test','defaultQuantity'=>'100','unit'=>'Stück','active'=>'1','quoteAmount'=>'49.99'];
+        $this->browser->request('POST','/advertising/products/new',$data);self::assertResponseIsSuccessful();self::assertSelectorExists('[role="alert"]');self::assertSame(3,$this->em()->getRepository(AdvertisingProduct::class)->count([]));
+        $path=tempnam(sys_get_temp_dir(),'catalog-image-');file_put_contents($path,base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aPQAAAABJRU5ErkJggg=='));$stored=null;
+        try {
+            $data+=['quoteProvider'=>'Synthetischer Testanbieter','quoteUrl'=>'https://example.test/preisbeleg','quoteDate'=>'2026-01-01','quoteQuantity'=>'100','quoteTaxMode'=>'gross'];
+            $this->browser->request('POST','/advertising/products/new',$data,['image'=>new \Symfony\Component\HttpFoundation\File\UploadedFile($path,'produkt.png','image/png',null,true)]);self::assertResponseRedirects('/advertising/manage');
+            $product=$this->em()->getRepository(AdvertisingProduct::class)->findOneBy(['title'=>'Synthetisches neues Werbemittel']);self::assertNotNull($product);self::assertSame(100,$product->data['defaultQuantity']);self::assertSame(100,$product->data['referenceQuote']['quantity']);self::assertTrue($product->data['referenceQuote']['manual']);$stored=self::getContainer()->getParameter('kernel.project_dir').'/var/materials/library/'.$product->data['imageFilePath'];
+            $this->browser->request('GET','/advertising/products/'.$product->id.'/image');self::assertResponseIsSuccessful();self::assertResponseHeaderSame('Content-Type','image/png');self::assertStringContainsString('private',$this->browser->getResponse()->headers->get('Cache-Control'));
+            $this->login('catalog-foreign');$this->browser->request('GET','/advertising/products/'.$product->id.'/image');self::assertResponseStatusCodeSame(404);
+        } finally {if(is_file($path))unlink($path);if($stored&&is_file($stored))unlink($stored);}
+    }
+
 }

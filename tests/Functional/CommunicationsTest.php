@@ -17,13 +17,23 @@ final class CommunicationsTest extends WebTestCase {
  private function em():EntityManagerInterface{return self::getContainer()->get(EntityManagerInterface::class);}
  private function auth(string $id):void {$this->browser->loginUser($this->em()->find(User::class,$id));}
  private function token(string $path='/messages'):string {$c=$this->browser->request('GET',$path);self::assertResponseIsSuccessful();return $c->filter('meta[name="portal-csrf"]')->attr('content');}
- public function testInternalMessagesHaveParticipantAndTenantAclAndExplicitRead():void {
+ public function testChatKeepsConversationAndParticipantTenantAclAndExplicitRead():void {
   $token=$this->token();$this->browser->request('POST','/messages',['_token'=>$token,'recipientId'=>'recipient','title'=>'Nur intern','body'=>'Synthetische interne Testnachricht']);self::assertResponseStatusCodeSame(302);
   $m=$this->em()->getRepository(Message::class)->findOneBy(['ownerId'=>'sender']);self::assertNotNull($m);self::assertSame('recipient',$m->recipientId);
-  $this->browser->followRedirect();self::assertSelectorTextContains('article','Synthetische interne Testnachricht');
+  self::assertResponseRedirects('/messages?recipientId=recipient#chat-latest');$this->browser->followRedirect();self::assertSelectorTextContains('article','Synthetische interne Testnachricht');self::assertSelectorExists('[data-chat-send]');
   foreach(['stranger','admin','other'] as $id){$this->auth($id);$this->browser->request('GET','/messages/'.$m->id);self::assertResponseStatusCodeSame(404);}
-  $this->auth('recipient');$token=$this->token();$this->browser->request('GET','/messages/'.$m->id);self::assertResponseIsSuccessful();self::assertSelectorTextContains('main','Als gelesen markieren');
+  $this->auth('recipient');$token=$this->token();$this->browser->request('GET','/messages/'.$m->id);self::assertResponseRedirects('/messages?recipientId=sender#message-'.$m->id);$this->browser->followRedirect();self::assertSelectorExists('[data-message-unread="true"]');
   $this->browser->request('POST','/messages/'.$m->id.'/read',['_token'=>$token]);self::assertResponseStatusCodeSame(302);$this->em()->clear();self::assertNotEmpty($this->em()->find(Message::class,$m->id)->data['readAt']);
+ }
+ public function testChatCanSendWithoutSubjectAndReturnsToExistingThread():void {
+  $token=$this->token('/messages?recipientId=recipient');
+  $this->browser->request('POST','/messages',['_token'=>$token,'recipientId'=>'recipient','body'=>'Erste Nachricht ohne Betreff'],[],['HTTP_X_REQUESTED_WITH'=>'XMLHttpRequest']);self::assertResponseStatusCodeSame(201);self::assertSame('/messages?recipientId=recipient',json_decode($this->browser->getResponse()->getContent(),true)['url']);
+  $this->browser->request('GET','/messages?recipientId=recipient&partial=thread');self::assertResponseIsSuccessful();self::assertSelectorTextContains('.chat-message-text','Erste Nachricht ohne Betreff');self::assertStringNotContainsString('<!doctype',$this->browser->getResponse()->getContent());
+  $this->auth('recipient');$token=$this->token('/messages?recipientId=sender');self::assertSelectorExists('[data-message-unread="true"]');
+  $this->browser->request('POST','/messages/thread/sender/read',['_token'=>'bad']);self::assertResponseStatusCodeSame(403);
+  $this->browser->request('POST','/messages/thread/sender/read',['_token'=>$token],[],['HTTP_X_REQUESTED_WITH'=>'XMLHttpRequest']);self::assertResponseIsSuccessful();self::assertSame(1,json_decode($this->browser->getResponse()->getContent(),true)['read']);
+  $this->browser->request('POST','/messages',['_token'=>$token,'recipientId'=>'sender','body'=>'Antwort im selben Gespräch']);self::assertResponseRedirects('/messages?recipientId=sender#chat-latest');$this->browser->followRedirect();self::assertSelectorCount(2,'.chat-bubble');self::assertSelectorExists('[data-chat-thread][data-inbox="true"][data-sent="true"]');
+  $this->auth('stranger');$this->browser->request('GET','/messages?recipientId=sender&partial=thread');self::assertResponseStatusCodeSame(404);
  }
  public function testMessagesValidateCsrfRecipientAndObjectGrant():void {
   $token=$this->token();$data=['recipientId'=>'recipient','title'=>'Prüfung','body'=>'Interne Notiz'];

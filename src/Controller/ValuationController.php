@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\{Property, Valuation};
+use Dompdf\{Dompdf, Options};
 use App\Service\{PortalStore, ValuationCalculator};
 use Symfony\Component\HttpFoundation\{Request, Response};
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -47,7 +48,12 @@ final class ValuationController extends PortalController
                     $sourceBindings[$field]=$source->id;
                     $sourceSnapshots[$field]=$source->data+['recordId'=>$source->id,'recordedAt'=>$source->createdAt->format(DATE_ATOM)];
                 }
-                if($request->request->getString('action','save')==='save') {
+                $action=$request->request->getString('action','save');
+                if($action==='pdf') {
+                    if(!$result['sw']['ok']&&!$result['ew']['ok']&&!$result['vw']['ok']&&!$result['offer']['provided'])throw new \InvalidArgumentException('Für den PDF-Export bitte ein Verfahren vervollständigen oder einen Angebotspreis eintragen.');
+                    return $this->pdfResponse($result,$valuationDate,$property,$sourceSnapshots);
+                }
+                if($action==='save') {
                     if(!$result['sw']['ok']&&!$result['ew']['ok']&&!$result['vw']['ok']&&!$result['offer']['provided'])throw new \InvalidArgumentException('Bitte mindestens ein Verfahren vollständig ausfüllen oder einen eigenen Angebotspreis angeben.');
                     $valuation=new Valuation(['kind'=>'calculation','propertyId'=>$property?->id,'inputs'=>$data,'calculation'=>$result,'sourceBindings'=>$sourceBindings,'sourceSnapshots'=>$sourceSnapshots,'valuationDate'=>$valuationDate,'status'=>'Unverbindliche Schnellkalkulation','isDemo'=>true],$this->user()->id,$this->user()->tenantId);
                     $valuation->title=$property?->title??'Freie Immobilien-Schnellkalkulation';
@@ -56,6 +62,9 @@ final class ValuationController extends PortalController
                     return $this->redirectToRoute($property?'property_valuation':'valuation',($property?['id'=>$property->id]:[])+['result'=>$valuation->id]);
                 }
             }catch(\InvalidArgumentException $exception){$error=$exception->getMessage();}
+        }
+        if($request->isMethod('POST')&&str_contains($request->headers->get('Accept',''),'application/json')) {
+            return $this->json(['html'=>$this->renderView('valuation/_results.html.twig',['result'=>$result,'saved'=>$saved]),'error'=>$error,'calculated'=>!$error],$error?422:200,['Cache-Control'=>'private, no-store']);
         }
         $valuations=array_values(array_filter($this->store->visible(Valuation::class,$this->user()),fn($v)=>($v->data['kind']??'')!=='factor_source'&&(!$property||($v->data['propertyId']??'')===$property->id)));
         return $this->page('valuation/index.html.twig',['property'=>$property,'properties'=>$this->store->visible(Property::class,$this->user()),'data'=>$data,'groups'=>ValuationCalculator::FIELD_GROUPS,'factors'=>ValuationCalculator::FACTORS,'result'=>$result,'saved'=>$saved,'error'=>$error,'valuations'=>$valuations,'valuationDate'=>$valuationDate,'sources'=>$this->sources(),'sourceBindings'=>$sourceBindings,'quarter'=>$this->quarter()]);
@@ -107,6 +116,21 @@ final class ValuationController extends PortalController
             }finally{fclose($handle);}
         }catch(\InvalidArgumentException $exception){$this->addFlash('error',$exception->getMessage());}
         return $this->redirectToRoute('valuation_sources');
+    }
+
+    private function pdfResponse(array $result,string $valuationDate,?Property $property,array $sourceSnapshots):Response
+    {
+        $projectDir=$this->getParameter('kernel.project_dir');
+        $temporary=$projectDir.'/var/pdf';
+        if(!is_dir($temporary)&&!mkdir($temporary,0700,true)&&!is_dir($temporary))throw new \RuntimeException('Das lokale PDF-Verzeichnis konnte nicht erstellt werden.');
+        $options=new Options();
+        $options->setIsRemoteEnabled(false);$options->setIsPhpEnabled(false);$options->setIsJavascriptEnabled(false);$options->setAllowedProtocols([]);
+        $options->setChroot([$projectDir.'/vendor/dompdf/dompdf/lib/fonts']);$options->setFontDir($projectDir.'/vendor/dompdf/dompdf/lib/fonts');
+        $options->setFontCache($temporary);$options->setTempDir($temporary);$options->setDefaultFont('DejaVu Sans');
+        $pdf=new Dompdf($options);$pdf->setPaper('A4','landscape');
+        $pdf->loadHtml($this->renderView('valuation/pdf.html.twig',['result'=>$result,'property'=>$property,'valuationDate'=>$valuationDate,'groups'=>ValuationCalculator::FIELD_GROUPS,'sourceSnapshots'=>$sourceSnapshots]),'UTF-8');
+        $pdf->render();
+        return new Response($pdf->output(),200,['Content-Type'=>'application/pdf','Content-Disposition'=>'attachment; filename="CHASE-Bewertung-'.$valuationDate.'.pdf"','X-Content-Type-Options'=>'nosniff','Cache-Control'=>'private, no-store']);
     }
 
     private function sourceRecord(array $raw): Valuation

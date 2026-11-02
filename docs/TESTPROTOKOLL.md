@@ -1,4 +1,19 @@
-# Testprotokoll · 20. Oktober 2026
+# Testprotokoll · 2. November 2026
+
+## Aktuell: Revision 2.2
+
+Gesamtlauf unter PHP 8.4.26: **180 Tests, 4.697 Assertions, erfolgreich, keine übersprungenen Tests** (16,0 Sekunden). Der Test-Cache wurde vor dem Gesamtlauf erneuert. Isolierte Testdatenbank `var/phpunit.db`.
+
+Zusätzliche Prüffälle: Chat ohne Pflichtbetreff und ohne Bestätigungsseite, Teilnehmer-/Mandantentrennung und Gelesen-Aktionen mit CSRF; Benachrichtigungen aus sichtbaren Datensätzen, Zukunfts-/Entwurfsfilter, HTML-Escaping und persönliche Gelesen-Markierungen; Kategorienverwaltung mit Admin-/Mandantenprüfung; Produktanlage mit privatem Bild und vollständig belegtem manuellen Preisbeispiel; automatische Archiv-Erkennung und idempotenter Import; kompakte Academy-Suche, Profilvorname, Live-Berechnung und echter Bewertungs-PDF-Export.
+
+Chromium/Playwright: bestehender Browser-Smoke-Test mit 17 aktuellen Routen bei 390 Pixeln erfolgreich, Anmeldung/Abmeldung, Theme-Speicherung, sechs Kacheln, Zugriffssperren, kein horizontaler Seitenüberlauf, keine JavaScript-Fehler oder externen Browseranfragen. Zusätzlicher Bedienlauf: Chat inline senden, Gespräch in Seitenliste und nach Neuladen vorhanden; Glockenleiste öffnen/schließen; alle drei Aufgabenansichten speichern und nach Neuladen beibehalten. Zehn Hauptbereiche zusätzlich bei 1440 × 900, 1280 × 720 und 390 × 844 aufgerufen. Desktop ohne Scrollen des äußeren Browserdokuments; umfangreiche Inhalte in eigenen Arbeitsbereichen, auf Mobilgeräten natürlicher Dokumentfluss.
+
+Alle 70 Twig-Vorlagen, Symfony-Service-Konfiguration und Doctrine-Schema geprüft. Composer-Konfiguration und installierte Plattformanforderungen gültig. Private Materialien, Passwörter und Datenbanken werden nicht versioniert.
+
+Upgradeprobe mit `scripts/setup`: 0 neue Demodatensätze; vorhandene Nutzer-, Objekt-, Lead-, Aufgaben-, Dokument- und Nachrichtenzahlen unverändert. Passwort-Hashes und die lokale Zugangsdaten-Datei blieben identisch.
+
+Die früheren Prüfläufe folgen als Historie.
+
 
 ## Aktuelle Revision 2.1
 

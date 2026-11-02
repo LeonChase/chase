@@ -25,7 +25,7 @@ const base = 'http://127.0.0.1:8000';
     await Promise.all([page.waitForURL(base+'/properties'),page.locator('button[type=submit]').click()]);
     await page.goto(base+'/');
     assert.equal(await page.locator('.module-card').count(),6);
-    const titles=await page.locator('.module-card h3').allTextContents();
+    const titles=await page.locator('.module-card h2').allTextContents();
     assert.deepEqual(titles,['Dokumente','Immobilienbewertung','KI-Tools','Wissen / Academy','Werbekatalog','Visualisierung']);
     const cols=await page.locator('.module-grid').evaluate(e=>getComputedStyle(e).gridTemplateColumns.split(' ').length);
     assert.equal(cols,3);

@@ -8,7 +8,14 @@
       "category": "Social Media",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 3. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Design",
-      "catalogPage": 3
+      "catalogPage": 3,
+      "previewCrop": [
+        151,
+        130,
+        311,
+        310
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-03-design-02",
@@ -16,7 +23,14 @@
       "category": "Social Media",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 3. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Design",
-      "catalogPage": 3
+      "catalogPage": 3,
+      "previewCrop": [
+        586,
+        38,
+        249,
+        427
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-04-design-01",
@@ -24,7 +38,14 @@
       "category": "Flyer",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 4. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 4
+      "catalogPage": 4,
+      "previewCrop": [
+        44,
+        80,
+        445,
+        360
+      ],
+      "defaultQuantity": 100
     },
     {
       "id": "page-04-design-02",
@@ -32,7 +53,14 @@
       "category": "Flyer",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 4. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 4
+      "catalogPage": 4,
+      "previewCrop": [
+        516,
+        65,
+        393,
+        344
+      ],
+      "defaultQuantity": 100
     },
     {
       "id": "page-05-design-01",
@@ -40,7 +68,14 @@
       "category": "Flyer",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 5. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 5
+      "catalogPage": 5,
+      "previewCrop": [
+        52,
+        96,
+        261,
+        364
+      ],
+      "defaultQuantity": 100
     },
     {
       "id": "page-05-design-02",
@@ -48,7 +83,14 @@
       "category": "Flyer",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 5. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 5
+      "catalogPage": 5,
+      "previewCrop": [
+        505,
+        18,
+        418,
+        178
+      ],
+      "defaultQuantity": 100
     },
     {
       "id": "page-05-design-03",
@@ -56,7 +98,14 @@
       "category": "Flyer",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 5. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 5
+      "catalogPage": 5,
+      "previewCrop": [
+        385,
+        245,
+        267,
+        282
+      ],
+      "defaultQuantity": 100
     },
     {
       "id": "page-06-design-01",
@@ -64,7 +113,14 @@
       "category": "Gutscheine",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 6. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 6
+      "catalogPage": 6,
+      "previewCrop": [
+        91,
+        103,
+        368,
+        157
+      ],
+      "defaultQuantity": 100
     },
     {
       "id": "page-06-design-02",
@@ -72,7 +128,14 @@
       "category": "Gutscheine",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 6. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 6
+      "catalogPage": 6,
+      "previewCrop": [
+        509,
+        94,
+        359,
+        164
+      ],
+      "defaultQuantity": 100
     },
     {
       "id": "page-06-design-03",
@@ -80,7 +143,14 @@
       "category": "Gutscheine",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 6. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 6
+      "catalogPage": 6,
+      "previewCrop": [
+        115,
+        321,
+        369,
+        155
+      ],
+      "defaultQuantity": 100
     },
     {
       "id": "page-06-design-04",
@@ -88,7 +158,14 @@
       "category": "Gutscheine",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 6. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 6
+      "catalogPage": 6,
+      "previewCrop": [
+        528,
+        315,
+        362,
+        165
+      ],
+      "defaultQuantity": 100
     },
     {
       "id": "page-07-design-01",
@@ -96,7 +173,14 @@
       "category": "Ausstattung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 7. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 7
+      "catalogPage": 7,
+      "previewCrop": [
+        92,
+        118,
+        225,
+        196
+      ],
+      "defaultQuantity": 100
     },
     {
       "id": "page-07-design-02",
@@ -104,7 +188,14 @@
       "category": "Ausstattung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 7. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 7
+      "catalogPage": 7,
+      "previewCrop": [
+        516,
+        25,
+        288,
+        214
+      ],
+      "defaultQuantity": 10
     },
     {
       "id": "page-07-design-03",
@@ -112,7 +203,14 @@
       "category": "Ausstattung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 7. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 7
+      "catalogPage": 7,
+      "previewCrop": [
+        259,
+        289,
+        135,
+        189
+      ],
+      "defaultQuantity": 10
     },
     {
       "id": "page-07-design-04",
@@ -120,7 +218,14 @@
       "category": "Ausstattung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 7. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 7
+      "catalogPage": 7,
+      "previewCrop": [
+        548,
+        295,
+        255,
+        173
+      ],
+      "defaultQuantity": 10
     },
     {
       "id": "page-08-design-01",
@@ -128,7 +233,14 @@
       "category": "Außenwerbung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 8. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 8
+      "catalogPage": 8,
+      "previewCrop": [
+        98,
+        87,
+        311,
+        194
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-08-design-02",
@@ -136,7 +248,14 @@
       "category": "Außenwerbung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 8. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 8
+      "catalogPage": 8,
+      "previewCrop": [
+        128,
+        305,
+        254,
+        179
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-08-design-03",
@@ -144,7 +263,14 @@
       "category": "Außenwerbung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 8. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 8
+      "catalogPage": 8,
+      "previewCrop": [
+        549,
+        181,
+        246,
+        302
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-09-design-01",
@@ -152,7 +278,14 @@
       "category": "Werbeschilder",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 9. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 9
+      "catalogPage": 9,
+      "previewCrop": [
+        229,
+        90,
+        245,
+        175
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-09-design-02",
@@ -160,7 +293,14 @@
       "category": "Werbeschilder",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 9. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 9
+      "catalogPage": 9,
+      "previewCrop": [
+        516,
+        90,
+        245,
+        175
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-09-design-03",
@@ -168,7 +308,14 @@
       "category": "Werbeschilder",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 9. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 9
+      "catalogPage": 9,
+      "previewCrop": [
+        114,
+        299,
+        211,
+        188
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-09-design-04",
@@ -176,7 +323,14 @@
       "category": "Werbeschilder",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 9. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 9
+      "catalogPage": 9,
+      "previewCrop": [
+        356,
+        299,
+        248,
+        188
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-09-design-05",
@@ -184,7 +338,14 @@
       "category": "Werbeschilder",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 9. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 9
+      "catalogPage": 9,
+      "previewCrop": [
+        655,
+        298,
+        199,
+        190
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-10-design-01",
@@ -192,7 +353,14 @@
       "category": "Nasenschilder",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 10. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 10
+      "catalogPage": 10,
+      "previewCrop": [
+        128,
+        89,
+        278,
+        176
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-10-design-02",
@@ -200,7 +368,14 @@
       "category": "Nasenschilder",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 10. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 10
+      "catalogPage": 10,
+      "previewCrop": [
+        510,
+        85,
+        280,
+        178
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-10-design-03",
@@ -208,7 +383,14 @@
       "category": "Nasenschilder",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 10. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 10
+      "catalogPage": 10,
+      "previewCrop": [
+        40,
+        293,
+        261,
+        183
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-10-design-04",
@@ -216,7 +398,14 @@
       "category": "Nasenschilder",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 10. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 10
+      "catalogPage": 10,
+      "previewCrop": [
+        353,
+        293,
+        253,
+        182
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-10-design-05",
@@ -224,7 +413,14 @@
       "category": "Nasenschilder",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 10. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 10
+      "catalogPage": 10,
+      "previewCrop": [
+        654,
+        283,
+        286,
+        190
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-11-design-01",
@@ -232,7 +428,14 @@
       "category": "Werbeartikel",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 11. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 11
+      "catalogPage": 11,
+      "previewCrop": [
+        151,
+        96,
+        211,
+        151
+      ],
+      "defaultQuantity": 10
     },
     {
       "id": "page-11-design-02",
@@ -240,7 +443,14 @@
       "category": "Werbeartikel",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 11. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 11
+      "catalogPage": 11,
+      "previewCrop": [
+        466,
+        86,
+        245,
+        104
+      ],
+      "defaultQuantity": 10
     },
     {
       "id": "page-11-design-03",
@@ -248,7 +458,14 @@
       "category": "Werbeartikel",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 11. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 11
+      "catalogPage": 11,
+      "previewCrop": [
+        137,
+        274,
+        268,
+        199
+      ],
+      "defaultQuantity": 10
     },
     {
       "id": "page-11-design-04",
@@ -256,7 +473,14 @@
       "category": "Werbeartikel",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 11. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 11
+      "catalogPage": 11,
+      "previewCrop": [
+        485,
+        240,
+        297,
+        220
+      ],
+      "defaultQuantity": 10
     },
     {
       "id": "page-12-design-01",
@@ -264,7 +488,14 @@
       "category": "Werbeartikel",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 12. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 12
+      "catalogPage": 12,
+      "previewCrop": [
+        114,
+        106,
+        261,
+        148
+      ],
+      "defaultQuantity": 10
     },
     {
       "id": "page-12-design-02",
@@ -272,7 +503,14 @@
       "category": "Werbeartikel",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 12. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 12
+      "catalogPage": 12,
+      "previewCrop": [
+        532,
+        78,
+        246,
+        168
+      ],
+      "defaultQuantity": 10
     },
     {
       "id": "page-12-design-03",
@@ -280,7 +518,14 @@
       "category": "Werbeartikel",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 12. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 12
+      "catalogPage": 12,
+      "previewCrop": [
+        165,
+        301,
+        226,
+        157
+      ],
+      "defaultQuantity": 10
     },
     {
       "id": "page-12-design-04",
@@ -288,7 +533,14 @@
       "category": "Werbeartikel",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 12. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 12
+      "catalogPage": 12,
+      "previewCrop": [
+        562,
+        288,
+        245,
+        178
+      ],
+      "defaultQuantity": 10
     },
     {
       "id": "page-13-design-01",
@@ -296,7 +548,14 @@
       "category": "Kleidung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 13. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 13
+      "catalogPage": 13,
+      "previewCrop": [
+        121,
+        102,
+        207,
+        176
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-13-design-02",
@@ -304,7 +563,14 @@
       "category": "Kleidung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 13. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 13
+      "catalogPage": 13,
+      "previewCrop": [
+        348,
+        99,
+        192,
+        177
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-13-design-03",
@@ -312,7 +578,14 @@
       "category": "Kleidung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 13. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 13
+      "catalogPage": 13,
+      "previewCrop": [
+        596,
+        101,
+        177,
+        177
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-13-design-04",
@@ -320,7 +593,14 @@
       "category": "Kleidung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 13. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 13
+      "catalogPage": 13,
+      "previewCrop": [
+        132,
+        311,
+        170,
+        169
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-13-design-05",
@@ -328,7 +608,14 @@
       "category": "Kleidung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 13. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 13
+      "catalogPage": 13,
+      "previewCrop": [
+        359,
+        307,
+        171,
+        172
+      ],
+      "defaultQuantity": 1
     },
     {
       "id": "page-13-design-06",
@@ -336,7 +623,14 @@
       "category": "Kleidung",
       "description": "Originaldesign aus dem CHASE Werbekatalog, Seite 13. Ausführung und gewünschte Menge werden im Angebot abgestimmt.",
       "unit": "Stück",
-      "catalogPage": 13
+      "catalogPage": 13,
+      "previewCrop": [
+        611,
+        334,
+        150,
+        146
+      ],
+      "defaultQuantity": 1
     }
   ]
 }

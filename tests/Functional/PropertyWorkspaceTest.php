@@ -61,7 +61,7 @@ final class PropertyWorkspaceTest extends WebTestCase
         $crawler=$this->client->request('GET','/properties/work-own');self::assertResponseIsSuccessful();
         self::assertCount(1,$crawler->filter('form#property-data-form'));
         self::assertCount(0,$crawler->filter('form form'));
-        foreach (['start','base','equipment','condition','images','documents','pricing','texts','marketing'] as $id) self::assertCount(1,$crawler->filter('details.property-section#'.$id));
+        foreach (['start','base','equipment','condition','images','documents','pricing','texts','marketing'] as $id) self::assertCount(1,$crawler->filter('section.property-section#'.$id));
         self::assertSelectorExists('input[form="property-data-form"][name="ownerName"]');
         self::assertSelectorExists('input[form="property-data-form"][name="bgfSqm"]');
         self::assertSelectorExists('input[form="property-data-form"][name="energyValue"]');
@@ -69,6 +69,25 @@ final class PropertyWorkspaceTest extends WebTestCase
         self::assertSelectorExists('select[name="modernisations[0][component]"]');
         $this->client->request('GET','/properties/work-own?tab=documents');self::assertResponseIsSuccessful();self::assertSelectorExists('[data-initial-section="documents"]');
         $this->client->request('GET','/properties?focus=texts');self::assertResponseIsSuccessful();self::assertSelectorExists('a[href="/properties/work-own#texts"]');
+    }
+
+    public function testSingleSelectedStepAndSaveReturnToCurrentPanel(): void
+    {
+        $crawler=$this->client->request('GET','/properties/work-own?step=base');
+        self::assertResponseIsSuccessful();
+        self::assertCount(1,$crawler->filter('[data-workspace-panel]:not([hidden])'));
+        self::assertSelectorNotExists('#base[hidden]');
+        self::assertSelectorExists('#start[hidden]');
+        self::assertSelectorExists('[data-workspace-prev]');
+        self::assertSelectorExists('[data-workspace-next]');
+        $token=$crawler->filter('meta[name="portal-csrf"]')->attr('content');
+        $this->client->request('POST','/properties/work-own/edit',$this->valid(['_token'=>$token,'_activeStep'=>'base','areaSqm'=>'137']));
+        self::assertResponseRedirects('/properties/work-own#base');
+        self::assertSame(137.0,$this->fresh(Property::class,'work-own')->data['areaSqm']);
+        $crawler=$this->client->request('GET','/properties/work-own?step=invalid');
+        self::assertResponseIsSuccessful();
+        self::assertCount(1,$crawler->filter('[data-workspace-panel]:not([hidden])'));
+        self::assertSelectorNotExists('#start[hidden]');
     }
 
     public function testExtendedInputPersistsAndPartialUpdatesPreservePrivateEnrichments(): void

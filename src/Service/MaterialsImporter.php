@@ -190,9 +190,11 @@ final class MaterialsImporter
                 'status' => 'Lokaler Anfrageentwurf · nicht bestellt', 'catalogPage' => (int) $row['catalogPage'],
             ]);
             $record = $this->em->find(AdvertisingProduct::class, $id);
+            $overrides = array_intersect_key((array) ($record?->data['adminOverrides'] ?? []), array_flip(['title','category','categoryId','defaultQuantity','unit','active','imageFilePath','imageHash','imageMime','referenceQuote']));
+            if ($overrides) $data = array_replace($data, $overrides, ['adminOverrides' => $overrides]);
             if ($record && $record->data === $data) continue;
             if (!$record) { $record = new AdvertisingProduct($data, null, $tenant); $record->id = $id; }
-            else { $record->data = $data; $record->title = $row['title']; $record->updatedAt = new \DateTimeImmutable(); }
+            else { $record->data = $data; $record->title = $data['title']; $record->updatedAt = new \DateTimeImmutable(); }
             $this->em->persist($record);
         }
     }

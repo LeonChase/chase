@@ -2,4 +2,5 @@
 set -eu
 cd "$(dirname "$0")/.."
 if [ ! -f vendor/autoload.php ]; then echo 'Bitte zuerst ./scripts/setup ausführen.' >&2; exit 1; fi
+./scripts/php bin/console app:materials:auto --no-interaction || true
 exec ./scripts/php -d upload_max_filesize=32M -d post_max_size=36M -S "${CHASE_LISTEN:-127.0.0.1:8000}" -t public public/router.php

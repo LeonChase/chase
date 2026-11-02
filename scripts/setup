@@ -10,5 +10,6 @@ composer install --no-interaction --prefer-dist
 ./scripts/php bin/console cache:clear
 ./scripts/php bin/console doctrine:migrations:migrate --no-interaction
 ./scripts/php bin/console app:demo:seed
+./scripts/php bin/console app:materials:auto --no-interaction
 ./scripts/php bin/console cache:warmup
 echo 'Fertig. Start: ./scripts/start · Zugangsdaten: ./scripts/demo-access'

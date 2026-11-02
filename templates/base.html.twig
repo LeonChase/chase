@@ -22,7 +22,7 @@
         <a class="brand" href="/" aria-label="CHASE Immobilien – Dashboard">
             <img class="brand-image brand-logo-light" src="/assets/brand/chase-orange.png" alt="CHASE Immobilien" width="166" height="58"><img class="brand-image brand-logo-dark" src="/assets/brand/chase-white.png" alt="CHASE Immobilien" width="166" height="58">
         </a>
-        <div class="workspace-label"><span class="workspace-dot"></span><span>PARTNERPORTAL</span><span class="version-label">2.0</span></div>
+        <div class="workspace-label"><span class="workspace-dot"></span><span>PARTNERPORTAL</span><span class="version-label">2.2</span></div>
         <nav class="main-nav">
             <div class="nav-group-label">MEIN ARBEITSPLATZ</div>
             {% set navigation = [
@@ -69,7 +69,7 @@
                 <button class="icon-button theme-toggle" type="button" data-toggle-theme aria-label="Dunklen Modus aktivieren" title="Hell / Dunkel umschalten"><span class="theme-sun">{{ icon('sun') }}</span><span class="theme-moon">{{ icon('moon') }}</span></button>
                 <a class="icon-button message-button" href="/messages" aria-label="Nachrichten und Kontakt{% if portal.unreadMessages|default(0) > 0 %}, {{ portal.unreadMessages }} ungelesen{% endif %}" title="Nachrichten & Kontakt">{{ icon('message-circle') }}{% if portal.unreadMessages|default(0) > 0 %}<span class="notification-dot"></span>{% endif %}</a>
                 <a class="icon-button header-help" href="/help/assistant" aria-label="Portalhilfe öffnen" title="Wo finde ich was?">{{ icon('help-circle') }}</a>
-                <a class="icon-button notification-button" href="/news" aria-label="Nachrichten{% if portal.unreadNews > 0 %}, {{ portal.unreadNews }} ungelesen{% endif %}">{{ icon('bell') }}{% if portal.unreadNews > 0 %}<span class="nav-count header-news-count">{{ portal.unreadNews }}</span>{% endif %}</a>
+                <button class="icon-button notification-button" type="button" data-notifications-toggle aria-expanded="false" aria-controls="notifications-drawer" aria-label="Benachrichtigungen öffnen" title="Benachrichtigungen">{{ icon('bell') }}{% if portal.unreadNotifications > 0 %}<span class="nav-count header-news-count">{{ portal.unreadNotifications }}</span>{% endif %}</button>
                 <span class="topbar-divider"></span>
                 <div class="profile-dropdown">
                     <button class="profile-trigger" type="button" data-profile-toggle aria-expanded="false" aria-controls="profile-menu">
@@ -88,12 +88,13 @@
             <div class="flash-stack" aria-live="polite">
                 {% for type, messages in app.flashes %}{% for message in messages %}<div class="alert alert-{{ type }}" role="status"><span>{{ icon(type == 'error' ? 'help-circle' : 'check') }}</span><span>{{ message }}</span><button class="icon-button" type="button" data-dismiss-alert aria-label="Meldung schließen">{{ icon('x') }}</button></div>{% endfor %}{% endfor %}
             </div>
-            {% block body %}{% endblock %}
+            <div class="page-workspace">{% block body %}{% endblock %}</div>
             <footer class="page-footer"><span><span class="status-dot"></span>Lokaler Prototyp · CHASE-Materialien & Beispieldaten</span><a href="/help">Integrationen & Hilfe {{ icon('arrow-up-right') }}</a></footer>
         </main>
     </div>
 </div>
 {% endblock %}
+{% if app.user %}{% include 'notifications/_drawer.html.twig' ignore missing %}{% endif %}
 <div class="toast-region" aria-live="polite" aria-atomic="true"></div>
 {% block javascripts %}{% endblock %}
 </body>

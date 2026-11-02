@@ -4,7 +4,9 @@ Ein eigenständiger, lokal lauffähiger Symfony-Prototyp für das CHASE-Partnern
 
 **Windows 10:** [Schritt-für-Schritt-Anleitung mit Ubuntu/WSL](docs/WINDOWS_10_START.md).
 
-**Überarbeitete Version:** [Neue Abläufe, Originalunterlagen und Update-Anleitung](docs/REVISION_2_1.md).
+**Aktuell: Update 2.2 vom 02.11.2026** – [Kompakte Oberfläche, Chat, Benachrichtigungen und Update-Anleitung](docs/REVISION_2_2.md).
+
+Vorheriger Stand: [Revision 2.1](docs/REVISION_2_1.md).
 
 ## Einfach starten
 
@@ -17,7 +19,7 @@ Diese Befehle im entpackten Projektordner in einem Terminal ausführen:
 ```
 
 1. `setup` installiert die benötigten Programmpakete, legt die Datenbank an und erzeugt lokale Demokonten. Unter Debian 13 richtet das Skript bei Bedarf PHP und Composer ohne Administratorrechte im Projektordner ein.
-2. `demo-access` zeigt die E-Mail-Adressen und zufällig erzeugten Passwörter. Für den ersten Rundgang **Max Mustermann** wählen. Für die Verwaltung gibt es **admin@example.test**. Keine dieser Angaben gehört zur echten CHASE-Website.
+2. `demo-access` zeigt die E-Mail-Adressen und zufällig erzeugten Passwörter. Für den ersten Rundgang **Max Mustermann** wählen. Die tatsächlich angelegte Verwaltungsadresse steht ebenfalls in `demo-access`. Keine dieser Angaben gehört zur echten CHASE-Website.
 3. `start` startet die Website. Im Browser die Adresse `http://127.0.0.1:8000` eingeben. Das Terminal dabei geöffnet lassen; mit **Strg+C** beenden.
 
 Nach einem Neustart genügt `./scripts/start`. Änderungen bleiben erhalten. Erneutes `setup` erhält vorhandene Objekte, Nutzer und Passwörter. Neue Projektdateien nach einem Update erfordern `./scripts/setup`, um Programmpakete, Datenbankänderungen und Cache zu aktualisieren.
@@ -28,7 +30,7 @@ Nach einem Neustart genügt `./scripts/start`. Änderungen bleiben erhalten. Ern
 
 - PHP **8.3 oder 8.4**, Composer 2. Die geprüfte Cloud-Laufzeit ist PHP 8.4.26.
 - PHP-Erweiterungen: PDO/SQLite, mbstring, XML/DOM, tokenizer, fileinfo und curl; intl und zip empfohlen.
-- Mindestens `upload_max_filesize=8M`, `post_max_size=10M`; der lokale Helfer setzt 15M/18M. Eigene Dateiuploads sind auf 8 MB begrenzt.
+- Der lokale Starthelfer setzt `upload_max_filesize=32M` und `post_max_size=36M` für das Unterlagenarchiv. Objektdateien bleiben einzeln auf 8 MB begrenzt.
 - Keine Container, keine Node-Installation und keine externe Datenbank für den Betrieb erforderlich.
 
 Unter Windows ist für die Befehle eine Linux-Umgebung (WSL) oder Git Bash mit vorhandenem PHP/Composer nötig. Der optionale automatische PHP-Helfer ist für Debian 13 ausgelegt. Auf anderen Systemen PHP/Composer mit dem jeweiligen Paketmanager installieren. Keine externen API-Schlüssel erforderlich.

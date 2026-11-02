@@ -313,10 +313,13 @@ final class PortalTest extends WebTestCase
 
     public function testNewsUnreadAcademyProgressFavoritesAndSavedDarkTheme(): void
     {
-        $this->auth(); $token=$this->token('/news');
-        self::assertSelectorTextContains('.notification-button[href="/news"] .header-news-count','1');
+        $this->auth(); $token=$this->token('/');
+        self::assertSelectorExists('[data-notifications-toggle]');
+        $this->client->request('GET','/notifications'); self::assertResponseIsSuccessful();
+        self::assertSelectorCount(1,'[data-notice-id="news:news-public"].notice-unread');
         $this->client->request('POST','/preferences/read/news/news-public',['_token'=>$token]); self::assertResponseRedirects('/news/news-public');
-        $this->client->followRedirect(); self::assertResponseIsSuccessful(); self::assertSelectorNotExists('.notification-button[href="/news"] .header-news-count');
+        $this->client->followRedirect(); self::assertResponseRedirects('/?notifications=open&notice=news%3Anews-public');
+        $this->client->request('GET','/notifications'); self::assertResponseIsSuccessful(); self::assertSelectorCount(0,'[data-notice-id="news:news-public"].notice-unread');
         foreach ([['progress','academy','academy-demo'],['favorite','document','doc-public']] as [$kind,$type,$id]) {
             $this->client->request('POST',"/preferences/$kind/$type/$id",['_token'=>$token]); self::assertResponseStatusCodeSame(302);
         }
@@ -347,8 +350,9 @@ final class PortalTest extends WebTestCase
         $this->client->request('POST','/admin/news/new',['_token'=>$token,'title'=>'Neue synthetische Admin-News','category'=>'System','status'=>'Veröffentlicht','summary'=>'Lokale Testmeldung','body'=>'Ausschließlich synthetischer Inhalt.','priority'=>'Normal']);
         self::assertResponseStatusCodeSame(302);
         $post=$this->em()->getRepository(NewsPost::class)->findOneBy(['title'=>'Neue synthetische Admin-News']); self::assertNotNull($post); self::assertSame('Veröffentlicht',$post->data['status']);
-        $this->auth(); $this->client->request('GET','/news'); self::assertResponseIsSuccessful(); self::assertSelectorTextContains('main','Neue synthetische Admin-News');
-        self::assertSelectorTextContains('.notification-button[href="/news"] .header-news-count','2');
+        $this->auth(); $this->client->request('GET','/news'); self::assertResponseRedirects('/?notifications=open');
+        $this->client->request('GET','/notifications'); self::assertResponseIsSuccessful(); self::assertSelectorTextContains('[data-notice-news]','Neue synthetische Admin-News');
+        self::assertSelectorCount(2,'[data-notice-news]');
     }
 
     public function testPrivateUploadDownloadChecksOwnerAndRejectsSpoofedMime(): void

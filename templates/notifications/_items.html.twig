@@ -1,0 +1,8 @@
+{% for notice in items %}
+<article class="notice {{ notice.read ? 'notice-read' : 'notice-unread' }}" data-notice-id="{{ notice.id }}">
+ <span class="notice-icon">{{ icon(notice.icon) }}</span><div class="notice-content">
+ {% if notice.kind == 'news' %}<details data-notice-news><summary><strong>{{ notice.title }}</strong><small>{{ notice.time|date('d.m.Y · H:i','Europe/Berlin') }}</small></summary><div class="notice-body">{{ notice.body }}</div></details>
+ {% else %}<a href="{{ notice.url }}" data-notice-link><strong>{{ notice.title }}</strong>{% if notice.body %}<span class="notice-preview">{{ notice.body }}</span>{% endif %}<small>{{ notice.time|date(notice.kind == 'today' ? 'd.m.Y' : 'd.m.Y · H:i','Europe/Berlin') }}</small></a>{% endif %}
+ </div>{% if not notice.read %}<button type="button" class="icon-button notice-mark" data-notice-read aria-label="Gelesen: {{ notice.title }}" title="Als gelesen markieren">{{ icon('check') }}</button>{% endif %}
+</article>
+{% else %}<p class="notifications-empty">Du bist auf dem aktuellen Stand.</p>{% endfor %}

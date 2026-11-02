@@ -111,7 +111,16 @@ final class ContentController extends PortalController
     #[Route('/academy', name: 'app_academy', methods: ['GET'])]
     public function academy(Request $request, Lexicon $lexicon): Response
     {
-        return $this->catalog($request, AcademyArticle::class, 'academy', ['lexiconCount' => count($lexicon->all())]);
+        $q = mb_substr(trim((string) $request->query->get('q', '')), 0, 200);
+        $all = $this->store->visible(AcademyArticle::class, $this->user());
+        $favorites = $this->preferenceTargets('favorite'); $learned = $this->preferenceTargets('progress');
+        $items = array_values(array_filter($all, static function (Record $item) use ($q): bool {
+            $content = $item->data['content'] ?? '';
+            $search = $item->title.' '.($item->data['category'] ?? '').' '.($item->data['teaser'] ?? '').' '.(is_array($content) ? json_encode($content, JSON_UNESCAPED_UNICODE) : $content);
+            return $q === '' || str_contains(mb_strtolower($search), mb_strtolower($q));
+        }));
+        $lexiconResults = $q !== '' ? $lexicon->search($q) : [];
+        return $this->page('content/academy.html.twig', compact('q', 'all', 'items', 'favorites', 'learned', 'lexiconResults'));
     }
 
     #[Route('/academy/lexicon', name: 'app_lexicon', methods: ['GET'], priority: 20)]
@@ -181,16 +190,14 @@ final class ContentController extends PortalController
     #[Route('/news', name: 'app_news', methods: ['GET'])]
     public function news(Request $request): Response
     {
-        return $this->catalog($request, NewsPost::class, 'news');
+        return $this->redirect('/?notifications=open');
     }
 
     #[Route('/news/{id}', name: 'app_news_article', methods: ['GET'])]
     public function newsArticle(string $id): Response
     {
-        return $this->page('content/news_article.html.twig', [
-            'article' => $this->visible(NewsPost::class, $id),
-            'read' => $this->preferenceTargets('read'),
-        ]);
+        $this->visible(NewsPost::class, $id);
+        return $this->redirect('/?notifications=open&notice='.rawurlencode('news:'.$id));
     }
 
     #[Route('/network', name: 'app_network', methods: ['GET'])]
@@ -246,11 +253,13 @@ final class ContentController extends PortalController
         if ($request->isMethod('POST')) {
             $this->token($request);
             $name = trim((string) $request->request->get('name', ''));
+            $firstName = trim((string) $request->request->get('first_name', $user->preferences['firstName'] ?? ''));
             $password = (string) $request->request->get('new_password', '');
             $confirmation = (string) $request->request->get('password_confirmation', '');
             if (mb_strlen($name) < 2 || mb_strlen($name) > 100) {
                 $errors[] = 'Ihr Name muss zwischen 2 und 100 Zeichen lang sein.';
             }
+            if (mb_strlen($firstName) > 60) $errors[] = 'Der Vorname darf höchstens 60 Zeichen enthalten.';
             if ($password !== '') {
                 if (!$hasher->isPasswordValid($user, (string) $request->request->get('current_password', ''))) {
                     $errors[] = 'Das bisherige Passwort ist nicht korrekt.';
@@ -267,7 +276,7 @@ final class ContentController extends PortalController
                 if ($password !== '') {
                     $user->setPassword($hasher->hashPassword($user, $password));
                 }
-                $user->preferences = array_merge($user->preferences, ['directoryVisible' => $request->request->getBoolean('directory_visible')]);
+                $user->preferences = array_merge($user->preferences, ['directoryVisible' => $request->request->getBoolean('directory_visible'), 'firstName' => $firstName]);
                 $this->save($user);
                 // Visibility is opt-in per user, never inferred from their region.
                 $foundProfile = false;

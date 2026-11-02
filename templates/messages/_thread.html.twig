@@ -1,0 +1,9 @@
+{% for message in conversation %}
+<article class="chat-bubble {{ message.ownerId == app.user.id ? 'chat-bubble-own' : '' }}" id="message-{{ message.id }}" data-message-id="{{ message.id }}" data-message-unread="{{ message.recipientId == app.user.id and not message.data.readAt|default(null) ? 'true' : 'false' }}">
+ {% if message.title not in ['Nachricht',''] %}<strong class="chat-subject">{{ message.title }}</strong>{% endif %}
+ <div class="chat-message-text">{{ message.data.body }}</div>
+ {% if message.data.propertyId|default('') %}<a class="chat-property-link" href="/properties/{{ message.data.propertyId }}">{{ icon('building') }} Objektakte öffnen</a>{% endif %}
+ <footer><time datetime="{{ message.createdAt|date('c') }}">{{ message.createdAt|date('d.m. · H:i', 'Europe/Berlin') }}</time>{% if message.ownerId == app.user.id %}<span aria-label="{{ message.data.readAt|default(null) ? 'Gelesen' : 'Gesendet' }}" title="{{ message.data.readAt|default(null) ? 'Gelesen' : 'Gesendet' }}">{{ icon(message.data.readAt|default(null) ? 'check-square' : 'check') }}</span>{% endif %}</footer>
+</article>
+{% else %}<p class="chat-first-message muted">Schreib deine erste Nachricht.</p>{% endfor %}
+<div id="chat-latest"></div>

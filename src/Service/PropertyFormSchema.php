@@ -99,7 +99,7 @@ final class PropertyFormSchema
                 'condition'=>self::field('Gesamtzustand', 'select', 'core', options:['gepflegt','neuwertig','erstbezug','renovierungsbedürftig','sanierungsbedürftig','modernisiert','teilweise modernisiert','saniert','Erstbezug nach Sanierung','Rohbau','baufällig','unbekannt']),
                 'lastModernisationYear'=>self::number('Letzte größere Modernisierung (Jahr)', 'core', 1900, $year, '1'),
                 'defects'=>self::field('Baumängel / Auffälligkeiten', 'textarea', 'core', maxlength:5000, help:'Bekannte Mängel sachlich beschreiben. Ein leeres Feld ist keine Bestätigung der Mangelfreiheit.'),
-                'notes'=>self::field('Interne Objektnotizen', 'textarea', 'core', maxlength:5000),
+                'notes'=>self::field('Interne Objektnotizen', 'textarea', 'internal', maxlength:5000),
             ]],
             'pricing' => ['title'=>'Preis & Provision', 'subtitle'=>'Preisgrundlagen und vereinbarte Provision getrennt festhalten.', 'icon'=>'euro', 'fields'=>[
                 'priceEur'=>self::number('Kaufpreis (EUR)', 'price', 0.01, 1000000000),

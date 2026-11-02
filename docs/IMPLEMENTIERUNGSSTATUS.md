@@ -1,6 +1,6 @@
-# Implementierungsstand · 20. Oktober 2026
+# Implementierungsstand · 2. November 2026
 
-**Aktuelle Überarbeitung:** [Revision 2.1](REVISION_2_1.md) beschreibt die neue Objektzentrale, Navigation, Originalbibliothek, Bewertung und Tagesplanung. Die folgende Tabelle dokumentiert die vorherige Erstversion; frühere Studio-/Marketingrouten bleiben nur zur Kompatibilität bestehen. Die aktuelle Prüfung umfasst **161 erfolgreiche Tests mit 4.546 Assertions** und wird im Testprotokoll separat ausgewiesen.
+**Aktuell: [Revision 2.2](REVISION_2_2.md).** Kompakte Arbeitsbereiche, einzelne Objektschritte, Live-Bewertung mit PDF, bildbetonter Katalog mit Kategorien-/Produktpflege, Inline-Aufgaben, Gesprächsansicht und Benachrichtigungsleiste. **180 Tests / 4.697 Assertions erfolgreich.** Details und Grenzen stehen im aktuellen Revisions- und Testprotokoll. Die folgende Meilensteintabelle dokumentiert die Erstversion; ältere Routen bleiben teilweise zur Kompatibilität erhalten.
 
 Eigenständige Symfony-7.4-LTS-Anwendung. Sämtliche P0-Kernabläufe sind lokal implementiert und getestet. Zusätzlich sind ausgewählte P1-Erweiterungen umgesetzt. Keine Produktivanbindung oder öffentliche Bereitstellung durchgeführt.
 
